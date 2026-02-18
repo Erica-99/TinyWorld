@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://scripts/StarMap.gd" id="1_fp76q"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
+[ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
 radius = 1000.0
@@ -16,9 +17,10 @@ script = ExtResource("1_fp76q")
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
 [node name="SpaceChecker" type="ShapeCast2D" parent="." unique_id=1182392433]
+scale = Vector2(0.1, 0.1)
 shape = SubResource("CircleShape2D_fchhc")
 target_position = Vector2(0, 0)
-collision_mask = 6
+collision_mask = 4
 collide_with_areas = true
 script = SubResource("GDScript_fchhc")
 
@@ -38,5 +40,11 @@ color = Color(0.030984493, 0.027432224, 0.039930467, 1)
 
 [node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
 
-[node name="Camera2D" type="Camera2D" parent="Ship" unique_id=1825460506]
-zoom = Vector2(0.355, 0.355)
+[node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
+enabled = false
+zoom = Vector2(0.33, 0.33)
+target_object = NodePath("../Ship")
+tracking_speed = 10.0
+
+[node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
+zoom = Vector2(0.01, 0.01)
