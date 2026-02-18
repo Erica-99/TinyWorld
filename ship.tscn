@@ -1,9 +1,22 @@
 [gd_scene format=3 uid="uid://b6iv033nau3ee"]
 
+[ext_resource type="Script" uid="uid://bqjghuaq4q8bf" path="res://ship.gd" id="1_4cq66"]
 [ext_resource type="Texture2D" uid="uid://c7gouvrquw1do" path="res://icon.svg" id="1_l3rv8"]
 
-[node name="Ship" type="Node2D" unique_id=1605129518]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cq66"]
+size = Vector2(72, 128)
+
+[node name="Ship" type="RigidBody2D" unique_id=156394039]
+gravity_scale = 0.0
+angular_damp = 2.0
+script = ExtResource("1_4cq66")
+thrust = 400.0
+turning_torque = 6000.0
+linear_damper_strength = 2.0
 
 [node name="Ship Sprite" type="Sprite2D" parent="." unique_id=935690747]
 scale = Vector2(0.5546875, 1)
 texture = ExtResource("1_l3rv8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=395625906]
+shape = SubResource("RectangleShape2D_4cq66")
