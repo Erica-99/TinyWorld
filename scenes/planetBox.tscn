@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cwmaiewmyuf43"]
 
-[ext_resource type="Script" uid="uid://13mqvy4n72es" path="res://planet.gd" id="1_dxv0p"]
+[ext_resource type="Script" uid="uid://13mqvy4n72es" path="res://scripts/planet.gd" id="1_dxv0p"]
+[ext_resource type="Script" uid="uid://cxloe57uv8mdb" path="res://scripts/planet_gravity.gd" id="1_pl6jd"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_bymth"]
 radius = 5.0
@@ -13,6 +14,8 @@ radius = 30.0
 radius = 5.0
 
 [node name="PlanetArea" type="Area2D" unique_id=1921216346]
+collision_layer = 2
+script = ExtResource("1_pl6jd")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1057991627]
 position = Vector2(3.8146973e-06, -7.6293945e-06)
@@ -26,3 +29,6 @@ script = ExtResource("1_dxv0p")
 
 [node name="PlanetHitbox" type="CollisionShape2D" parent="Planet" unique_id=1480384573]
 shape = SubResource("CircleShape2D_ysjy8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
