@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var planet = preload("res://planetBox.tscn")
+@onready var planet = preload("res://scenes/planetBox.tscn")
 @onready var planetlist = $Planets
 @onready var SpaceChecker = $SpaceChecker
 @export var planetcount = 1000
