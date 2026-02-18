@@ -20,7 +20,6 @@ func _physics_process(delta: float) -> void:
 		var force_direction = gravity_vector.normalized()
 		var distance = gravity_vector.length()
 		var effectiveness = gravity_strength/((distance/100)**2) # Inverse square law
-		print(effectiveness)
 		rb.apply_central_force(force_direction * effectiveness)
 
 
@@ -37,4 +36,5 @@ func _on_body_exited(body: Node2D) -> void:
 func setup_planet(biome: ENUMS.PlanetType, size: float) -> void:
 	scale = Vector2(size, size)
 	gravity_strength = size**2 * 2.5
+	rotation = randf_range(0, 2*PI)
 	$PlanetBody.set_biome_and_generate_stats(biome)
