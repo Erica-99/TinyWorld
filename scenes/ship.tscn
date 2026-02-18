@@ -15,8 +15,10 @@ turning_torque = 6000.0
 linear_damper_strength = 2.0
 
 [node name="Ship Sprite" type="Sprite2D" parent="." unique_id=935690747]
+position = Vector2(491, 235)
 scale = Vector2(0.5546875, 1)
 texture = ExtResource("2_4tobq")
+offset = Vector2(-885.1831, -235)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=395625906]
 shape = SubResource("RectangleShape2D_4cq66")

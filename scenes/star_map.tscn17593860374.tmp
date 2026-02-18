@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
-radius = 1000.0
+radius = 39.82
 
 [sub_resource type="GDScript" id="GDScript_fchhc"]
 script/source = "extends ShapeCast2D
