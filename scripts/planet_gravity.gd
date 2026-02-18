@@ -6,8 +6,8 @@ var captured_objects: Array[RigidBody2D] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	pass
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -32,3 +32,9 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body in captured_objects:
 		captured_objects.erase(body)
+
+
+func setup_planet(biome: ENUMS.PlanetType, size: float) -> void:
+	scale = Vector2(size, size)
+	gravity_strength = size**2 * 2.5
+	$PlanetBody.set_biome_and_generate_stats(biome)

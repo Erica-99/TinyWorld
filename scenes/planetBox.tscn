@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cwmaiewmyuf43"]
 
-[ext_resource type="Script" uid="uid://13mqvy4n72es" path="res://scripts/planet.gd" id="1_dxv0p"]
+[ext_resource type="Script" uid="uid://13mqvy4n72es" path="res://scripts/planet_body.gd" id="1_dxv0p"]
 [ext_resource type="Script" uid="uid://cxloe57uv8mdb" path="res://scripts/planet_gravity.gd" id="1_pl6jd"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_bymth"]
@@ -24,10 +24,14 @@ mesh = SubResource("SphereMesh_bymth")
 [node name="GravityWell" type="CollisionShape2D" parent="." unique_id=1648343781]
 shape = SubResource("CircleShape2D_dxv0p")
 
-[node name="Planet" type="Area2D" parent="." unique_id=1707106814]
+[node name="PlanetBody" type="RigidBody2D" parent="." unique_id=1215712948]
+collision_layer = 4
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
 script = ExtResource("1_dxv0p")
 
-[node name="PlanetHitbox" type="CollisionShape2D" parent="Planet" unique_id=1480384573]
+[node name="PlanetHitbox" type="CollisionShape2D" parent="PlanetBody" unique_id=1480384573]
 shape = SubResource("CircleShape2D_ysjy8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
