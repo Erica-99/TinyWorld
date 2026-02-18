@@ -1,6 +1,6 @@
 extends Camera2D
 
-@export var target_object: Node2D
+@export var target_object: RigidBody2D
 @export var tracking_speed: float = 1
 
 # Called when the node enters the scene tree for the first time.

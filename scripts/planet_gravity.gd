@@ -39,6 +39,7 @@ func _on_body_exited(body: Node2D) -> void:
 
 func setup_planet(biome: ENUMS.PlanetType, size: float) -> void:
 	scale = Vector2(size, size)
-	gravity_strength = size**2 * 2.5
+	gravity_strength = size * 100
 	rotation = randf_range(0, 2*PI)
+	$PlanetBody.size = size
 	$PlanetBody.set_biome_and_generate_stats(biome)

@@ -41,6 +41,7 @@ position = Vector2(3.8146973e-06, -7.6293945e-06)
 mesh = SubResource("SphereMesh_bymth")
 
 [node name="GravityWell" type="CollisionShape2D" parent="." unique_id=1648343781]
+scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_dxv0p")
 
 [node name="PlanetBody" type="RigidBody2D" parent="." unique_id=1215712948]
