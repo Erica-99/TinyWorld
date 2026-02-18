@@ -9,7 +9,6 @@ size = Vector2(72, 128)
 [node name="Ship" type="RigidBody2D" unique_id=156394039]
 collision_mask = 6
 gravity_scale = 0.0
-angular_damp = 2.0
 script = ExtResource("1_2gnfn")
 thrust = 400.0
 turning_torque = 6000.0

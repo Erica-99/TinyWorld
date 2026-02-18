@@ -21,6 +21,10 @@ func _physics_process(delta: float) -> void:
 		var distance = gravity_vector.length()
 		var effectiveness = gravity_strength/((distance/100)**2) # Inverse square law
 		rb.apply_central_force(force_direction * effectiveness)
+		
+		var target_angle = rb.global_position.angle_to_point(global_position)
+		var angle_diff = wrapf(target_angle - rb.rotation - PI/2, -PI, PI)
+		rb.apply_torque(angle_diff * 50 * effectiveness)
 
 
 func _on_body_entered(body: Node2D) -> void:

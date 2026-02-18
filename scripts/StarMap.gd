@@ -1,7 +1,5 @@
 extends Node2D
 
-
-
 @onready var planet = preload("res://scenes/planetBox.tscn")
 @onready var planetlist = $Planets
 @onready var SpaceChecker = $SpaceChecker
