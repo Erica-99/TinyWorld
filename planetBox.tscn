@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b2m8pc4plkyf6"]
+
+[ext_resource type="Script" path="res://planet.gd" id="1_dxv0p"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bymth"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dxv0p"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ysjy8"]
+radius = 5.0
+
+[node name="PlanetArea" type="Area2D" unique_id=1921216346]
+scale = Vector2(3, 3)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1057991627]
+position = Vector2(3.8146973e-06, -7.6293945e-06)
+mesh = SubResource("SphereMesh_bymth")
+
+[node name="GravityWell" type="CollisionShape2D" parent="." unique_id=1648343781]
+shape = SubResource("CircleShape2D_dxv0p")
+
+[node name="Planet" type="Area2D" parent="." unique_id=1707106814]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_dxv0p")
+
+[node name="PlanetHitbox" type="CollisionShape2D" parent="Planet" unique_id=1480384573]
+shape = SubResource("CircleShape2D_ysjy8")
