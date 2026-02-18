@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwmaiewmyuf43"]
 
-[ext_resource type="Script" uid="uid://13mqvy4n72es" path="res://scripts/planet_body.gd" id="1_dxv0p"]
-[ext_resource type="Script" uid="uid://cxloe57uv8mdb" path="res://scripts/planet_gravity.gd" id="1_pl6jd"]
+[ext_resource type="Script" path="res://scripts/planet.gd" id="1_dxv0p"]
+[ext_resource type="Script" path="res://scripts/planet_gravity.gd" id="1_pl6jd"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_bymth"]
 radius = 5.0

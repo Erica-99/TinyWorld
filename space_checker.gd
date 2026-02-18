@@ -1,1 +1,1 @@
-extends Area2D
+extends ShapeCast2D

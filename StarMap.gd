@@ -7,7 +7,7 @@ extends Node2D
 @onready var SpaceChecker = $SpaceChecker
 @export var planetcount = 1000
 @onready var starmap = $"."
-var Spacefree = true
+
 
 func _ready() -> void:
 	generatemap()
@@ -27,13 +27,13 @@ func checkspace(OffsetPosition):
 
 func createplanet():
 
-	Spacefree = true
 	var newPlanet = planet.instantiate()
 	var angle := randf_range(0, TAU)
-	var distance: float = randf_range(10,1000)
+	var distance: float = randf_range(2000,10000)
 	var random_offset: Vector2 = Vector2.RIGHT.rotated(angle) * distance
 	SpaceChecker.position = starmap.position + random_offset
-	if SpaceChecker.is_colliding() == true:
+	SpaceChecker.force_shapecast_update()
+	if SpaceChecker.is_colliding() == false:
 		newPlanet.position = self.position + random_offset
 		planetlist.add_child(newPlanet)
 	pass

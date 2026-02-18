@@ -1,28 +1,22 @@
 [gd_scene format=3 uid="uid://bgciqt2blwnb1"]
 
 [ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://StarMap.gd" id="1_kf60v"]
+[ext_resource type="Script" uid="uid://wuhardh3l5bx" path="res://space_checker.gd" id="2_fchhc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
+radius = 39.82
 
 [node name="StarMap" type="Node2D" unique_id=1717163525]
 script = ExtResource("1_kf60v")
 
-[node name="Background" type="Node2D" parent="." unique_id=1643959030]
-
-[node name="ColorRect" type="ColorRect" parent="Background" unique_id=256970895]
-custom_minimum_size = Vector2(1920, 1080)
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.09666882, 0.07077243, 0.0986196, 1)
-
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1825460506]
-scale = Vector2(0.96, 0.96)
-zoom = Vector2(0.335, 0.335)
+zoom = Vector2(0.085, 0.085)
 
 [node name="SpaceChecker" type="ShapeCast2D" parent="." unique_id=1182392433]
 shape = SubResource("CircleShape2D_fchhc")
-target_position = Vector2(0, 542)
+target_position = Vector2(0, 0)
 collision_mask = 6
 collide_with_areas = true
+script = ExtResource("2_fchhc")
