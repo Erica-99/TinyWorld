@@ -9,5 +9,5 @@
 position = Vector2(1542, 731)
 
 [node name="PlanetArea" parent="." unique_id=1921216346 instance=ExtResource("2_x7ckh")]
-position = Vector2(441.99997, 561.99994)
+position = Vector2(442, 576)
 scale = Vector2(20, 20)
