@@ -10,8 +10,8 @@ extends RigidBody2D
 @export var minerals: int = 1
 
 
-func set_biome_and_generate_stats(biome: ENUMS.PlanetType):
-	biome = ENUMS.PlanetType
+func set_biome_and_generate_stats(set_biome: ENUMS.PlanetType):
+	biome = set_biome
 	
 	# Generate stats based on biome
 	pass

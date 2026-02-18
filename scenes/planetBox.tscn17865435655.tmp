@@ -35,6 +35,7 @@ radius = 5.0
 [node name="PlanetArea" type="Area2D" unique_id=1921216346]
 collision_layer = 2
 script = ExtResource("1_pl6jd")
+gravity_strength = null
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1057991627]
 position = Vector2(3.8146973e-06, -7.6293945e-06)
