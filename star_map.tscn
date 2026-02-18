@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://StarMap.gd" id="1_kf60v"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kf60v"]
-radius = 385.03
+[sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
 
 [node name="StarMap" type="Node2D" unique_id=1717163525]
 script = ExtResource("1_kf60v")
@@ -20,13 +19,10 @@ color = Color(0.09666882, 0.07077243, 0.0986196, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1825460506]
 scale = Vector2(0.96, 0.96)
+zoom = Vector2(0.335, 0.335)
 
-[node name="SpaceChecker" type="Area2D" parent="." unique_id=693097051]
-collision_layer = 0
-collision_mask = 15
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpaceChecker" unique_id=448519283]
-shape = SubResource("CircleShape2D_kf60v")
-
-[connection signal="area_entered" from="SpaceChecker" to="." method="_on_space_checker_area_entered"]
-[connection signal="area_exited" from="SpaceChecker" to="." method="_on_space_checker_area_exited"]
+[node name="SpaceChecker" type="ShapeCast2D" parent="." unique_id=1182392433]
+shape = SubResource("CircleShape2D_fchhc")
+target_position = Vector2(0, 542)
+collision_mask = 6
+collide_with_areas = true

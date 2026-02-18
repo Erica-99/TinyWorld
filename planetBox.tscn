@@ -9,9 +9,6 @@ height = 10.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxv0p"]
 radius = 30.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ysjy8"]
-radius = 5.0
-
 [node name="PlanetArea" type="Area2D" unique_id=1921216346]
 scale = Vector2(3, 3)
 collision_layer = 2
@@ -24,10 +21,6 @@ mesh = SubResource("SphereMesh_bymth")
 [node name="GravityWell" type="CollisionShape2D" parent="." unique_id=1648343781]
 shape = SubResource("CircleShape2D_dxv0p")
 
-[node name="Planet" type="Area2D" parent="." unique_id=1707106814]
-collision_layer = 4
+[node name="Planet" type="ShapeCast2D" parent="." unique_id=35805315]
 collision_mask = 0
 script = ExtResource("1_dxv0p")
-
-[node name="PlanetHitbox" type="CollisionShape2D" parent="Planet" unique_id=1480384573]
-shape = SubResource("CircleShape2D_ysjy8")
