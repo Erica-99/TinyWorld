@@ -24,7 +24,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# Check if there are any nearby planets
 	if nearby_planets.size() > 0:
+		# Check if conditions met to ready landing
 		var nearest_planet = get_nearest_planet()
 		if get_distance_to_planet_surface(nearest_planet) < max_range_for_landing and linear_velocity.length() < max_velocity_for_landing:
 			if not ready_to_land:
@@ -46,11 +48,11 @@ func _physics_process(delta: float) -> void:
 	if in_landing_mode:
 		process_landing_mode_movement(landing_target)
 	else:
-		process_movement_input(delta)
+		process_movement(delta)
 
 
-## Processes input and moves the ship
-func process_movement_input(delta: float) -> void:
+## Processes input and moves the ship in normal mode
+func process_movement(delta: float) -> void:
 	var thrust_input := Input.get_axis("Reverse", "Forward")
 	var rotation_input := Input.get_axis("Left", "Right")
 	
@@ -62,7 +64,7 @@ func process_movement_input(delta: float) -> void:
 	apply_central_force(movement_force)
 	apply_torque(rotation_torque)
 
-
+## Processes input and moves the ship in landing mode
 func process_landing_mode_movement(target: Area2D) -> void:
 	# Straightening
 	var target_angle = global_position.angle_to_point(target.global_position)
@@ -89,32 +91,32 @@ func process_landing_mode_movement(target: Area2D) -> void:
 	var force_amount = get_distance_to_planet_surface(target) * 2
 	var total_falling_force = force_direction * force_amount
 	apply_central_force(total_falling_force)
-	
 
-
+## One-off inputs (dampers, landing mode)
 func _unhandled_input(event):
-	if event.is_action_pressed("Fire Dampers"):
-		if not in_landing_mode:
+	if not in_landing_mode:
+		if event.is_action_pressed("Fire Dampers"):
 			linear_damp = linear_damper_strength
 			angular_damp = angular_damper_strength
-		
-	if event.is_action_released("Fire Dampers"):
-		if not in_landing_mode:
+			
+		if event.is_action_released("Fire Dampers"):
 			linear_damp = 0
 			angular_damp = 2
-	
-	if event.is_action_pressed("Landing Mode"):
-		if ready_to_land and not in_landing_mode:
-			landing_target = get_nearest_planet()
-			prepare_landing_mode()
-		elif ready_to_land and in_landing_mode:
-			player_ready_to_land.emit()
-			clear_landing_mode()
+			
+		if event.is_action_pressed("Landing Mode"):
+			if ready_to_land:
+				landing_target = get_nearest_planet()
+				prepare_landing_mode()
+			
+	elif in_landing_mode:
+		if event.is_action_pressed("Landing Mode"):
+			if ready_to_land:
+				player_ready_to_land.emit()
+				clear_landing_mode()
 
 
 func add_near_planet(planet: Area2D) -> void:
 	nearby_planets.append(planet)
-
 
 func remove_near_planet(planet: Area2D) -> void:
 	if planet in nearby_planets:
@@ -133,7 +135,6 @@ func get_nearest_planet() -> Area2D:
 			target = planet
 	return target
 
-
 func get_distance_to_planet_surface(planet: Area2D) -> float:
 	return (global_position - planet.global_position).length() - (planet.scale.x*5)
 
@@ -144,8 +145,8 @@ func prepare_landing_mode() -> void:
 	player_landing.emit()
 	landing_target.call("ignore_gravity_for_object", self)
 	in_landing_mode = true
-	
-	
+
+
 func clear_landing_mode() -> void:
 	linear_damp = 0
 	angular_damp = 2
