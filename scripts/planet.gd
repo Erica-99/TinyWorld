@@ -1,6 +1,17 @@
 extends Area2D
 
+@export var biome: ENUMS.PlanetType
+@export var size: float = 100
+@export var health: int = 10
 @export var gravity_strength: float = 1000
+
+@export_group("Resources")
+@export var biomass: int = 1
+@export var carbon: int = 1
+@export var minerals: int = 1
+
+
+
 var captured_objects: Array[RigidBody2D] = []
 
 # Called when the node enters the scene tree for the first time.
@@ -37,9 +48,19 @@ func _on_body_exited(body: Node2D) -> void:
 		captured_objects.erase(body)
 
 
-func setup_planet(biome: ENUMS.PlanetType, size: float) -> void:
+func setup_planet(set_biome: ENUMS.PlanetType, set_size: float) -> void:
+	size = set_size
+	biome = set_biome
 	scale = Vector2(size, size)
-	gravity_strength = size * 100
+	
+	var settings = PLANETS.get_settings(biome)
+	$MeshInstance2D.modulate = settings.test_color
+	carbon = settings.carbon_density * size
+	biomass = settings.biomass_density * size
+	minerals = settings.mineral_density * size
+	if settings.gravity_modifier == 0:
+		$GravityWell.disabled = true
+	gravity_strength = size * 100 * settings.gravity_modifier
+	health = settings.health
+	
 	rotation = randf_range(0, 2*PI)
-	$PlanetBody.size = size
-	$PlanetBody.set_biome_and_generate_stats(biome)
