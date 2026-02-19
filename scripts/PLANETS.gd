@@ -8,6 +8,7 @@ static func get_settings(biome: ENUMS.PlanetType) -> PlanetSettings:
 	var carbon_density: int
 	var biomass_density: int
 	var mineral_density: int
+	var nanotech: int
 	
 	match biome:
 		ENUMS.PlanetType.METEOR:
@@ -17,6 +18,7 @@ static func get_settings(biome: ENUMS.PlanetType) -> PlanetSettings:
 			carbon_density = 3
 			biomass_density = 0
 			mineral_density = 0
+			nanotech = 0
 		ENUMS.PlanetType.BARREN:
 			gravity_modifier = 1
 			test_color = Color(0.435, 0.35, 0.169, 1.0)
@@ -24,6 +26,7 @@ static func get_settings(biome: ENUMS.PlanetType) -> PlanetSettings:
 			carbon_density = 1
 			biomass_density = 0
 			mineral_density = 3
+			nanotech = 0
 		ENUMS.PlanetType.HEALTHY:
 			gravity_modifier = 1
 			test_color = Color(0.28, 0.436, 0.19, 1.0)
@@ -31,6 +34,7 @@ static func get_settings(biome: ENUMS.PlanetType) -> PlanetSettings:
 			carbon_density = 1
 			biomass_density = 4
 			mineral_density = 1
+			nanotech = 0
 		ENUMS.PlanetType.ECUMENOPOLIS:
 			gravity_modifier = 1
 			test_color = Color(0.147, 0.2, 0.447, 1.0)
@@ -38,6 +42,7 @@ static func get_settings(biome: ENUMS.PlanetType) -> PlanetSettings:
 			carbon_density = 5
 			biomass_density = 2
 			mineral_density = 1
+			nanotech = 1
 	
 	var settings := PlanetSettings.new()
 	settings.gravity_modifier = gravity_modifier
@@ -46,6 +51,7 @@ static func get_settings(biome: ENUMS.PlanetType) -> PlanetSettings:
 	settings.carbon_density = carbon_density
 	settings.biomass_density = biomass_density
 	settings.mineral_density = mineral_density
+	settings.nanotech = nanotech
 	
 	return settings
 

@@ -1,20 +1,84 @@
 [gd_scene format=3 uid="uid://bgciqt2blwnb1"]
 
 [ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://scripts/StarMap.gd" id="1_fp76q"]
+[ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_88ecf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fevf7"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
 radius = 1000.0
-
-[sub_resource type="GDScript" id="GDScript_fchhc"]
-script/source = "extends ShapeCast2D
-"
 
 [node name="StarMap" type="Node2D" unique_id=1717163525]
 script = ExtResource("1_fp76q")
 max_distance = 70000.0
 max_healthy = 100
+
+[node name="Bounds" type="Area2D" parent="." unique_id=638317334]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds" unique_id=404216582]
+scale = Vector2(7000, 7000)
+shape = SubResource("CircleShape2D_ewo0i")
+
+[node name="Federation" type="Area2D" parent="Bounds" unique_id=567740253]
+modulate = Color(0.18911365, 0.38693562, 0.86979944, 1)
+position = Vector2(29968, -47359)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Federation" unique_id=1351286385]
+scale = Vector2(1200, 1200)
+shape = SubResource("CircleShape2D_88ecf")
+
+[node name="Boss Area" type="Area2D" parent="Bounds/Federation" unique_id=872906046]
+modulate = Color(0.22670749, 0.22670749, 0.22670746, 1)
+position = Vector2(4745, -5410)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Federation/Boss Area" unique_id=1141762750]
+scale = Vector2(400, 400)
+shape = SubResource("CircleShape2D_fevf7")
+
+[node name="Federation Planet 1" parent="Bounds/Federation" unique_id=1921216346 instance=ExtResource("2_88ecf")]
+position = Vector2(-5441, -4672)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 1000
+carbon = 1000
+minerals = 1000
+nanotech = 1
+
+[node name="Federation Planet 2" parent="Bounds/Federation" unique_id=1191879661 instance=ExtResource("2_88ecf")]
+position = Vector2(-3411, 4084)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 1000
+carbon = 1000
+minerals = 1000
+nanotech = 1
+
+[node name="Federation Planet 3" parent="Bounds/Federation" unique_id=841358744 instance=ExtResource("2_88ecf")]
+position = Vector2(5335, 4462)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 1000
+carbon = 1000
+minerals = 1000
+nanotech = 1
 
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
@@ -22,9 +86,8 @@ max_healthy = 100
 scale = Vector2(0.1, 0.1)
 shape = SubResource("CircleShape2D_fchhc")
 target_position = Vector2(0, 0)
-collision_mask = 4
+collision_mask = 52
 collide_with_areas = true
-script = SubResource("GDScript_fchhc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=341782228]
 layer = -1

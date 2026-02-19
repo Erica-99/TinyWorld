@@ -7,3 +7,4 @@ class_name PlanetSettings
 @export var carbon_density: int
 @export var biomass_density: int
 @export var mineral_density: int
+@export var nanotech: int

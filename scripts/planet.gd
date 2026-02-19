@@ -9,6 +9,7 @@ extends Area2D
 @export var biomass: int = 1
 @export var carbon: int = 1
 @export var minerals: int = 1
+@export var nanotech: int = 0
 
 
 
@@ -57,6 +58,7 @@ func setup_planet(set_biome: ENUMS.PlanetType, set_size: float) -> void:
 	carbon = settings.carbon_density * size
 	biomass = settings.biomass_density * size
 	minerals = settings.mineral_density * size
+	nanotech = settings.nanotech
 	if settings.gravity_modifier == 0:
 		$GravityWell.disabled = true
 	gravity_strength = size * 100 * settings.gravity_modifier
