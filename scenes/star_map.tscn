@@ -104,6 +104,8 @@ grow_vertical = 2
 color = Color(0.030984493, 0.027432224, 0.039930467, 1)
 
 [node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
+landing_thruster_strength = 600.0
+max_velocity_for_landing = 1000.0
 
 [node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
 zoom = Vector2(0.33, 0.33)

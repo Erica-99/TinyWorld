@@ -26,11 +26,12 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	for rb in captured_objects:
-		var gravity_vector = global_position - rb.global_position
-		var force_direction = gravity_vector.normalized()
-		var distance = gravity_vector.length()
-		var effectiveness = gravity_strength/((distance/100)**2) # Inverse square law
-		rb.apply_central_force(force_direction * effectiveness)
+		if rb not in gravity_ignore_list:
+			var gravity_vector = global_position - rb.global_position
+			var force_direction = gravity_vector.normalized()
+			var distance = gravity_vector.length()
+			var effectiveness = gravity_strength/((distance/100)**2) # Inverse square law
+			rb.apply_central_force(force_direction * effectiveness)
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -73,5 +74,11 @@ func setup_planet(set_biome: ENUMS.PlanetType, set_size: float) -> void:
 
 
 func ignore_gravity_for_object(body: RigidBody2D):
+	print("ignore called")
 	if body in captured_objects:
 		gravity_ignore_list.append(body)
+
+
+func return_gravity_for_object(body: RigidBody2D):
+	if body in gravity_ignore_list:
+		gravity_ignore_list.erase(body)
