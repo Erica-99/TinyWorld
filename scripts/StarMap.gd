@@ -1,9 +1,15 @@
 extends Node2D
 
 
-@export var planetcount = 1000
 @export var min_planet_size: float = 100
 @export var max_planet_size: float = 200
+@export var max_distance: float = 20000
+
+@export_category("Planet Counts")
+@export var max_cities: int = 10
+@export var max_healthy: int = 30
+@export var max_wasteland: int = 40
+@export var max_meteor: int = 1000
 
 @onready var planet = preload("res://scenes/planetBox.tscn")
 @onready var planetlist = $Planets
@@ -19,13 +25,13 @@ func wipemap():
 
 func generatemap():
 	wipemap()
-	for i in range(planetcount):
+	for i in range(1000):
 		createplanet()
 
 func createplanet():
 	var newPlanet = planet.instantiate()
 	var angle := randf_range(0, TAU)
-	var distance: float = randf_range(2000,20000)
+	var distance: float = randf_range(2000,max_distance)
 	var random_offset: Vector2 = Vector2.RIGHT.rotated(angle) * distance
 	
 	var size := randf_range(min_planet_size, max_planet_size)

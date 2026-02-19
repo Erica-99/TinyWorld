@@ -13,6 +13,7 @@ script/source = "extends ShapeCast2D
 
 [node name="StarMap" type="Node2D" unique_id=1717163525]
 script = ExtResource("1_fp76q")
+max_distance = 100000.0
 
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
