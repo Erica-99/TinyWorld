@@ -13,5 +13,3 @@ func _process(delta: float) -> void:
 	if target_object != null:
 		var position_to_move = lerp(position, target_object.position, tracking_speed*delta)
 		position = position_to_move
-	
-	pass

@@ -1,20 +1,85 @@
 [gd_scene format=3 uid="uid://bgciqt2blwnb1"]
 
 [ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://scripts/StarMap.gd" id="1_fp76q"]
+[ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
+[ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_88ecf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fevf7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
 radius = 1000.0
-
-[sub_resource type="GDScript" id="GDScript_fchhc"]
-script/source = "extends ShapeCast2D
-"
 
 [node name="StarMap" type="Node2D" unique_id=1717163525]
 script = ExtResource("1_fp76q")
 max_distance = 70000.0
 max_healthy = 100
+
+[node name="Bounds" type="Area2D" parent="." unique_id=638317334]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds" unique_id=404216582]
+scale = Vector2(7000, 7000)
+shape = SubResource("CircleShape2D_ewo0i")
+
+[node name="Federation" type="Area2D" parent="Bounds" unique_id=567740253]
+modulate = Color(0.18911365, 0.38693562, 0.86979944, 1)
+position = Vector2(29968, -47359)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Federation" unique_id=1351286385]
+scale = Vector2(1200, 1200)
+shape = SubResource("CircleShape2D_88ecf")
+
+[node name="Boss Area" type="Area2D" parent="Bounds/Federation" unique_id=872906046]
+modulate = Color(0.22670749, 0.22670749, 0.22670746, 1)
+position = Vector2(4745, -5410)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Federation/Boss Area" unique_id=1141762750]
+scale = Vector2(400, 400)
+shape = SubResource("CircleShape2D_fevf7")
+
+[node name="Federation Planet 1" parent="Bounds/Federation" unique_id=1921216346 instance=ExtResource("2_88ecf")]
+position = Vector2(-5441, -4672)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 1000
+carbon = 1000
+minerals = 1000
+nanotech = 1
+
+[node name="Federation Planet 2" parent="Bounds/Federation" unique_id=1191879661 instance=ExtResource("2_88ecf")]
+position = Vector2(-3411, 4084)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 1000
+carbon = 1000
+minerals = 1000
+nanotech = 1
+
+[node name="Federation Planet 3" parent="Bounds/Federation" unique_id=841358744 instance=ExtResource("2_88ecf")]
+position = Vector2(5335, 4462)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 1000
+carbon = 1000
+minerals = 1000
+nanotech = 1
 
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
@@ -22,16 +87,15 @@ max_healthy = 100
 scale = Vector2(0.1, 0.1)
 shape = SubResource("CircleShape2D_fchhc")
 target_position = Vector2(0, 0)
-collision_mask = 4
+collision_mask = 52
 collide_with_areas = true
-script = SubResource("GDScript_fchhc")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=341782228]
+[node name="Background" type="CanvasLayer" parent="." unique_id=341782228]
 layer = -1
 scale = Vector2(2.03, 2.03)
 transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1355169324]
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1355169324]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,12 +104,39 @@ grow_vertical = 2
 color = Color(0.030984493, 0.027432224, 0.039930467, 1)
 
 [node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
+landing_thruster_strength = 600.0
+max_velocity_for_landing = 1000.0
 
 [node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
-enabled = false
 zoom = Vector2(0.33, 0.33)
 target_object = NodePath("../Ship")
 tracking_speed = 10.0
 
 [node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
+enabled = false
 zoom = Vector2(0.01, 0.01)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1313728925]
+
+[node name="UI Control" type="Control" parent="UI" unique_id=881464479]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LandingPopup" parent="UI/UI Control" unique_id=1706348881 instance=ExtResource("5_fevf7")]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="player_landing" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_landing"]
+[connection signal="player_not_ready_to_land" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_not_ready_to_land"]
+[connection signal="player_ready_to_land" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_ready_to_land"]

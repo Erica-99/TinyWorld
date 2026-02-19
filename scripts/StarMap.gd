@@ -11,14 +11,15 @@ extends Node2D
 @onready var planet = preload("res://scenes/planetBox.tscn")
 @onready var planetlist = $Planets
 @onready var SpaceChecker = $SpaceChecker
-@onready var starmap = $"."
 
 func _ready() -> void:
 	generatemap()
 
+
 func wipemap():
 	for child in planetlist.get_children():
 		child.queue_free()
+
 
 func generatemap():
 	wipemap()
@@ -30,6 +31,7 @@ func generatemap():
 		createplanet(ENUMS.PlanetType.BARREN)
 	for i in range(max_meteor):
 		createplanet(ENUMS.PlanetType.METEOR)
+
 
 func createplanet(biome: ENUMS.PlanetType):
 	var newPlanet = planet.instantiate()
@@ -56,6 +58,7 @@ func get_location(size: float, biome: ENUMS.PlanetType) -> Array:
 		var dist_range = PLANETS.get_dist_range(biome)
 		var distance := randf_range(dist_range.x * max_distance, dist_range.y * max_distance)
 		var random_offset: Vector2 = Vector2.RIGHT.rotated(angle) * distance
+		
 		SpaceChecker.global_position = random_offset
 		SpaceChecker.scale = Vector2(size/20, size/20)
 		SpaceChecker.force_shapecast_update()
