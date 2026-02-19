@@ -58,17 +58,37 @@ static func get_size(biome: ENUMS.PlanetType) -> float:
 			var standard_deviation = 5
 			size = randfn(average_size, standard_deviation)
 		ENUMS.PlanetType.BARREN:
-			var average_size = 300
-			var standard_deviation = 50
+			var average_size = 200
+			var standard_deviation = 30
 			size = randfn(average_size, standard_deviation)
 		ENUMS.PlanetType.HEALTHY:
-			var average_size = 340
-			var standard_deviation = 60
+			var average_size = 280
+			var standard_deviation = 40
 			size = randfn(average_size, standard_deviation)
 		ENUMS.PlanetType.ECUMENOPOLIS:
-			var average_size = 400
+			var average_size = 370
 			var standard_deviation = 30
 			size = randfn(average_size, standard_deviation)
 	
 	return size
+
+static func get_dist_range(biome: ENUMS.PlanetType) -> Vector2:
+	var min_dist: float
+	var max_dist: float
+	
+	match biome:
+		ENUMS.PlanetType.METEOR:
+			min_dist = 0
+			max_dist = 1
+		ENUMS.PlanetType.BARREN:
+			min_dist = 0.1
+			max_dist = 0.7
+		ENUMS.PlanetType.HEALTHY:
+			min_dist = 0.4
+			max_dist = 1
+		ENUMS.PlanetType.ECUMENOPOLIS:
+			min_dist = 0.7
+			max_dist = 1
+	
+	return Vector2(min_dist, max_dist)
 	
