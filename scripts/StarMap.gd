@@ -39,21 +39,22 @@ func createplanet(biome: ENUMS.PlanetType):
 	if biome == ENUMS.PlanetType.METEOR:
 		check_size = check_size * 2
 	
-	var location := get_location(check_size)
+	var location := get_location(check_size, biome)
 	if location[1]:
 		newPlanet.global_position = location[0]
 		planetlist.add_child(newPlanet)
 		newPlanet.call("setup_planet", biome, size)
 
 
-func get_location(size: float) -> Array:
+func get_location(size: float, biome: ENUMS.PlanetType) -> Array:
 	var location_found := false
 	var iterations = 0
 	
 	while (not location_found) and iterations < 10:
 		iterations += 1
 		var angle := randf_range(0, TAU)
-		var distance := randf_range(2000,max_distance)
+		var dist_range = PLANETS.get_dist_range(biome)
+		var distance := randf_range(dist_range.x * max_distance, dist_range.y * max_distance)
 		var random_offset: Vector2 = Vector2.RIGHT.rotated(angle) * distance
 		SpaceChecker.global_position = random_offset
 		SpaceChecker.scale = Vector2(size/20, size/20)
