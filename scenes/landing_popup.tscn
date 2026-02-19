@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ulkc1ds2gxej"]
+
+[ext_resource type="Script" uid="uid://dgjot3l0d2i65" path="res://scripts/landing_popup.gd" id="1_b2kdb"]
+
+[node name="LandingPopup" type="Control" unique_id=1706348881]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_b2kdb")
+
+[node name="Label" type="Label" parent="." unique_id=507413816]
+custom_minimum_size = Vector2(0, 54.145)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -278.0
+offset_top = -45.0
+offset_right = 278.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Press [Space] to enter landing mode"
+horizontal_alignment = 1

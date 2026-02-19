@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
+[ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
 
@@ -89,12 +90,12 @@ target_position = Vector2(0, 0)
 collision_mask = 52
 collide_with_areas = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=341782228]
+[node name="Background" type="CanvasLayer" parent="." unique_id=341782228]
 layer = -1
 scale = Vector2(2.03, 2.03)
 transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1355169324]
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1355169324]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -105,10 +106,35 @@ color = Color(0.030984493, 0.027432224, 0.039930467, 1)
 [node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
 
 [node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
-enabled = false
 zoom = Vector2(0.33, 0.33)
 target_object = NodePath("../Ship")
 tracking_speed = 10.0
 
 [node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
+enabled = false
 zoom = Vector2(0.01, 0.01)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1313728925]
+
+[node name="UI Control" type="Control" parent="UI" unique_id=881464479]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LandingPopup" parent="UI/UI Control" unique_id=1706348881 instance=ExtResource("5_fevf7")]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="player_landing" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_landing"]
+[connection signal="player_not_ready_to_land" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_not_ready_to_land"]
+[connection signal="player_ready_to_land" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_ready_to_land"]
