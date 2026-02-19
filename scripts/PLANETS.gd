@@ -32,7 +32,7 @@ static func get_settings(biome: ENUMS.PlanetType) -> PlanetSettings:
 			biomass_density = 4
 			mineral_density = 1
 		ENUMS.PlanetType.ECUMENOPOLIS:
-			gravity_modifier = 0
+			gravity_modifier = 1
 			test_color = Color(0.147, 0.2, 0.447, 1.0)
 			health = 10
 			carbon_density = 5

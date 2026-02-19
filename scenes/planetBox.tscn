@@ -7,9 +7,11 @@ radius = 5.0
 height = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxv0p"]
+resource_local_to_scene = true
 radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ysjy8"]
+resource_local_to_scene = true
 radius = 5.0
 
 [node name="PlanetArea" type="Area2D" unique_id=1921216346]

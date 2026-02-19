@@ -58,6 +58,8 @@ func setup_planet(set_biome: ENUMS.PlanetType, set_size: float) -> void:
 	carbon = settings.carbon_density * size
 	biomass = settings.biomass_density * size
 	minerals = settings.mineral_density * size
+	if settings.gravity_modifier == 0:
+		$GravityWell.disabled = true
 	gravity_strength = size * 100 * settings.gravity_modifier
 	health = settings.health
 	
