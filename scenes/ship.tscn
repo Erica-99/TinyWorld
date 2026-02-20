@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://b6iv033nau3ee"]
 
-[ext_resource type="Script" uid="uid://bqjghuaq4q8bf" path="res://scripts/ship.gd" id="1_2gnfn"]
+[ext_resource type="Script" uid="uid://bqjghuaq4q8bf" path="res://scripts/ship_movement.gd" id="1_2gnfn"]
+[ext_resource type="Script" uid="uid://dgld046s75y1y" path="res://scripts/ship.gd" id="1_4tobq"]
 [ext_resource type="Texture2D" uid="uid://c7gouvrquw1do" path="res://icon.svg" id="2_4tobq"]
+[ext_resource type="Script" uid="uid://bejf6qcply4ej" path="res://scripts/landing_movement.gd" id="3_tfsc7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cq66"]
 size = Vector2(72, 128)
@@ -9,10 +11,7 @@ size = Vector2(72, 128)
 [node name="Ship" type="RigidBody2D" unique_id=156394039]
 collision_mask = 6
 gravity_scale = 0.0
-script = ExtResource("1_2gnfn")
-thrust = 400.0
-turning_torque = 6000.0
-linear_damper_strength = 2.0
+script = ExtResource("1_4tobq")
 
 [node name="Ship Sprite" type="Sprite2D" parent="." unique_id=935690747]
 position = Vector2(491, 235)
@@ -22,3 +21,15 @@ offset = Vector2(-885.1831, -235)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=395625906]
 shape = SubResource("RectangleShape2D_4cq66")
+
+[node name="EatingManager" type="Node2D" parent="." unique_id=1190578618]
+
+[node name="LandingManager" type="Node2D" parent="." unique_id=1201178297]
+script = ExtResource("3_tfsc7")
+thrust = 1200.0
+landing_thruster_strength = 1300.0
+
+[node name="MovementManager" type="Node2D" parent="." unique_id=1648091153]
+script = ExtResource("1_2gnfn")
+turning_torque = 4000.0
+linear_damper_strength = 3.0
