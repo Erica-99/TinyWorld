@@ -15,7 +15,7 @@ signal player_landing
 var nearby_planets: Array[Area2D] = []
 var ready_to_land: bool = false
 var landing_target: Area2D = null
-var in_landing_mode: bool = false
+var movement_mode := ENUMS.PlayerMovementMode.DEFAULT
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,8 +35,8 @@ func _process(delta: float) -> void:
 		else:
 			if ready_to_land:
 				ready_to_land = false
-				if in_landing_mode:
-					clear_landing_mode()
+				if movement_mode == ENUMS.PlayerMovementMode.LANDING:
+					clear_landing_mode(ENUMS.PlayerMovementMode.DEFAULT)
 				player_not_ready_to_land.emit()
 	else:
 		if ready_to_land:
@@ -45,10 +45,11 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if in_landing_mode:
-		process_landing_mode_movement(landing_target)
-	else:
-		process_movement(delta)
+	match movement_mode:
+		ENUMS.PlayerMovementMode.DEFAULT:
+			process_movement(delta)
+		ENUMS.PlayerMovementMode.LANDING:
+			process_landing_mode_movement(landing_target)
 
 
 ## Processes input and moves the ship in normal mode
@@ -94,7 +95,7 @@ func process_landing_mode_movement(target: Area2D) -> void:
 
 ## One-off inputs (dampers, landing mode)
 func _unhandled_input(event):
-	if not in_landing_mode:
+	if movement_mode == ENUMS.PlayerMovementMode.DEFAULT:
 		if event.is_action_pressed("Fire Dampers"):
 			linear_damp = linear_damper_strength
 			angular_damp = angular_damper_strength
@@ -108,11 +109,11 @@ func _unhandled_input(event):
 				landing_target = get_nearest_planet()
 				prepare_landing_mode()
 			
-	elif in_landing_mode:
+	elif movement_mode == ENUMS.PlayerMovementMode.LANDING:
 		if event.is_action_pressed("Landing Mode"):
 			if ready_to_land:
 				player_ready_to_land.emit()
-				clear_landing_mode()
+				clear_landing_mode(ENUMS.PlayerMovementMode.DEFAULT)
 
 
 func add_near_planet(planet: Area2D) -> void:
@@ -122,7 +123,7 @@ func remove_near_planet(planet: Area2D) -> void:
 	if planet in nearby_planets:
 		nearby_planets.erase(planet)
 	if landing_target == planet:
-		clear_landing_mode()
+		clear_landing_mode(ENUMS.PlayerMovementMode.DEFAULT)
 
 
 func get_nearest_planet() -> Area2D:
@@ -144,13 +145,13 @@ func prepare_landing_mode() -> void:
 	angular_damp = 2
 	player_landing.emit()
 	landing_target.call("ignore_gravity_for_object", self)
-	in_landing_mode = true
+	movement_mode = ENUMS.PlayerMovementMode.LANDING
 
 
-func clear_landing_mode() -> void:
+func clear_landing_mode(new_mode: ENUMS.PlayerMovementMode) -> void:
 	linear_damp = 0
 	angular_damp = 2
 	landing_target.call("return_gravity_for_object", self)
 	landing_target = null
-	in_landing_mode = false
+	movement_mode = new_mode
 	
