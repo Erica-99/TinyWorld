@@ -10,8 +10,10 @@ var landing_target: Area2D = null
 
 var movement_mode := ENUMS.PlayerMovementMode.DEFAULT
 
+var inventory: Node2D
 
 func _ready() -> void:
+	inventory = $Inventory
 	enter_default_mode()
 
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqjghuaq4q8bf" path="res://scripts/ship_movement.gd" id="1_2gnfn"]
 [ext_resource type="Script" uid="uid://dgld046s75y1y" path="res://scripts/ship.gd" id="1_4tobq"]
 [ext_resource type="Texture2D" uid="uid://c7gouvrquw1do" path="res://icon.svg" id="2_4tobq"]
+[ext_resource type="Script" uid="uid://c82ufhvpm3hpe" path="res://scenes/eating_manager.gd" id="3_gudjc"]
 [ext_resource type="Script" uid="uid://bejf6qcply4ej" path="res://scripts/landing_movement.gd" id="3_tfsc7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cq66"]
@@ -23,6 +24,7 @@ offset = Vector2(-885.1831, -235)
 shape = SubResource("RectangleShape2D_4cq66")
 
 [node name="EatingManager" type="Node2D" parent="." unique_id=1190578618]
+script = ExtResource("3_gudjc")
 
 [node name="LandingManager" type="Node2D" parent="." unique_id=1201178297]
 script = ExtResource("3_tfsc7")
@@ -33,3 +35,5 @@ landing_thruster_strength = 1300.0
 script = ExtResource("1_2gnfn")
 turning_torque = 4000.0
 linear_damper_strength = 3.0
+
+[node name="Inventory" type="Node2D" parent="." unique_id=244974306]
