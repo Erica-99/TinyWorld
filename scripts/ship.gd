@@ -74,7 +74,6 @@ func enter_default_mode() -> void:
 
 
 func enter_eating_mode() -> void:
-	print("eating")
 	if movement_mode == ENUMS.PlayerMovementMode.LANDING:
 		linear_velocity = Vector2.ZERO
 		player_mode_changed.emit(ENUMS.PlayerMovementMode.EATING, movement_mode)

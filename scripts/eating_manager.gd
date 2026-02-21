@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var consumption_rate: float = 10 # In item/sec
+@export var consumption_rate: float = 100 # In item/sec
 
 var actor: RigidBody2D
 var time_passed_since_eating: float = 0
@@ -17,25 +17,27 @@ func _process(delta: float) -> void:
 	
 	if actor.landing_target != null:
 		if time_passed_since_eating >= time_between_eats:
+			var stacked_time: float = time_passed_since_eating/time_between_eats
 			# Eat in order of carbon -> biomass -> minerals -> nanotech
+			print(actor.landing_target.remaining_resource_quantity)
 			if actor.landing_target.carbon > 0:
-				actor.landing_target.carbon -= 1
-				actor.landing_target.remaining_resource_quantity -= 1
+				actor.landing_target.carbon -= int(stacked_time)
+				actor.landing_target.remaining_resource_quantity -= int(stacked_time)
 			elif actor.landing_target.biomass > 0:
-				actor.landing_target.biomass -= 1
-				actor.landing_target.remaining_resource_quantity -= 1
+				actor.landing_target.biomass -= int(stacked_time)
+				actor.landing_target.remaining_resource_quantity -= int(stacked_time)
 			elif actor.landing_target.minerals > 0:
-				actor.landing_target.minerals -= 1
-				actor.landing_target.remaining_resource_quantity -= 1
+				actor.landing_target.minerals -= int(stacked_time)
+				actor.landing_target.remaining_resource_quantity -= int(stacked_time)
 			elif actor.landing_target.nanotech > 0:
-				actor.landing_target.nanotech -= 1
-				actor.landing_target.remaining_resource_quantity -= 1
+				actor.landing_target.nanotech -= int(stacked_time)
+				actor.landing_target.remaining_resource_quantity -= int(stacked_time)
 			else:
 				print("planet killed")
 				reset_eating()
 				actor.enter_default_mode()
 			
-			time_passed_since_eating -= time_between_eats
+			time_passed_since_eating -= int(stacked_time)*time_between_eats
 		time_passed_since_eating += delta
 	else:
 		reset_eating()

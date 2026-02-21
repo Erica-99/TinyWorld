@@ -55,6 +55,5 @@ func process_landing_mode_movement(target: Area2D) -> void:
 
 
 func _on_eating_zone_body_entered(body: Node2D) -> void:
-	print("collided")
 	if (actor.landing_target != null) and actor.landing_target == body.get_parent():
 		actor.enter_eating_mode()
