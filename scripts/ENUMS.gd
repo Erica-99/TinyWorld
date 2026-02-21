@@ -12,5 +12,5 @@ enum PlayerMovementMode {
 	DEFAULT,
 	READY_TO_LAND,
 	LANDING,
-	LATCHED,
+	EATING,
 }

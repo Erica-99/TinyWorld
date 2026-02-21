@@ -11,3 +11,5 @@ func _on_ship_player_mode_changed(new_mode: ENUMS.PlayerMovementMode, previous_m
 		ENUMS.PlayerMovementMode.LANDING:
 			$Label.text = "Press [Space] to cancel landing"
 			visible = true
+		ENUMS.PlayerMovementMode.EATING:
+			visible = false

@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://bqjghuaq4q8bf" path="res://scripts/ship_movement.gd" id="1_2gnfn"]
 [ext_resource type="Script" uid="uid://dgld046s75y1y" path="res://scripts/ship.gd" id="1_4tobq"]
 [ext_resource type="Texture2D" uid="uid://c7gouvrquw1do" path="res://icon.svg" id="2_4tobq"]
-[ext_resource type="Script" uid="uid://c82ufhvpm3hpe" path="res://scenes/eating_manager.gd" id="3_gudjc"]
+[ext_resource type="Script" uid="uid://c82ufhvpm3hpe" path="res://scripts/eating_manager.gd" id="3_gudjc"]
 [ext_resource type="Script" uid="uid://bejf6qcply4ej" path="res://scripts/landing_movement.gd" id="3_tfsc7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cq66"]
 size = Vector2(72, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gudjc"]
 
 [node name="Ship" type="RigidBody2D" unique_id=156394039]
 collision_mask = 6
@@ -20,8 +22,16 @@ scale = Vector2(0.5546875, 1)
 texture = ExtResource("2_4tobq")
 offset = Vector2(-885.1831, -235)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=395625906]
+[node name="MainCollider" type="CollisionShape2D" parent="." unique_id=395625906]
 shape = SubResource("RectangleShape2D_4cq66")
+
+[node name="EatingZone" type="Area2D" parent="." unique_id=164195070]
+position = Vector2(0, 63)
+collision_layer = 0
+collision_mask = 4
+
+[node name="EatingZoneCollider" type="CollisionShape2D" parent="EatingZone" unique_id=42949228]
+shape = SubResource("RectangleShape2D_gudjc")
 
 [node name="EatingManager" type="Node2D" parent="." unique_id=1190578618]
 script = ExtResource("3_gudjc")
@@ -37,3 +47,5 @@ turning_torque = 4000.0
 linear_damper_strength = 3.0
 
 [node name="Inventory" type="Node2D" parent="." unique_id=244974306]
+
+[connection signal="body_entered" from="EatingZone" to="LandingManager" method="_on_eating_zone_body_entered"]

@@ -51,19 +51,18 @@ func set_ready_to_land():
 
 
 func enter_landing_mode() -> void:
-	if not movement_mode == ENUMS.PlayerMovementMode.READY_TO_LAND:
-		return
-	linear_damp = 3
-	angular_damp = 1.5
-	landing_target = get_nearest_planet()
-	landing_target.call("ignore_gravity_for_object", self)
-	player_mode_changed.emit(ENUMS.PlayerMovementMode.LANDING, movement_mode)
-	movement_mode = ENUMS.PlayerMovementMode.LANDING
-	swap_to_node(movement_mode)
+	if movement_mode == ENUMS.PlayerMovementMode.READY_TO_LAND:
+		linear_damp = 3
+		angular_damp = 1.5
+		landing_target = get_nearest_planet()
+		landing_target.call("ignore_gravity_for_object", self)
+		player_mode_changed.emit(ENUMS.PlayerMovementMode.LANDING, movement_mode)
+		movement_mode = ENUMS.PlayerMovementMode.LANDING
+		swap_to_node(movement_mode)
 
 
 func enter_default_mode() -> void:
-	if not movement_mode == ENUMS.PlayerMovementMode.DEFAULT:
+	if movement_mode != ENUMS.PlayerMovementMode.DEFAULT:
 		linear_damp = 0
 		angular_damp = 2
 		if landing_target != null:
@@ -71,6 +70,15 @@ func enter_default_mode() -> void:
 			landing_target = null
 		player_mode_changed.emit(ENUMS.PlayerMovementMode.DEFAULT, movement_mode)
 		movement_mode = ENUMS.PlayerMovementMode.DEFAULT
+		swap_to_node(movement_mode)
+
+
+func enter_eating_mode() -> void:
+	print("eating")
+	if movement_mode == ENUMS.PlayerMovementMode.LANDING:
+		linear_velocity = Vector2.ZERO
+		player_mode_changed.emit(ENUMS.PlayerMovementMode.EATING, movement_mode)
+		movement_mode = ENUMS.PlayerMovementMode.EATING
 		swap_to_node(movement_mode)
 
 
@@ -88,7 +96,7 @@ func swap_to_node(new_mode: ENUMS.PlayerMovementMode) -> void:
 			$MovementManager.process_mode = Node.PROCESS_MODE_DISABLED
 			$LandingManager.process_mode = Node.PROCESS_MODE_INHERIT
 			$EatingManager.process_mode = Node.PROCESS_MODE_DISABLED
-		ENUMS.PlayerMovementMode.LATCHED:
+		ENUMS.PlayerMovementMode.EATING:
 			$MovementManager.process_mode = Node.PROCESS_MODE_DISABLED
 			$LandingManager.process_mode = Node.PROCESS_MODE_DISABLED
 			$EatingManager.process_mode = Node.PROCESS_MODE_INHERIT
