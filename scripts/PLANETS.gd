@@ -42,7 +42,7 @@ static func get_settings(biome: ENUMS.PlanetType) -> PlanetSettings:
 			carbon_density = 5
 			biomass_density = 2
 			mineral_density = 1
-			nanotech = 1
+			nanotech = 1000
 	
 	var settings := PlanetSettings.new()
 	settings.gravity_modifier = gravity_modifier

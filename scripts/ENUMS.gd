@@ -5,5 +5,12 @@ enum PlanetType {
 	METEOR,
 	BARREN,
 	HEALTHY,
-	ECUMENOPOLIS
+	ECUMENOPOLIS,
+}
+
+enum PlayerMovementMode {
+	DEFAULT,
+	READY_TO_LAND,
+	LANDING,
+	EATING,
 }

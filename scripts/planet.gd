@@ -11,6 +11,9 @@ extends Area2D
 @export var minerals: int = 1
 @export var nanotech: int = 0
 
+var total_resource_quantity: float
+var remaining_resource_quantity: float
+
 var captured_objects: Array[RigidBody2D] = []
 var gravity_ignore_list: Array[RigidBody2D] = []
 
@@ -69,12 +72,13 @@ func setup_planet(set_biome: ENUMS.PlanetType, set_size: float) -> void:
 		$GravityWell.disabled = true
 	gravity_strength = size * 100 * settings.gravity_modifier
 	health = settings.health
+	total_resource_quantity = carbon + biomass + minerals + nanotech
+	remaining_resource_quantity = total_resource_quantity
 	
 	rotation = randf_range(0, 2*PI)
 
 
 func ignore_gravity_for_object(body: RigidBody2D):
-	print("ignore called")
 	if body in captured_objects:
 		gravity_ignore_list.append(body)
 

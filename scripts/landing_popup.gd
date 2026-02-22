@@ -1,15 +1,15 @@
 extends Control
 
 
-func _on_ship_player_ready_to_land() -> void:
-	$Label.text = "Press [Space] to enter landing mode"
-	visible = true
-
-
-func _on_ship_player_not_ready_to_land() -> void:
-	$Label.text = "Press [Space] to enter landing mode"
-	visible = false
-
-
-func _on_ship_player_landing() -> void:
-	$Label.text = "Press [Space] to cancel landing"
+func _on_ship_player_mode_changed(new_mode: ENUMS.PlayerMovementMode, previous_mode: ENUMS.PlayerMovementMode) -> void:
+	match new_mode:
+		ENUMS.PlayerMovementMode.DEFAULT:
+			visible = false
+		ENUMS.PlayerMovementMode.READY_TO_LAND:
+			$Label.text = "Press [Space] to enter landing mode"
+			visible = true
+		ENUMS.PlayerMovementMode.LANDING:
+			$Label.text = "Press [Space] to cancel landing"
+			visible = true
+		ENUMS.PlayerMovementMode.EATING:
+			visible = false
