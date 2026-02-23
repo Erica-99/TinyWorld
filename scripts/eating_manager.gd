@@ -9,7 +9,7 @@ var inventory: Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	actor = get_parent()
-	inventory = $Inventory
+	inventory = $"../Inventory"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,7 +50,6 @@ func _process(delta: float) -> void:
 				actor.landing_target.remaining_resource_quantity -= int(stacked_time)
 				inventory.nanotech_stores += int(stacked_time)
 			else:
-				print("planet killed")
 				reset_eating()
 				actor.enter_default_mode()
 			

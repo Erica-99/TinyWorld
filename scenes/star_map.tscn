@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
+[ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
 
@@ -91,7 +92,7 @@ collision_mask = 52
 collide_with_areas = true
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=341782228]
-layer = -1
+layer = -1000
 scale = Vector2(2.03, 2.03)
 transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
 
@@ -134,5 +135,15 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="PlanetResourceIndicator" parent="UI/UI Control" unique_id=1535008980 node_paths=PackedStringArray("ship") instance=ExtResource("6_568mj")]
+layout_mode = 1
+pivot_offset_ratio = Vector2(0.5, 0.5)
+ship = NodePath("../../../Ship")
+distance_from_ship = 150.0
+
+[node name="PlanetScannerEffect" type="Node2D" parent="UI/UI Control" unique_id=638159230]
+z_index = -1
+z_as_relative = false
 
 [connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]

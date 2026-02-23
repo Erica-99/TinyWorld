@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://cdybgt5unebrf"]
+
+[ext_resource type="Script" uid="uid://cw4spf7qiqxk4" path="res://scripts/planet_resource_indicator.gd" id="1_kso7r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rryrb"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.3254902, 0.30588236, 0.34117648, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.27340987, 0.25492373, 0.28728184, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="PlanetResourceIndicator" type="Control" unique_id=1881818899]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_kso7r")
+
+[node name="PlanetResourcePanel" type="PanelContainer" parent="." unique_id=1535008980]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.5
+offset_top = -64.0
+offset_right = 84.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rryrb")
+
+[node name="GridContainer" type="GridContainer" parent="PlanetResourcePanel" unique_id=451141643]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 0
+columns = 2
+
+[node name="CarbonText" type="RichTextLabel" parent="PlanetResourcePanel/GridContainer" unique_id=243655596]
+layout_mode = 2
+size_flags_horizontal = 2
+bbcode_enabled = true
+text = "Carbon [img=24]res://icon.svg[/img]:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="CarbonAmount" type="Label" parent="PlanetResourcePanel/GridContainer" unique_id=2056031527]
+layout_mode = 2
+text = "1000"
+
+[node name="BiomassText" type="RichTextLabel" parent="PlanetResourcePanel/GridContainer" unique_id=1984359926]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Biomass [img=24]res://icon.svg[/img]:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="BiomassAmount" type="Label" parent="PlanetResourcePanel/GridContainer" unique_id=493450165]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "1000"
+
+[node name="MineralsText" type="RichTextLabel" parent="PlanetResourcePanel/GridContainer" unique_id=870022951]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Minerals [img=24]res://icon.svg[/img]:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="MineralsAmount" type="Label" parent="PlanetResourcePanel/GridContainer" unique_id=1341716283]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "1000"
+
+[node name="NanotechText" type="RichTextLabel" parent="PlanetResourcePanel/GridContainer" unique_id=33474656]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Nanotech [img=24]res://icon.svg[/img]:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="NanotechAmount" type="Label" parent="PlanetResourcePanel/GridContainer" unique_id=1228247655]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "1000"

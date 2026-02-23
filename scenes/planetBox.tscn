@@ -35,5 +35,10 @@ freeze = true
 [node name="PlanetHitbox" type="CollisionShape2D" parent="PlanetBody" unique_id=1480384573]
 shape = SubResource("CircleShape2D_ysjy8")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="PlanetBody" unique_id=551592698]
+rect = Rect2(-4, -4, 8, 8)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="screen_entered" from="PlanetBody/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="PlanetBody/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
