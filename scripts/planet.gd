@@ -11,8 +11,12 @@ extends Area2D
 @export var minerals: int = 1
 @export var nanotech: int = 0
 
-var total_resource_quantity: float
-var remaining_resource_quantity: float
+var total_resource_quantity: int
+var remaining_resource_quantity: int:
+	set(value):
+		remaining_resource_quantity = clampi(value, 0, total_resource_quantity)
+		if remaining_resource_quantity <= 0:
+			destroy_planet()
 
 var captured_objects: Array[RigidBody2D] = []
 var gravity_ignore_list: Array[RigidBody2D] = []
@@ -86,3 +90,8 @@ func ignore_gravity_for_object(body: RigidBody2D):
 func return_gravity_for_object(body: RigidBody2D):
 	if body in gravity_ignore_list:
 		gravity_ignore_list.erase(body)
+
+
+func destroy_planet() -> void:
+	# Instantiate some sort of explosion then queue free
+	pass
