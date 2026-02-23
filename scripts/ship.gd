@@ -14,7 +14,16 @@ var inventory: Node2D
 
 func _ready() -> void:
 	inventory = $Inventory
-	enter_default_mode()
+	swap_to_node(movement_mode)
+
+
+func _process(delta: float) -> void:
+	# Set landing target but only if the planet is onscreen
+	var nearest_planet = get_nearest_planet()
+	if nearest_planet == null:
+		landing_target = null
+	elif nearest_planet.onscreen:
+		landing_target = nearest_planet
 
 
 func add_near_planet(planet: Area2D) -> void:
@@ -25,6 +34,7 @@ func remove_near_planet(planet: Area2D) -> void:
 	if planet in nearby_planets:
 		nearby_planets.erase(planet)
 	if landing_target == planet:
+		landing_target.call("return_gravity_for_object", self)
 		enter_default_mode()
 
 

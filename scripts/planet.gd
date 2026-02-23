@@ -21,6 +21,8 @@ var remaining_resource_quantity: int:
 var captured_objects: Array[RigidBody2D] = []
 var gravity_ignore_list: Array[RigidBody2D] = []
 
+var onscreen: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -94,4 +96,13 @@ func return_gravity_for_object(body: RigidBody2D):
 
 func destroy_planet() -> void:
 	# Instantiate some sort of explosion then queue free
+	print("planet killed")
 	pass
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	onscreen = true
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	onscreen = false
