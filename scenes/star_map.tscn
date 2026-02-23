@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
 [ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
+[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
 
@@ -137,13 +138,22 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PlanetResourceIndicator" parent="UI/UI Control" unique_id=1535008980 node_paths=PackedStringArray("ship") instance=ExtResource("6_568mj")]
+visible = false
 layout_mode = 1
 pivot_offset_ratio = Vector2(0.5, 0.5)
 ship = NodePath("../../../Ship")
 distance_from_ship = 150.0
 
-[node name="PlanetScannerEffect" type="Node2D" parent="UI/UI Control" unique_id=638159230]
+[node name="PlanetScannerEffect" type="Node2D" parent="UI/UI Control" unique_id=638159230 node_paths=PackedStringArray("ship")]
 z_index = -1
 z_as_relative = false
+script = ExtResource("7_vyd5l")
+ship = NodePath("../../../Ship")
+
+[node name="PlanetScannerPolygon" type="Polygon2D" parent="UI/UI Control/PlanetScannerEffect" unique_id=397648708]
+color = Color(0.8392157, 0.36078432, 0.38039216, 0.4117647)
+antialiased = true
+polygon = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
+uv = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
 
 [connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]
