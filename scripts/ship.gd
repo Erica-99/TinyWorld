@@ -22,6 +22,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	#HUD 
+	
+	
+	
+	
 	# Set landing target but only if the planet is onscreen
 	var nearest_planet = get_nearest_planet()
 	if nearest_planet == null:
