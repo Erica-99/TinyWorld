@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqjghuaq4q8bf" path="res://scripts/ship_movement.gd" id="1_2gnfn"]
 [ext_resource type="Script" uid="uid://dgld046s75y1y" path="res://scripts/ship.gd" id="1_4tobq"]
-[ext_resource type="Texture2D" uid="uid://c7gouvrquw1do" path="res://icon.svg" id="2_4tobq"]
+[ext_resource type="SpriteFrames" uid="uid://cg44o2ycy6dgb" path="res://Sprites/FeasterSprites.tres" id="2_7j21i"]
 [ext_resource type="Script" uid="uid://c82ufhvpm3hpe" path="res://scripts/eating_manager.gd" id="3_gudjc"]
 [ext_resource type="Script" uid="uid://bejf6qcply4ej" path="res://scripts/landing_movement.gd" id="3_tfsc7"]
 [ext_resource type="Script" uid="uid://cgv210wi2dwht" path="res://scripts/inventory.gd" id="6_7j21i"]
@@ -17,11 +17,13 @@ collision_mask = 6
 gravity_scale = 0.0
 script = ExtResource("1_4tobq")
 
-[node name="Ship Sprite" type="Sprite2D" parent="." unique_id=935690747]
-position = Vector2(491, 235)
-scale = Vector2(0.5546875, 1)
-texture = ExtResource("2_4tobq")
-offset = Vector2(-885.1831, -235)
+[node name="Ship Sprite" type="AnimatedSprite2D" parent="." unique_id=533451495]
+position = Vector2(1.0000001, 14.000001)
+scale = Vector2(4.92, 4.92)
+sprite_frames = ExtResource("2_7j21i")
+animation = &"Idle"
+autoplay = "Idle"
+offset = Vector2(-0.18310547, 2)
 
 [node name="MainCollider" type="CollisionShape2D" parent="." unique_id=395625906]
 shape = SubResource("RectangleShape2D_4cq66")

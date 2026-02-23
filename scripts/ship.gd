@@ -5,6 +5,8 @@ signal player_mode_changed(new_mode: ENUMS.PlayerMovementMode, previous_mode: EN
 @export var max_range_for_landing: int = 1000
 @export var max_velocity_for_landing: float = 1000
 
+@onready var sprites = $"Ship Sprite"
+
 var nearby_planets: Array[Area2D] = []
 var landing_target: Area2D = null
 
@@ -12,7 +14,9 @@ var movement_mode := ENUMS.PlayerMovementMode.DEFAULT
 
 var inventory: Node2D
 
+
 func _ready() -> void:
+	
 	inventory = $Inventory
 	swap_to_node(movement_mode)
 
@@ -61,7 +65,9 @@ func set_ready_to_land():
 
 
 func enter_landing_mode() -> void:
+	sprites.play("Idle")
 	if movement_mode == ENUMS.PlayerMovementMode.READY_TO_LAND:
+		
 		linear_damp = 3
 		angular_damp = 1.5
 		landing_target = get_nearest_planet()
@@ -72,7 +78,9 @@ func enter_landing_mode() -> void:
 
 
 func enter_default_mode() -> void:
+	sprites.play("Flying")
 	if movement_mode != ENUMS.PlayerMovementMode.DEFAULT:
+		
 		linear_damp = 0
 		angular_damp = 2
 		if landing_target != null:
@@ -84,6 +92,7 @@ func enter_default_mode() -> void:
 
 
 func enter_eating_mode() -> void:
+	sprites.play("Eating")
 	if movement_mode == ENUMS.PlayerMovementMode.LANDING:
 		linear_velocity = Vector2.ZERO
 		player_mode_changed.emit(ENUMS.PlayerMovementMode.EATING, movement_mode)
