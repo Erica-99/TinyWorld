@@ -2,9 +2,9 @@ extends MarginContainer
 
 @export var ship = RigidBody2D
 
-@onready var carbonHUD = $VBoxContainer/Carbon
-@onready var BiomassHUD = $VBoxContainer/Biomass
-@onready var MineralHUD = $VBoxContainer/Minerals
+@onready var carbonHUD = $HBoxContainer/VBoxContainer/Carbon
+@onready var BiomassHUD = $HBoxContainer/VBoxContainer/Biomass
+@onready var MineralHUD = $HBoxContainer/VBoxContainer/Minerals
 
 
 func _process(delta: float) -> void:

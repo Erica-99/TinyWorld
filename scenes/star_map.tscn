@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
 [ext_resource type="Script" uid="uid://c04rfppl3jocj" path="res://scripts/hud.gd" id="7_43bgu"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://resources.gd" id="8_b4dln"]
+[ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeMaterial.tres" id="9_b4dln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
 
@@ -203,21 +204,57 @@ theme_override_constants/margin_bottom = 20
 script = ExtResource("8_b4dln")
 ship = NodePath("../../../../../../Ship")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources" unique_id=489756850]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources" unique_id=523567658]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer" unique_id=489756850]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Carbon" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=623518923]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Carbon" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/VBoxContainer" unique_id=623518923]
+[node name="Biomass" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=938483808]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Biomass" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/VBoxContainer" unique_id=938483808]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Minerals" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/VBoxContainer" unique_id=1311456553]
+[node name="Minerals" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=1311456553]
 layout_mode = 2
 size_flags_vertical = 3
 show_percentage = false
+
+[node name="Surgecounter" type="VBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer" unique_id=712720530]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Panel" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1806243066]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="Panel2" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1618054749]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="Panel3" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1439064361]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="Panel4" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=565323501]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="Panel5" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=2037591560]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
 
 [connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]
