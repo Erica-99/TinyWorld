@@ -14,3 +14,9 @@ enum PlayerMovementMode {
 	LANDING,
 	EATING,
 }
+
+enum SurgeStatus {
+	NONE,
+	AIMING,
+	FLYING,
+}

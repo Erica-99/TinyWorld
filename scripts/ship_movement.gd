@@ -8,6 +8,7 @@ extends Node2D
 var ready_to_land: bool = false
 
 var actor: RigidBody2D
+var surge_status: ENUMS.SurgeStatus = ENUMS.SurgeStatus.NONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,13 +53,33 @@ func process_movement(delta: float) -> void:
 	actor.apply_torque(rotation_torque)
 
 
+func aim_surge() -> void:
+	pass
+
+func fire_surge() -> void:
+	pass
+
+func cruise_surge() -> void:
+	pass
+
 
 ## One-off inputs (dampers, landing mode)
 func _unhandled_input(event):
 	if event.is_action_pressed("Fire Dampers"):
-		actor.linear_damp = linear_damper_strength
-		actor.angular_damp = angular_damper_strength
+		if surge_status == ENUMS.SurgeStatus.NONE:
+			actor.linear_damp = linear_damper_strength
+			actor.angular_damp = angular_damper_strength
 		
 	if event.is_action_released("Fire Dampers"):
-		actor.linear_damp = 0
-		actor.angular_damp = 2
+		if surge_status == ENUMS.SurgeStatus.NONE:
+			actor.linear_damp = 0
+			actor.angular_damp = 2
+	
+	if event.is_action_pressed("Surge"):
+		# Check if surges are available
+		surge_status = ENUMS.SurgeStatus.AIMING
+		
+		
+	if event.is_action_pressed("Surge"):
+		if surge_status == ENUMS.SurgeStatus.AIMING:
+			fire_surge()
