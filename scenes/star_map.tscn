@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
 [ext_resource type="Script" uid="uid://c04rfppl3jocj" path="res://scripts/hud.gd" id="7_43bgu"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://resources.gd" id="8_b4dln"]
-[ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeMaterial.tres" id="9_b4dln"]
+[ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
 
@@ -232,27 +232,27 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="Panel" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1806243066]
+[node name="5" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=2037591560]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
 
-[node name="Panel2" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1618054749]
+[node name="4" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=565323501]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
 
-[node name="Panel3" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1439064361]
+[node name="3" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1439064361]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
 
-[node name="Panel4" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=565323501]
+[node name="2" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1618054749]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
 
-[node name="Panel5" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=2037591560]
+[node name="1" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1806243066]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")

@@ -3,7 +3,8 @@ extends Node2D
 @export var max_carbon: int = 500
 @export var max_mineral: int = 500
 
-
+@export var max_surges: int = 4
+@export var ready_surges: int = 1
 @export var carbon_stores: int = 50:
 	set(value):
 		carbon_stores = clampi(value, 0, max_carbon)
