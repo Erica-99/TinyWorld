@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
+[ext_resource type="Script" uid="uid://c04rfppl3jocj" path="res://scripts/hud.gd" id="7_43bgu"]
+[ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://resources.gd" id="8_b4dln"]
+[ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
 [ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
 [ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 
@@ -16,6 +19,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
 radius = 1000.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fls4u"]
+bg_color = Color(0, 0, 0, 0.4862745)
 
 [node name="StarMap" type="Node2D" unique_id=1717163525]
 script = ExtResource("1_fp76q")
@@ -123,6 +129,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 7.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -155,5 +163,108 @@ color = Color(0.22352941, 0.59607846, 0.64705884, 0.28235295)
 antialiased = true
 polygon = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
 uv = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
+
+[node name="HUD" type="Control" parent="UI" unique_id=502643802]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_43bgu")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD" unique_id=506357438]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/MarginContainer" unique_id=1537632456]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="UI/HUD/MarginContainer/VBoxContainer" unique_id=1856545338]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.63
+
+[node name="Panel" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer" unique_id=1577176802]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fls4u")
+
+[node name="Resources" type="MarginContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel" unique_id=643864169 node_paths=PackedStringArray("ship")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("8_b4dln")
+ship = NodePath("../../../../../../Ship")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources" unique_id=523567658]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer" unique_id=489756850]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Carbon" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=623518923]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Biomass" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=938483808]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Minerals" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=1311456553]
+layout_mode = 2
+size_flags_vertical = 3
+show_percentage = false
+
+[node name="Surgecounter" type="VBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer" unique_id=712720530]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="5" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=2037591560]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="4" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=565323501]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="3" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1439064361]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="2" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1618054749]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="1" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1806243066]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
 
 [connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]
