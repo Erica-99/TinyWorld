@@ -144,14 +144,14 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 ship = NodePath("../../../Ship")
 distance_from_ship = 150.0
 
-[node name="PlanetScannerEffect" type="Node2D" parent="UI/UI Control" unique_id=638159230 node_paths=PackedStringArray("ship")]
+[node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]
 z_index = -1
 z_as_relative = false
 script = ExtResource("7_vyd5l")
-ship = NodePath("../../../Ship")
+ship = NodePath("../Ship")
 
-[node name="PlanetScannerPolygon" type="Polygon2D" parent="UI/UI Control/PlanetScannerEffect" unique_id=397648708]
-color = Color(0.8392157, 0.36078432, 0.38039216, 0.4117647)
+[node name="PlanetScannerPolygon" type="Polygon2D" parent="PlanetScannerEffect" unique_id=234841052]
+color = Color(0.22352941, 0.59607846, 0.64705884, 0.28235295)
 antialiased = true
 polygon = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
 uv = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
