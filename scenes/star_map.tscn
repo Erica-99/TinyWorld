@@ -5,10 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
-[ext_resource type="PackedScene" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
 [ext_resource type="Script" uid="uid://c04rfppl3jocj" path="res://scripts/hud.gd" id="7_43bgu"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
+[ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
+[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
 
@@ -145,14 +146,23 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PlanetResourceIndicator" parent="UI/UI Control" unique_id=1535008980 node_paths=PackedStringArray("ship") instance=ExtResource("6_568mj")]
+visible = false
 layout_mode = 1
 pivot_offset_ratio = Vector2(0.5, 0.5)
 ship = NodePath("../../../Ship")
 distance_from_ship = 150.0
 
-[node name="PlanetScannerEffect" type="Node2D" parent="UI/UI Control" unique_id=638159230]
+[node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]
 z_index = -1
 z_as_relative = false
+script = ExtResource("7_vyd5l")
+ship = NodePath("../Ship")
+
+[node name="PlanetScannerPolygon" type="Polygon2D" parent="PlanetScannerEffect" unique_id=234841052]
+color = Color(0.22352941, 0.59607846, 0.64705884, 0.28235295)
+antialiased = true
+polygon = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
+uv = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
 
 [node name="HUD" type="Control" parent="UI" unique_id=502643802]
 layout_mode = 3
