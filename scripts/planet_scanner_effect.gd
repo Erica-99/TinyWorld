@@ -42,22 +42,5 @@ func get_new_coordinates() -> PackedVector2Array:
 	var point_2_worldspace := Vector2(T1x, T1y)
 	var point_3_worldspace := Vector2(T2x, T2y)
 	
-	
-	#var planet_radius = ship.landing_target.scale.x * 5
-	#var dist_to_centre = (ship.landing_target.global_position - ship.global_position).length()
-	#var angle_to_centre = ship_to_planet.angle()
-	#var angle_to_tangent = acos(planet_radius/dist_to_centre)
-	#var point_2_x = ship.landing_target.global_position.x + planet_radius*cos(angle_to_centre+angle_to_tangent)
-	#var point_2_y = ship.landing_target.global_position.y + planet_radius*sin(angle_to_centre+angle_to_tangent)
-	#var point_3_x = ship.landing_target.global_position.x + planet_radius*cos(angle_to_centre-angle_to_tangent)
-	#var point_3_y = ship.landing_target.global_position.y + planet_radius*cos(angle_to_centre-angle_to_tangent)
-	#
-	#var point_2_worldspace := Vector2(point_2_x, point_2_y)
-	#var point_3_worldspace := Vector2(point_3_x, point_3_y)
-	
-	#var canvas_transform: Transform2D = get_viewport().get_canvas_transform()
-	#var point_2: Vector2 = canvas_transform * point_2_worldspace
-	#var point_3: Vector2 = canvas_transform * point_3_worldspace
-	
 	var vec2array: Array[Vector2] = [point_1_worldspace, point_2_worldspace, point_3_worldspace]
 	return PackedVector2Array(vec2array)
