@@ -110,6 +110,7 @@ func swap_to_node(new_mode: ENUMS.PlayerMovementMode) -> void:
 			$LandingManager.process_mode = Node.PROCESS_MODE_DISABLED
 			$EatingManager.process_mode = Node.PROCESS_MODE_INHERIT
 
+
 ## One-off inputs (dampers, landing mode)
 func _unhandled_input(event):
 	if movement_mode == ENUMS.PlayerMovementMode.READY_TO_LAND:
