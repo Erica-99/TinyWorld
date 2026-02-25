@@ -1,0 +1,300 @@
+[gd_scene format=3 uid="uid://cq2g8ebw34rqx"]
+
+[ext_resource type="SpriteFrames" uid="uid://dgkkbcdx8hele" path="res://Sprites/CruiserBridgeSprites.tres" id="1_fq4fi"]
+[ext_resource type="SpriteFrames" uid="uid://lpacqieaq1ik" path="res://Sprites/BackTurretSprites.tres" id="2_0h1x2"]
+[ext_resource type="SpriteFrames" uid="uid://bfe16coq0uc6o" path="res://Sprites/CruiserThrusterSprites.tres" id="2_r3tu1"]
+[ext_resource type="SpriteFrames" uid="uid://bbt4xfgbpy4fx" path="res://Sprites/FrontTurretSprites.tres" id="4_dwvs7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwvs7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 20.23, 1)
+gravity = Vector3(-100, 0, 0)
+scale_min = 3.0
+scale_max = 6.0
+color = Color(0, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_0h1x2"]
+resource_name = "Hidden"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FTLParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thruster/ThrusterParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dwvs7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../FTLParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thruster/ThrusterParticles:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_txv1s"]
+resource_name = "Spawn"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6.333333, 6.3999996),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../FTLParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335, 6.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6.2, 6.333333, 6.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.865, 0.29), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6.333333, 6.5, 6.7666664),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-210.625, 0), Vector2(0, 0), Vector2(-23.18, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thruster/ThrusterParticles:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_txv1s"]
+_data = {
+&"Hidden": SubResource("Animation_0h1x2"),
+&"RESET": SubResource("Animation_dwvs7"),
+&"Spawn": SubResource("Animation_txv1s")
+}
+
+[sub_resource type="Curve" id="Curve_0h1x2"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.70270264, 1.2359552), 0.0, 0.0, 0, 0, Vector2(0.88513505, 5), 0.0, 0.0, 0, 0, Vector2(1, 5), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_dwvs7"]
+curve = SubResource("Curve_0h1x2")
+
+[sub_resource type="Gradient" id="Gradient_0h1x2"]
+offsets = PackedFloat32Array(0, 0.77868855)
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dwvs7"]
+gradient = SubResource("Gradient_0h1x2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0h1x2"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(44.655, 20.615, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(400, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("GradientTexture1D_dwvs7")
+alpha_curve = SubResource("CurveTexture_dwvs7")
+
+[node name="enemy" type="Area2D" unique_id=2136185547]
+texture_filter = 3
+scale = Vector2(4, 4)
+
+[node name="SpritePivot" type="Node2D" parent="." unique_id=247175346]
+self_modulate = Color(0, 0, 1, 1)
+
+[node name="Thruster" type="Node2D" parent="SpritePivot" unique_id=309872537]
+position = Vector2(-10, 0)
+
+[node name="ThrusterParticles" type="GPUParticles2D" parent="SpritePivot/Thruster" unique_id=1994940803]
+position = Vector2(-73.32, -2.75)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_dwvs7")
+
+[node name="Thruster_Main" type="AnimatedSprite2D" parent="SpritePivot/Thruster" unique_id=922847472]
+texture_filter = 3
+position = Vector2(60, -12)
+sprite_frames = ExtResource("2_r3tu1")
+animation = &"Healthy"
+
+[node name="Thruster_Turret" type="Area2D" parent="SpritePivot/Thruster" unique_id=1173980368]
+position = Vector2(-50, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Thruster/Thruster_Turret" unique_id=872360727]
+position = Vector2(60, -12)
+sprite_frames = ExtResource("2_0h1x2")
+animation = &"Healthy"
+autoplay = "Healthy"
+frame_progress = 0.29437646
+
+[node name="Bridge" type="Node2D" parent="SpritePivot" unique_id=1206508805]
+position = Vector2(8, -1)
+
+[node name="Bridge_Main" type="AnimatedSprite2D" parent="SpritePivot/Bridge" unique_id=263962893]
+texture_filter = 3
+position = Vector2(42, -9)
+sprite_frames = ExtResource("1_fq4fi")
+animation = &"Healthy"
+
+[node name="BridgeTurret" type="Area2D" parent="SpritePivot/Bridge" unique_id=106237347]
+position = Vector2(-12, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=725742814]
+texture_filter = 3
+position = Vector2(6, -11)
+sprite_frames = ExtResource("4_dwvs7")
+animation = &"Healthy"
+autoplay = "Healthy"
+frame_progress = 0.47793958
+
+[node name="EnemyAnims" type="AnimationPlayer" parent="SpritePivot" unique_id=760754738]
+libraries/ = SubResource("AnimationLibrary_txv1s")
+autoplay = &"Spawn"
+
+[node name="FTLParticles" type="GPUParticles2D" parent="." unique_id=43603422]
+position = Vector2(-338.25, -0.5)
+emitting = false
+amount = 300
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_0h1x2")
