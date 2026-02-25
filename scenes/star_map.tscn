@@ -270,15 +270,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("7_43bgu")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/HUD" unique_id=506357438]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -3.0
-offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 30
@@ -295,6 +292,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 5.63
 
 [node name="Panel" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer" unique_id=1577176802]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_fls4u")
@@ -315,7 +313,7 @@ ship = NodePath("../../../../../../Ship")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources" unique_id=523567658]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer" unique_id=489756850]
 layout_mode = 2
@@ -365,5 +363,17 @@ theme_override_styles/panel = ExtResource("9_b4dln")
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]
+z_index = -1
+z_as_relative = false
+script = ExtResource("7_vyd5l")
+ship = NodePath("../Ship")
+
+[node name="PlanetScannerPolygon" type="Polygon2D" parent="PlanetScannerEffect" unique_id=234841052]
+color = Color(0.22352941, 0.59607846, 0.64705884, 0.28235295)
+antialiased = true
+polygon = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
+uv = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
 
 [connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]

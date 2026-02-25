@@ -52,5 +52,6 @@ linear_damper_strength = 3.0
 
 [node name="Inventory" type="Node2D" parent="." unique_id=244974306]
 script = ExtResource("6_7j21i")
+mineral_stores = 124
 
 [connection signal="body_entered" from="EatingZone" to="LandingManager" method="_on_eating_zone_body_entered"]
