@@ -49,6 +49,7 @@ landing_thruster_strength = 1300.0
 script = ExtResource("1_2gnfn")
 turning_torque = 4000.0
 linear_damper_strength = 3.0
+surge_strength = 7000.0
 
 [node name="Inventory" type="Node2D" parent="." unique_id=244974306]
 script = ExtResource("6_7j21i")
