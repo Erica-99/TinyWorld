@@ -54,12 +54,24 @@ func process_movement(delta: float) -> void:
 
 
 func aim_surge() -> void:
+	actor.linear_damp = 10
+	actor.angular_damp = 1
+	
+	var mouse_pos = get_global_mouse_position()
+	var target_angle = actor.global_position.angle_to_point(mouse_pos)
+	var angle_diff = wrapf(target_angle - actor.rotation - PI/2, -PI, PI)
+	actor.apply_torque(angle_diff * 5000)
 	pass
 
 func fire_surge() -> void:
+	# Code to fire impulse
+	
+	actor.inventory.use_surge()
 	pass
 
 func cruise_surge() -> void:
+	# Lock up input for a second or so after surging or until you hit something
+	
 	pass
 
 
@@ -76,8 +88,8 @@ func _unhandled_input(event):
 			actor.angular_damp = 2
 	
 	if event.is_action_pressed("Surge"):
-		# Check if surges are available
-		surge_status = ENUMS.SurgeStatus.AIMING
+		if actor.inventory.ready_surges:
+			surge_status = ENUMS.SurgeStatus.AIMING
 		
 		
 	if event.is_action_pressed("Surge"):
