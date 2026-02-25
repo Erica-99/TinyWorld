@@ -2,6 +2,7 @@
 
 [ext_resource type="SpriteFrames" uid="uid://nhwss1he74jt" path="res://Sprites/CruiserThrusterSprites.tres" id="1_5uy6h"]
 [ext_resource type="SpriteFrames" uid="uid://csldfhvvocscj" path="res://Sprites/BackTurretSprites.tres" id="2_c4w8v"]
+[ext_resource type="Script" uid="uid://dgeg3n8kbsb73" path="res://scripts/turret.gd" id="2_xwavj"]
 [ext_resource type="SpriteFrames" uid="uid://bo1oeril35fvh" path="res://Sprites/CruiserBridgeSprites.tres" id="3_xwavj"]
 [ext_resource type="SpriteFrames" uid="uid://d0j12pk4pdtak" path="res://Sprites/FrontTurretSprites.tres" id="4_nenq2"]
 
@@ -13,6 +14,13 @@ gravity = Vector3(-100, 0, 0)
 scale_min = 3.0
 scale_max = 6.0
 color = Color(0, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5uy6h"]
+radius = 13.25
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
+radius = 8.503675
 
 [sub_resource type="Animation" id="Animation_0h1x2"]
 resource_name = "Hidden"
@@ -51,6 +59,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thruster/ThrusterTurret/ThrusterTurretCollision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bridge/BridgeTurret/BridgeTurretCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_dwvs7"]
@@ -127,10 +159,34 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Thruster/ThrusterTurret/ThrusterTurretCollision:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Bridge/BridgeTurret/BridgeTurretCollision:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_txv1s"]
 resource_name = "Spawn"
-length = 7.0
+length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -150,7 +206,7 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 6.333333, 6.3999996),
+"times": PackedFloat32Array(0, 3, 3.0666666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -162,7 +218,7 @@ tracks/2/path = NodePath("../FTLParticles:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.033333335, 6.5333333),
+"times": PackedFloat32Array(0.033333335, 3.2000003),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -174,7 +230,7 @@ tracks/3/path = NodePath(".:scale")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(6.2, 6.333333, 6.633333),
+"times": PackedFloat32Array(2.8666668, 3, 3.3000002),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.865, 0.29), Vector2(1, 1)]
@@ -186,7 +242,7 @@ tracks/4/path = NodePath(".:position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(6.333333, 6.5, 6.7666664),
+"times": PackedFloat32Array(3, 3.166667, 3.4333334),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-210.625, 0), Vector2(0, 0), Vector2(-23.18, 0)]
@@ -198,10 +254,34 @@ tracks/5/path = NodePath("Thruster/ThrusterParticles:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 6.5),
+"times": PackedFloat32Array(0, 3.166667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Thruster/ThrusterTurret/ThrusterTurretCollision:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.4),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Bridge/BridgeTurret/BridgeTurretCollision:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.4),
+"transitions": PackedFloat32Array(0),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_txv1s"]
@@ -252,26 +332,35 @@ position = Vector2(-73.32, -2.75)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_dwvs7")
 
-[node name="Thruster_Main" type="AnimatedSprite2D" parent="SpritePivot/Thruster" unique_id=922847472]
+[node name="ThrusterMain" type="AnimatedSprite2D" parent="SpritePivot/Thruster" unique_id=922847472]
 texture_filter = 3
 position = Vector2(60, -12)
 sprite_frames = ExtResource("1_5uy6h")
 animation = &"Healthy"
 
-[node name="Thruster_Turret" type="Area2D" parent="SpritePivot/Thruster" unique_id=1173980368]
+[node name="ThrusterTurret" type="Area2D" parent="SpritePivot/Thruster" unique_id=1173980368]
 position = Vector2(-50, 0)
+collision_layer = 8
+collision_mask = 64
+input_pickable = false
+script = ExtResource("2_xwavj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Thruster/Thruster_Turret" unique_id=872360727]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=872360727]
 position = Vector2(60, -12)
 sprite_frames = ExtResource("2_c4w8v")
 animation = &"Healthy"
 autoplay = "Healthy"
 frame_progress = 0.29437646
 
+[node name="ThrusterTurretCollision" type="CollisionShape2D" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=124567631]
+position = Vector2(-0.25, -1.5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_5uy6h")
+
 [node name="Bridge" type="Node2D" parent="SpritePivot" unique_id=1206508805]
 position = Vector2(8, -1)
 
-[node name="Bridge_Main" type="AnimatedSprite2D" parent="SpritePivot/Bridge" unique_id=263962893]
+[node name="BridgeMain" type="AnimatedSprite2D" parent="SpritePivot/Bridge" unique_id=263962893]
 texture_filter = 3
 position = Vector2(42, -9)
 sprite_frames = ExtResource("3_xwavj")
@@ -279,6 +368,10 @@ animation = &"Healthy"
 
 [node name="BridgeTurret" type="Area2D" parent="SpritePivot/Bridge" unique_id=106237347]
 position = Vector2(-12, 1)
+collision_layer = 8
+collision_mask = 64
+input_pickable = false
+script = ExtResource("2_xwavj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=725742814]
 texture_filter = 3
@@ -286,7 +379,10 @@ position = Vector2(6, -11)
 sprite_frames = ExtResource("4_nenq2")
 animation = &"Healthy"
 autoplay = "Healthy"
-frame_progress = 0.47793958
+
+[node name="BridgeTurretCollision" type="CollisionShape2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=2103308756]
+position = Vector2(1.75, 0)
+shape = SubResource("CircleShape2D_c4w8v")
 
 [node name="EnemyAnims" type="AnimationPlayer" parent="SpritePivot" unique_id=760754738]
 libraries/ = SubResource("AnimationLibrary_txv1s")
@@ -298,3 +394,5 @@ emitting = false
 amount = 300
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_0h1x2")
+
+[connection signal="area_entered" from="SpritePivot/Thruster/ThrusterTurret" to="SpritePivot/Thruster/ThrusterTurret" method="_on_area_entered"]
