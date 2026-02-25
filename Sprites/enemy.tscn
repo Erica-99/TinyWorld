@@ -5,6 +5,15 @@
 [ext_resource type="SpriteFrames" uid="uid://bfe16coq0uc6o" path="res://Sprites/CruiserThrusterSprites.tres" id="2_r3tu1"]
 [ext_resource type="SpriteFrames" uid="uid://bbt4xfgbpy4fx" path="res://Sprites/FrontTurretSprites.tres" id="4_dwvs7"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwvs7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 20.23, 1)
+gravity = Vector3(-100, 0, 0)
+scale_min = 3.0
+scale_max = 6.0
+color = Color(0, 1, 1, 1)
+
 [sub_resource type="Animation" id="Animation_0h1x2"]
 resource_name = "Hidden"
 tracks/0/type = "value"
@@ -22,11 +31,23 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../GPUParticles2D:emitting")
+tracks/1/path = NodePath("../FTLParticles:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thruster/ThrusterParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -61,7 +82,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../GPUParticles2D:emitting")
+tracks/2/path = NodePath("../FTLParticles:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -94,6 +115,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thruster/ThrusterParticles:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_txv1s"]
 resource_name = "Spawn"
@@ -125,7 +158,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../GPUParticles2D:emitting")
+tracks/2/path = NodePath("../FTLParticles:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -157,6 +190,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-210.625, 0), Vector2(0, 0), Vector2(-23.18, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Thruster/ThrusterParticles:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_txv1s"]
@@ -202,6 +247,11 @@ self_modulate = Color(0, 0, 1, 1)
 [node name="Thruster" type="Node2D" parent="SpritePivot" unique_id=309872537]
 position = Vector2(-10, 0)
 
+[node name="ThrusterParticles" type="GPUParticles2D" parent="SpritePivot/Thruster" unique_id=1994940803]
+position = Vector2(-73.32, -2.75)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_dwvs7")
+
 [node name="Thruster_Main" type="AnimatedSprite2D" parent="SpritePivot/Thruster" unique_id=922847472]
 texture_filter = 3
 position = Vector2(60, -12)
@@ -215,6 +265,8 @@ position = Vector2(-50, 0)
 position = Vector2(60, -12)
 sprite_frames = ExtResource("2_0h1x2")
 animation = &"Healthy"
+autoplay = "Healthy"
+frame_progress = 0.29437646
 
 [node name="Bridge" type="Node2D" parent="SpritePivot" unique_id=1206508805]
 position = Vector2(8, -1)
@@ -233,12 +285,14 @@ texture_filter = 3
 position = Vector2(6, -11)
 sprite_frames = ExtResource("4_dwvs7")
 animation = &"Healthy"
+autoplay = "Healthy"
+frame_progress = 0.47793958
 
 [node name="EnemyAnims" type="AnimationPlayer" parent="SpritePivot" unique_id=760754738]
 libraries/ = SubResource("AnimationLibrary_txv1s")
 autoplay = &"Spawn"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=43603422]
+[node name="FTLParticles" type="GPUParticles2D" parent="." unique_id=43603422]
 position = Vector2(-338.25, -0.5)
 emitting = false
 amount = 300

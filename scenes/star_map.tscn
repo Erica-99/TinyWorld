@@ -3,29 +3,15 @@
 [ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://scripts/StarMap.gd" id="1_fp76q"]
 [ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
-[ext_resource type="Shader" uid="uid://ckxpa011gxytr" path="res://shaders/star_map.gdshader" id="3_aoqvg"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
-[ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
-[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
-[ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
+[ext_resource type="PackedScene" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
+[ext_resource type="Script" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
+[ext_resource type="Script" path="res://resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
 [ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://Sprites/enemy.tscn" id="11_aoqvg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoqvg"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aoqvg"]
-shader = ExtResource("3_aoqvg")
-shader_parameter/speed = 0.1
-shader_parameter/pixelation = 8.0
-shader_parameter/zoom = 2.0
-shader_parameter/gradient_pixelation = 0.2
-shader_parameter/background_threshold = 0.0
-shader_parameter/color_low_threshold = 0.24
-shader_parameter/color_mid_threshold = 0.48
-shader_parameter/color_low = Color(0.01, 0.41, 0.51, 1)
-shader_parameter/color_mid = Color(0.5, 0.1, 0.3, 1)
-shader_parameter/color_high = Color(1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_aoqvg"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0067567676, 1), 0.0, 0.0, 0, 0, Vector2(0.9797298, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -79,6 +65,10 @@ script = ExtResource("1_fp76q")
 max_distance = 70000.0
 max_healthy = 100
 
+[node name="Enemies" type="Node2D" parent="." unique_id=1122922968]
+
+[node name="enemy" parent="Enemies" unique_id=2136185547 instance=ExtResource("11_aoqvg")]
+
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1484703696]
 z_index = -1000
 scale = Vector2(1.9331334, 1.0827317)
@@ -103,17 +93,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.030984493, 0.027432224, 0.039930467, 1)
 metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect2" type="ColorRect" parent="Parallax2D/Panel" unique_id=1155803226]
-visible = false
-material = SubResource("ShaderMaterial_aoqvg")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.030984493, 0.027432224, 0.039930467, 1)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D/Panel" unique_id=682508906]
 position = Vector2(486.77448, 470.1072)
@@ -367,7 +346,5 @@ theme_override_styles/panel = ExtResource("9_b4dln")
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
-
-[node name="enemy" parent="." unique_id=2136185547 instance=ExtResource("11_aoqvg")]
 
 [connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]
