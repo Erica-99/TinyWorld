@@ -19,6 +19,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if surge_status == ENUMS.SurgeStatus.NONE:
+		if actor.linear_velocity.length() < 100:
+			actor.sprites.play("Idle")
+		else:
+			actor.sprites.play("Flying")
+		
 		# Check if there are any nearby planets
 		if actor.nearby_planets.size() > 0:
 			# Check if conditions met to ready landing
@@ -67,6 +72,8 @@ func fire_surge() -> void:
 	actor.linear_damp = 2
 	actor.angular_damp = 10
 	
+	actor.sprites.play("Idle")
+	
 	var surge_direction_vector = (get_global_mouse_position() - actor.global_position).normalized()
 	actor.apply_impulse(surge_direction_vector * surge_strength, Vector2.ZERO)
 	
@@ -83,7 +90,7 @@ func set_surge_aiming() -> void:
 	actor.linear_damp = 10
 	actor.angular_damp = 10
 	
-	actor.sprites.play("Idle")
+	actor.sprites.play("ChargingSurge")
 	
 	surge_status = ENUMS.SurgeStatus.AIMING
 
