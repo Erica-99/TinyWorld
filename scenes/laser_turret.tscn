@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://iiu4licmfgar"]
+
+[ext_resource type="Script" uid="uid://bf8wjmfvnc21w" path="res://scripts/laser_turret.gd" id="1_vsw08"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vsw08"]
+radius = 300.0
+
+[node name="LaserTurret" type="Node2D" unique_id=2132486732]
+script = ExtResource("1_vsw08")
+
+[node name="AggroRange" type="Area2D" parent="." unique_id=1400523820]
+collision_layer = 0
+
+[node name="AggroRangeCollider" type="CollisionShape2D" parent="AggroRange" unique_id=605917077]
+shape = SubResource("CircleShape2D_vsw08")
+
+[connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]

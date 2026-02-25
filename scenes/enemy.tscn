@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dgeg3n8kbsb73" path="res://scripts/turret.gd" id="2_xwavj"]
 [ext_resource type="SpriteFrames" uid="uid://bo1oeril35fvh" path="res://Sprites/CruiserBridgeSprites.tres" id="3_xwavj"]
 [ext_resource type="SpriteFrames" uid="uid://d0j12pk4pdtak" path="res://Sprites/FrontTurretSprites.tres" id="4_nenq2"]
+[ext_resource type="PackedScene" uid="uid://iiu4licmfgar" path="res://scenes/laser_turret.tscn" id="5_nenq2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwvs7"]
 particle_flag_disable_z = true
@@ -284,6 +285,34 @@ tracks/7/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Thruster/ThrusterTurret")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(3.4333334),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enable_turret_ai"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Bridge/BridgeTurret")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(3.4333334),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enable_turret_ai"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_txv1s"]
 _data = {
@@ -359,6 +388,8 @@ autoplay = "Healthy"
 position = Vector2(-0.25, -1.5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_5uy6h")
+
+[node name="LaserTurret" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=2132486732 instance=ExtResource("5_nenq2")]
 
 [node name="Bridge" type="Node2D" parent="SpritePivot" unique_id=1206508805]
 position = Vector2(8, -1)
