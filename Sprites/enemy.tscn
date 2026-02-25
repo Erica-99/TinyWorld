@@ -97,7 +97,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_txv1s"]
 resource_name = "Spawn"
-length = 5.0
+length = 7.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -117,7 +117,7 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3, 3.0666666),
+"times": PackedFloat32Array(0, 6.333333, 6.3999996),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -129,10 +129,10 @@ tracks/2/path = NodePath("../GPUParticles2D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.033333335),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.033333335, 6.5333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -141,7 +141,7 @@ tracks/3/path = NodePath(".:scale")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2.8666666, 3, 3.3),
+"times": PackedFloat32Array(6.2, 6.333333, 6.633333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.865, 0.29), Vector2(1, 1)]
@@ -153,7 +153,7 @@ tracks/4/path = NodePath(".:position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(3, 3.1666667, 3.4333334),
+"times": PackedFloat32Array(6.333333, 6.5, 6.7666664),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-210.625, 0), Vector2(0, 0), Vector2(-23.18, 0)]
@@ -186,12 +186,15 @@ particle_flag_disable_z = true
 emission_shape_scale = Vector3(44.655, 20.615, 1)
 emission_shape = 1
 emission_sphere_radius = 1.0
-gravity = Vector3(100, 0, 0)
+gravity = Vector3(400, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource("GradientTexture1D_dwvs7")
 alpha_curve = SubResource("CurveTexture_dwvs7")
 
 [node name="enemy" type="Area2D" unique_id=2136185547]
 texture_filter = 3
+scale = Vector2(4, 4)
 
 [node name="SpritePivot" type="Node2D" parent="." unique_id=247175346]
 self_modulate = Color(0, 0, 1, 1)
@@ -233,9 +236,10 @@ animation = &"Healthy"
 
 [node name="EnemyAnims" type="AnimationPlayer" parent="SpritePivot" unique_id=760754738]
 libraries/ = SubResource("AnimationLibrary_txv1s")
+autoplay = &"Spawn"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=43603422]
-position = Vector2(-227, -2)
+position = Vector2(-338.25, -0.5)
 emitting = false
 amount = 300
 lifetime = 2.0
