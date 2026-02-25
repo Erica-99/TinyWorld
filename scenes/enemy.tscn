@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cq2g8ebw34rqx"]
 
-[ext_resource type="SpriteFrames" uid="uid://dgkkbcdx8hele" path="res://Sprites/CruiserBridgeSprites.tres" id="1_fq4fi"]
-[ext_resource type="SpriteFrames" uid="uid://lpacqieaq1ik" path="res://Sprites/BackTurretSprites.tres" id="2_0h1x2"]
-[ext_resource type="SpriteFrames" uid="uid://bfe16coq0uc6o" path="res://Sprites/CruiserThrusterSprites.tres" id="2_r3tu1"]
-[ext_resource type="SpriteFrames" uid="uid://bbt4xfgbpy4fx" path="res://Sprites/FrontTurretSprites.tres" id="4_dwvs7"]
+[ext_resource type="SpriteFrames" uid="uid://nhwss1he74jt" path="res://Sprites/CruiserThrusterSprites.tres" id="1_5uy6h"]
+[ext_resource type="SpriteFrames" uid="uid://csldfhvvocscj" path="res://Sprites/BackTurretSprites.tres" id="2_c4w8v"]
+[ext_resource type="SpriteFrames" uid="uid://bo1oeril35fvh" path="res://Sprites/CruiserBridgeSprites.tres" id="3_xwavj"]
+[ext_resource type="SpriteFrames" uid="uid://d0j12pk4pdtak" path="res://Sprites/FrontTurretSprites.tres" id="4_nenq2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwvs7"]
 particle_flag_disable_z = true
@@ -255,7 +255,7 @@ process_material = SubResource("ParticleProcessMaterial_dwvs7")
 [node name="Thruster_Main" type="AnimatedSprite2D" parent="SpritePivot/Thruster" unique_id=922847472]
 texture_filter = 3
 position = Vector2(60, -12)
-sprite_frames = ExtResource("2_r3tu1")
+sprite_frames = ExtResource("1_5uy6h")
 animation = &"Healthy"
 
 [node name="Thruster_Turret" type="Area2D" parent="SpritePivot/Thruster" unique_id=1173980368]
@@ -263,7 +263,7 @@ position = Vector2(-50, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Thruster/Thruster_Turret" unique_id=872360727]
 position = Vector2(60, -12)
-sprite_frames = ExtResource("2_0h1x2")
+sprite_frames = ExtResource("2_c4w8v")
 animation = &"Healthy"
 autoplay = "Healthy"
 frame_progress = 0.29437646
@@ -274,7 +274,7 @@ position = Vector2(8, -1)
 [node name="Bridge_Main" type="AnimatedSprite2D" parent="SpritePivot/Bridge" unique_id=263962893]
 texture_filter = 3
 position = Vector2(42, -9)
-sprite_frames = ExtResource("1_fq4fi")
+sprite_frames = ExtResource("3_xwavj")
 animation = &"Healthy"
 
 [node name="BridgeTurret" type="Area2D" parent="SpritePivot/Bridge" unique_id=106237347]
@@ -283,7 +283,7 @@ position = Vector2(-12, 1)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=725742814]
 texture_filter = 3
 position = Vector2(6, -11)
-sprite_frames = ExtResource("4_dwvs7")
+sprite_frames = ExtResource("4_nenq2")
 animation = &"Healthy"
 autoplay = "Healthy"
 frame_progress = 0.47793958
