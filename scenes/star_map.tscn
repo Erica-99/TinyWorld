@@ -95,8 +95,9 @@ color = Color(0.030984493, 0.027432224, 0.039930467, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D/Panel" unique_id=682508906]
-position = Vector2(486.77448, 470.1072)
+position = Vector2(0, -200)
 scale = Vector2(5.0011406, 4.9932404)
+skew = -0.27401668
 amount = 100
 lifetime = 100.0
 preprocess = 10.0
@@ -227,6 +228,7 @@ offset_top = 7.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="LandingPopup" parent="UI/UI Control" unique_id=1706348881 instance=ExtResource("5_fevf7")]
 visible = false
@@ -253,6 +255,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/HUD" unique_id=506357438]
 layout_mode = 1
