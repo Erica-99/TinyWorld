@@ -11,6 +11,8 @@ extends Area2D
 @export var minerals: int = 1
 @export var nanotech: int = 0
 
+@onready var planet_sprite = $AnimatedSprite2D
+
 var total_resource_quantity: int
 var remaining_resource_quantity: int:
 	set(value):
@@ -25,11 +27,13 @@ var onscreen: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	pass
 
 
@@ -70,6 +74,14 @@ func setup_planet(set_biome: ENUMS.PlanetType, set_size: float) -> void:
 	
 	var settings = PLANETS.get_settings(biome)
 	$MeshInstance2D.modulate = settings.test_color
+	if biome == 0:
+		planet_sprite.play("METEOR")
+	if biome == 1:
+		planet_sprite.play("BARREN")
+	if biome == 2:
+		planet_sprite.play("HEALTHY")
+	if biome == 3:
+		planet_sprite.play("ECUMENOPOLIS")
 	carbon = settings.carbon_density * size
 	biomass = settings.biomass_density * size
 	minerals = settings.mineral_density * size

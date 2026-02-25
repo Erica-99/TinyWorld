@@ -3,12 +3,63 @@
 [ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://scripts/StarMap.gd" id="1_fp76q"]
 [ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
+[ext_resource type="Shader" path="res://scenes/star_map.gdshader" id="3_aoqvg"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
 [ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
 [ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoqvg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aoqvg"]
+shader = ExtResource("3_aoqvg")
+shader_parameter/speed = 0.1
+shader_parameter/pixelation = 8.0
+shader_parameter/zoom = 2.0
+shader_parameter/gradient_pixelation = 0.2
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_low_threshold = 0.24
+shader_parameter/color_mid_threshold = 0.48
+shader_parameter/color_low = Color(0.01, 0.41, 0.51, 1)
+shader_parameter/color_mid = Color(0.5, 0.1, 0.3, 1)
+shader_parameter/color_high = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_aoqvg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0067567676, 1), 0.0, 0.0, 0, 0, Vector2(0.9797298, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_hdvgx"]
+curve = SubResource("Curve_aoqvg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aoqvg"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(98.14, 94.48, 1)
+gravity = Vector3(1, 1, 1)
+scale_min = 6.0
+scale_max = 20.0
+color = Color(1, 1, 1, 0.2627451)
+alpha_curve = SubResource("CurveTexture_hdvgx")
+turbulence_enabled = true
+
+[sub_resource type="Curve" id="Curve_hdvgx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2364865, 0.50561804), 0.0, 0.0, 0, 0, Vector2(0.722973, 0.50561804), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_a7q7s"]
+curve = SubResource("Curve_hdvgx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5tmf"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(98.14, 94.48, 1)
+gravity = Vector3(1, 1, 1)
+scale_min = 10.0
+scale_max = 20.0
+alpha_curve = SubResource("CurveTexture_a7q7s")
+turbulence_enabled = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
 
@@ -26,6 +77,66 @@ bg_color = Color(0, 0, 0, 0.4862745)
 script = ExtResource("1_fp76q")
 max_distance = 70000.0
 max_healthy = 100
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1484703696]
+z_index = -1000
+scale = Vector2(1.9331334, 1.0827317)
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(1, 1)
+repeat_size = Vector2(1000, 1000)
+autoscroll = Vector2(40, 40)
+repeat_times = 100
+
+[node name="Panel" type="Panel" parent="Parallax2D" unique_id=2073771965]
+offset_right = 1000.0
+offset_bottom = 1000.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aoqvg")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="Parallax2D/Panel" unique_id=1423349671]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.030984493, 0.027432224, 0.039930467, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Parallax2D/Panel" unique_id=1155803226]
+visible = false
+material = SubResource("ShaderMaterial_aoqvg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.030984493, 0.027432224, 0.039930467, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D/Panel" unique_id=682508906]
+position = Vector2(486.77448, 470.1072)
+scale = Vector2(5.0011406, 4.9932404)
+amount = 100
+lifetime = 100.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_aoqvg")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1843132885]
+z_index = -1000
+scale = Vector2(1.9331334, 1.0827317)
+repeat_size = Vector2(1000, 1000)
+autoscroll = Vector2(20, 20)
+repeat_times = 100
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D2" unique_id=1540513184]
+modulate = Color(1, 1, 1, 0.41568628)
+position = Vector2(486.77448, 470.1072)
+scale = Vector2(5.0011406, 4.9932404)
+amount = 100
+lifetime = 30.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_i5tmf")
 
 [node name="Bounds" type="Area2D" parent="." unique_id=638317334]
 collision_layer = 0
@@ -97,19 +208,6 @@ target_position = Vector2(0, 0)
 collision_mask = 52
 collide_with_areas = true
 
-[node name="Background" type="CanvasLayer" parent="." unique_id=341782228]
-layer = -1000
-scale = Vector2(2.03, 2.03)
-transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
-
-[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1355169324]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.030984493, 0.027432224, 0.039930467, 1)
-
 [node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
 
 [node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
@@ -117,9 +215,26 @@ zoom = Vector2(0.33, 0.33)
 target_object = NodePath("../Ship")
 tracking_speed = 10.0
 
+[node name="Background" type="CanvasLayer" parent="PlayerCamera" unique_id=341782228]
+layer = -1000
+scale = Vector2(2.03, 2.03)
+transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
+
 [node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
 enabled = false
 zoom = Vector2(0.01, 0.01)
+
+[node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]
+z_index = -1
+z_as_relative = false
+script = ExtResource("7_vyd5l")
+ship = NodePath("../Ship")
+
+[node name="PlanetScannerPolygon" type="Polygon2D" parent="PlanetScannerEffect" unique_id=234841052]
+color = Color(0.22352941, 0.59607846, 0.64705884, 0.28235295)
+antialiased = true
+polygon = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
+uv = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1313728925]
 
@@ -251,17 +366,5 @@ theme_override_styles/panel = ExtResource("9_b4dln")
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
-
-[node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]
-z_index = -1
-z_as_relative = false
-script = ExtResource("7_vyd5l")
-ship = NodePath("../Ship")
-
-[node name="PlanetScannerPolygon" type="Polygon2D" parent="PlanetScannerEffect" unique_id=234841052]
-color = Color(0.22352941, 0.59607846, 0.64705884, 0.28235295)
-antialiased = true
-polygon = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
-uv = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
 
 [connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]
