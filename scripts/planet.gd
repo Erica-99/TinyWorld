@@ -12,6 +12,8 @@ extends Area2D
 @export var nanotech: int = 0
 
 @onready var planet_sprite = $AnimatedSprite2D
+@onready var explode_VFX = preload("res://scenes/PlanetExplosion.tscn")
+
 
 var total_resource_quantity: int
 var remaining_resource_quantity: int:
@@ -107,6 +109,12 @@ func return_gravity_for_object(body: RigidBody2D):
 
 
 func destroy_planet() -> void:
+	var VFX = explode_VFX.instantiate()
+	VFX.position = self.position
+	add_sibling(VFX)
+	queue_free()
+	
+	
 	# Instantiate some sort of explosion then queue free
 	print("planet killed")
 	pass

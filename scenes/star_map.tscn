@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
-[ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
-[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
-[ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
+[ext_resource type="PackedScene" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
+[ext_resource type="Script" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
+[ext_resource type="Script" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
-[ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://Sprites/enemy.tscn" id="11_aoqvg"]
+[ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://scenes/enemy.tscn" id="11_aoqvg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoqvg"]
 
@@ -182,6 +182,8 @@ nanotech = 1
 
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
+[node name="ParticleEffects" type="Node2D" parent="." unique_id=692688498]
+
 [node name="SpaceChecker" type="ShapeCast2D" parent="." unique_id=1182392433]
 scale = Vector2(0.1, 0.1)
 shape = SubResource("CircleShape2D_fchhc")
@@ -238,6 +240,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_top = 0.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 

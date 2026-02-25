@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bl50hkyld1v1h"]
+
+[ext_resource type="Script" uid="uid://bl80cuws24mle" path="res://scenes/planet_explosion.gd" id="1_ijcwa"]
+
+[sub_resource type="Curve" id="Curve_ijcwa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7770271, 0.8089888), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lvof5"]
+curve = SubResource("Curve_ijcwa")
+
+[sub_resource type="Curve" id="Curve_1i8tj"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 2.067416), 0.0, 0.0, 0, 0, Vector2(0.3445946, 1.2134833), 0.0, 0.0, 0, 0, Vector2(0.7432433, 1.2134833), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ijcwa"]
+curve = SubResource("Curve_1i8tj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1i8tj"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.18
+spread = 180.0
+initial_velocity_max = 91.4
+angular_velocity_min = -720.0
+angular_velocity_max = 719.99994
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -53.760002
+linear_accel_max = 45.159996
+tangential_accel_min = -5.380002
+tangential_accel_max = 5.3699975
+scale_min = 7.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_ijcwa")
+color = Color(1, 0.42745098, 0.21568628, 1)
+emission_curve = SubResource("CurveTexture_lvof5")
+turbulence_noise_strength = 0.12
+
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=1595295034]
+top_level = true
+visibility_layer = 2
+scale = Vector2(3.8189971, 3.7529428)
+amount = 1000
+lifetime = 40.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1i8tj")
+script = ExtResource("1_ijcwa")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
