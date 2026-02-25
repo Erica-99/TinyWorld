@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cq2g8ebw34rqx"]
 
-[ext_resource type="SpriteFrames" uid="uid://dgkkbcdx8hele" path="res://Sprites/CruiserBridgeSprites.tres" id="1_fq4fi"]
-[ext_resource type="SpriteFrames" uid="uid://lpacqieaq1ik" path="res://Sprites/BackTurretSprites.tres" id="2_0h1x2"]
-[ext_resource type="SpriteFrames" uid="uid://bfe16coq0uc6o" path="res://Sprites/CruiserThrusterSprites.tres" id="2_r3tu1"]
-[ext_resource type="SpriteFrames" uid="uid://bbt4xfgbpy4fx" path="res://Sprites/FrontTurretSprites.tres" id="4_dwvs7"]
+[ext_resource type="SpriteFrames" uid="uid://bo1oeril35fvh" path="res://Sprites/CruiserBridgeSprites.tres" id="1_fq4fi"]
+[ext_resource type="SpriteFrames" uid="uid://csldfhvvocscj" path="res://Sprites/BackTurretSprites.tres" id="2_0h1x2"]
+[ext_resource type="SpriteFrames" uid="uid://nhwss1he74jt" path="res://Sprites/CruiserThrusterSprites.tres" id="2_r3tu1"]
+[ext_resource type="SpriteFrames" uid="uid://d0j12pk4pdtak" path="res://Sprites/FrontTurretSprites.tres" id="4_dwvs7"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwvs7"]
 particle_flag_disable_z = true

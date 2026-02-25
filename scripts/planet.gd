@@ -112,6 +112,7 @@ func destroy_planet() -> void:
 	var VFX = explode_VFX.instantiate()
 	VFX.position = self.position
 	add_sibling(VFX)
+	_exit_tree()
 	queue_free()
 	
 	

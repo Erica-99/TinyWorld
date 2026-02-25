@@ -39,10 +39,12 @@ turbulence_noise_strength = 0.12
 
 [node name="GPUParticles2D" type="GPUParticles2D" unique_id=1595295034]
 top_level = true
-visibility_layer = 2
-scale = Vector2(3.8189971, 3.7529428)
+light_mask = 4
+visibility_layer = 4
+scale = Vector2(3.834841, 3.7529428)
 amount = 1000
 lifetime = 40.0
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_1i8tj")
 script = ExtResource("1_ijcwa")
