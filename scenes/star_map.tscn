@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://scripts/StarMap.gd" id="1_fp76q"]
 [ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
-[ext_resource type="Shader" path="res://scenes/star_map.gdshader" id="3_aoqvg"]
+[ext_resource type="Shader" uid="uid://ckxpa011gxytr" path="res://shaders/star_map.gdshader" id="3_aoqvg"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
 [ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
@@ -115,8 +115,9 @@ grow_vertical = 2
 color = Color(0.030984493, 0.027432224, 0.039930467, 1)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D/Panel" unique_id=682508906]
-position = Vector2(486.77448, 470.1072)
+position = Vector2(0, -200)
 scale = Vector2(5.0011406, 4.9932404)
+skew = -0.27401668
 amount = 100
 lifetime = 100.0
 preprocess = 10.0
