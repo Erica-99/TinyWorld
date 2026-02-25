@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cq2g8ebw34rqx"]
 
 [ext_resource type="SpriteFrames" uid="uid://nhwss1he74jt" path="res://Sprites/CruiserThrusterSprites.tres" id="1_5uy6h"]
+[ext_resource type="Script" uid="uid://bc785wh64tb28" path="res://scripts/enemy.gd" id="1_xwavj"]
 [ext_resource type="SpriteFrames" uid="uid://csldfhvvocscj" path="res://Sprites/BackTurretSprites.tres" id="2_c4w8v"]
 [ext_resource type="Script" uid="uid://dgeg3n8kbsb73" path="res://scripts/turret.gd" id="2_xwavj"]
 [ext_resource type="SpriteFrames" uid="uid://bo1oeril35fvh" path="res://Sprites/CruiserBridgeSprites.tres" id="3_xwavj"]
@@ -317,9 +318,11 @@ scale_max = 5.0
 color_ramp = SubResource("GradientTexture1D_dwvs7")
 alpha_curve = SubResource("CurveTexture_dwvs7")
 
-[node name="enemy" type="Area2D" unique_id=2136185547]
+[node name="enemy" type="Area2D" unique_id=2136185547 node_paths=PackedStringArray("turrets")]
 texture_filter = 3
 scale = Vector2(4, 4)
+script = ExtResource("1_xwavj")
+turrets = [NodePath("SpritePivot/Thruster/ThrusterTurret"), NodePath("SpritePivot/Bridge/BridgeTurret")]
 
 [node name="SpritePivot" type="Node2D" parent="." unique_id=247175346]
 self_modulate = Color(0, 0, 1, 1)
@@ -338,19 +341,19 @@ position = Vector2(60, -12)
 sprite_frames = ExtResource("1_5uy6h")
 animation = &"Healthy"
 
-[node name="ThrusterTurret" type="Area2D" parent="SpritePivot/Thruster" unique_id=1173980368]
+[node name="ThrusterTurret" type="Area2D" parent="SpritePivot/Thruster" unique_id=1173980368 node_paths=PackedStringArray("child_collider")]
 position = Vector2(-50, 0)
 collision_layer = 8
 collision_mask = 64
 input_pickable = false
 script = ExtResource("2_xwavj")
+child_collider = NodePath("ThrusterTurretCollision")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=872360727]
 position = Vector2(60, -12)
 sprite_frames = ExtResource("2_c4w8v")
-animation = &"Healthy"
+animation = &"Damaged"
 autoplay = "Healthy"
-frame_progress = 0.29437646
 
 [node name="ThrusterTurretCollision" type="CollisionShape2D" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=124567631]
 position = Vector2(-0.25, -1.5)
@@ -366,18 +369,19 @@ position = Vector2(42, -9)
 sprite_frames = ExtResource("3_xwavj")
 animation = &"Healthy"
 
-[node name="BridgeTurret" type="Area2D" parent="SpritePivot/Bridge" unique_id=106237347]
+[node name="BridgeTurret" type="Area2D" parent="SpritePivot/Bridge" unique_id=106237347 node_paths=PackedStringArray("child_collider")]
 position = Vector2(-12, 1)
 collision_layer = 8
 collision_mask = 64
 input_pickable = false
 script = ExtResource("2_xwavj")
+child_collider = NodePath("BridgeTurretCollision")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=725742814]
 texture_filter = 3
 position = Vector2(6, -11)
 sprite_frames = ExtResource("4_nenq2")
-animation = &"Healthy"
+animation = &"Damaged"
 autoplay = "Healthy"
 
 [node name="BridgeTurretCollision" type="CollisionShape2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=2103308756]
@@ -396,3 +400,4 @@ lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_0h1x2")
 
 [connection signal="area_entered" from="SpritePivot/Thruster/ThrusterTurret" to="SpritePivot/Thruster/ThrusterTurret" method="_on_area_entered"]
+[connection signal="area_entered" from="SpritePivot/Bridge/BridgeTurret" to="SpritePivot/Bridge/BridgeTurret" method="_on_area_entered"]

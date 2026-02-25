@@ -57,7 +57,7 @@ surge_strength = 7000.0
 
 [node name="Inventory" type="Node2D" parent="." unique_id=244974306]
 script = ExtResource("6_7j21i")
-mineral_stores = 124
+mineral_stores = 223
 
 [node name="SurgeArea" type="Area2D" parent="." unique_id=1963121455]
 collision_layer = 64
