@@ -18,6 +18,7 @@ gravity_scale = 0.0
 script = ExtResource("1_4tobq")
 
 [node name="Ship Sprite" type="AnimatedSprite2D" parent="." unique_id=533451495]
+texture_filter = 3
 position = Vector2(1.0000001, 14.000001)
 scale = Vector2(4.92, 4.92)
 sprite_frames = ExtResource("2_7j21i")
