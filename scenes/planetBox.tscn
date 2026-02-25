@@ -76,7 +76,7 @@ mesh = SubResource("SphereMesh_bymth")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2034651298]
 texture_filter = 3
-scale = Vector2(0.15982854, 0.15982854)
+scale = Vector2(0.15777126, 0.15777126)
 sprite_frames = SubResource("SpriteFrames_6554r")
 animation = &"ECUMENOPOLIS"
 

@@ -107,6 +107,7 @@ vec4 colormap(float x, vec2 uv) {
 }
 
 void fragment()
+{
     vec2 uv = floor(UV / SCREEN_PIXEL_SIZE / pixelation) * SCREEN_PIXEL_SIZE * pixelation; 
    	float shade = pattern(uv * zoom);
     
