@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dgkkbcdx8hele"]
+
+[ext_resource type="Texture2D" uid="uid://b7rydjo8iutfy" path="res://Sprites/ShipSprites-Sheet.png" id="1_hiie3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dfsl"]
+atlas = ExtResource("1_hiie3")
+region = Rect2(0, 440, 300, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojget"]
+atlas = ExtResource("1_hiie3")
+region = Rect2(0, 88, 300, 88)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dfsl")
+}],
+"loop": true,
+"name": &"Damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojget")
+}],
+"loop": true,
+"name": &"Healthy",
+"speed": 5.0
+}]

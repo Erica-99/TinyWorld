@@ -1,0 +1,79 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bbt4xfgbpy4fx"]
+
+[ext_resource type="Texture2D" uid="uid://b7rydjo8iutfy" path="res://Sprites/ShipSprites-Sheet.png" id="1_aylsn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aylsn"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(0, 616, 200, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwjbl"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(200, 616, 200, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvx74"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(400, 616, 200, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_par7c"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(600, 616, 200, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cm2q"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(800, 616, 200, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u85x"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(0, 264, 200, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fan6i"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(200, 264, 200, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h35vv"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(400, 264, 200, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nj0y"]
+atlas = ExtResource("1_aylsn")
+region = Rect2(600, 264, 200, 88)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aylsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwjbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvx74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_par7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cm2q")
+}],
+"loop": true,
+"name": &"Damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u85x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fan6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h35vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nj0y")
+}],
+"loop": true,
+"name": &"Healthy",
+"speed": 5.0
+}]
