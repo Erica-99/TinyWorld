@@ -128,5 +128,5 @@ func _unhandled_input(event):
 
 
 func _on_surge_area_area_entered(area: Area2D) -> void:
-	actor.set_deferred("linear_velocity", actor.linear_velocity/5)
-	actor.surge_collider.set_deferred("disabled", true)
+	actor.set_deferred("linear_velocity", actor.linear_velocity/10)
+	return_to_no_surge()

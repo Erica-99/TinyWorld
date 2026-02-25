@@ -266,10 +266,10 @@ tracks/6/path = NodePath("Thruster/ThrusterTurret/ThrusterTurretCollision:disabl
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(3.4),
-"transitions": PackedFloat32Array(0),
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(0, 0),
 "update": 1,
-"values": [false]
+"values": [true, false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -278,10 +278,10 @@ tracks/7/path = NodePath("Bridge/BridgeTurret/BridgeTurretCollision:disabled")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(3.4),
-"transitions": PackedFloat32Array(0),
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(0, 0),
 "update": 1,
-"values": [false]
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_txv1s"]
