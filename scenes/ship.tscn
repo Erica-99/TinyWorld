@@ -16,6 +16,7 @@ size = Vector2(72, 128)
 size = Vector2(88, 64)
 
 [node name="Ship" type="RigidBody2D" unique_id=156394039]
+z_index = 5
 collision_mask = 6
 gravity_scale = 0.0
 script = ExtResource("1_4tobq")
@@ -56,14 +57,16 @@ surge_strength = 7000.0
 
 [node name="Inventory" type="Node2D" parent="." unique_id=244974306]
 script = ExtResource("6_7j21i")
-mineral_stores = 124
+mineral_stores = 223
 
 [node name="SurgeArea" type="Area2D" parent="." unique_id=1963121455]
-collision_layer = 0
+collision_layer = 64
 collision_mask = 8
 
 [node name="SurgeCollider" type="CollisionShape2D" parent="SurgeArea" unique_id=2105922353]
 position = Vector2(0, -42)
 shape = SubResource("RectangleShape2D_7j21i")
+disabled = true
 
 [connection signal="body_entered" from="EatingZone" to="LandingManager" method="_on_eating_zone_body_entered"]
+[connection signal="area_entered" from="SurgeArea" to="MovementManager" method="_on_surge_area_area_entered"]

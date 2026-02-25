@@ -6,6 +6,7 @@ signal player_mode_changed(new_mode: ENUMS.PlayerMovementMode, previous_mode: EN
 @export var max_velocity_for_landing: float = 1000
 
 @onready var sprites = $"Ship Sprite"
+@onready var surge_collider = $SurgeArea/SurgeCollider
 
 var nearby_planets: Array[Area2D] = []
 var landing_target: Area2D = null

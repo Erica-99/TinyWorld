@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
-[ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://Sprites/enemy.tscn" id="11_aoqvg"]
+[ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://scenes/enemy.tscn" id="11_aoqvg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoqvg"]
 
@@ -68,6 +68,7 @@ max_healthy = 100
 [node name="Enemies" type="Node2D" parent="." unique_id=1122922968]
 
 [node name="enemy" parent="Enemies" unique_id=2136185547 instance=ExtResource("11_aoqvg")]
+scale = Vector2(7, 7)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1484703696]
 z_index = -1000
