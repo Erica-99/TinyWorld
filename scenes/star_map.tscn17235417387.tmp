@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bgciqt2blwnb1"]
+
+[ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://scripts/StarMap.gd" id="1_fp76q"]
+[ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
+radius = 39.82
+
+[sub_resource type="GDScript" id="GDScript_fchhc"]
+script/source = "extends ShapeCast2D
+"
+
+[node name="StarMap" type="Node2D" unique_id=1717163525]
+script = ExtResource("1_fp76q")
+
+[node name="Planets" type="Node2D" parent="." unique_id=1292802495]
+
+[node name="SpaceChecker" type="ShapeCast2D" parent="." unique_id=1182392433]
+shape = SubResource("CircleShape2D_fchhc")
+target_position = Vector2(0, 0)
+collision_mask = 6
+collide_with_areas = true
+script = SubResource("GDScript_fchhc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=341782228]
+layer = -1
+scale = Vector2(2.03, 2.03)
+transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1355169324]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.030984493, 0.027432224, 0.039930467, 1)
+
+[node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
+
+[node name="Camera2D" type="Camera2D" parent="Ship" unique_id=1825460506]
+zoom = Vector2(0.355, 0.355)

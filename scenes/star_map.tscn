@@ -1,0 +1,867 @@
+[gd_scene format=3 uid="uid://bgciqt2blwnb1"]
+
+[ext_resource type="Script" uid="uid://h8f32lhd5bn1" path="res://scripts/StarMap.gd" id="1_fp76q"]
+[ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
+[ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
+[ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
+[ext_resource type="Script" uid="uid://bieqhq63mido0" path="res://scripts/inner_shield.gd" id="3_i5tmf"]
+[ext_resource type="Shader" uid="uid://c755w8bcv1pxx" path="res://Materials/ring.gdshader" id="4_hdvgx"]
+[ext_resource type="Script" uid="uid://rqlqmp6rneui" path="res://scripts/wincheck.gd" id="5_4toe0"]
+[ext_resource type="Script" uid="uid://ccxuytxwyl5y6" path="res://scripts/shield_surge_detector.gd" id="5_a7q7s"]
+[ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
+[ext_resource type="PackedScene" uid="uid://k6xkv36cbe6s" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
+[ext_resource type="Script" uid="uid://8lwqip8mub4b" path="res://scripts/planet_line.gd" id="7_pev5q"]
+[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
+[ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
+[ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
+[ext_resource type="Texture2D" uid="uid://bl1j7y4dsrhjl" path="res://Sprites/ResourceSprites.png" id="10_aoqvg"]
+[ext_resource type="SpriteFrames" uid="uid://dk3av88rb4k7g" path="res://Sprites/NanotechSprite.tres" id="10_hdvgx"]
+[ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://scenes/enemy.tscn" id="11_aoqvg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoqvg"]
+
+[sub_resource type="Curve" id="Curve_aoqvg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0067567676, 1), 0.0, 0.0, 0, 0, Vector2(0.9797298, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_aoqvg"]
+curve = SubResource("Curve_aoqvg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aoqvg"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(98.14, 94.48, 1)
+gravity = Vector3(1, 1, 1)
+scale_min = 6.0
+scale_max = 20.0
+color = Color(1, 1, 1, 0.2627451)
+alpha_curve = SubResource("CurveTexture_aoqvg")
+turbulence_enabled = true
+
+[sub_resource type="Curve" id="Curve_hdvgx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2364865, 0.50561804), 0.0, 0.0, 0, 0, Vector2(0.722973, 0.50561804), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_hdvgx"]
+curve = SubResource("Curve_hdvgx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5tmf"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(98.14, 94.48, 1)
+gravity = Vector3(1, 1, 1)
+scale_min = 10.0
+scale_max = 20.0
+alpha_curve = SubResource("CurveTexture_hdvgx")
+turbulence_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_88ecf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fevf7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7q7s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7q7s"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 0.030000001425
+shader_parameter/radius = 0.3250000154375
+shader_parameter/color = Color(0.1216637, 0.43832996, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pev5q"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 1.0
+shader_parameter/radius = 0.450000021375
+shader_parameter/color = Color(0, 0, 0, 0.3882353)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gv6ig"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 1.0
+shader_parameter/radius = 0.450000021375
+shader_parameter/color = Color(0, 0, 0, 0.76862746)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4toe0"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 1.0
+shader_parameter/radius = 0.450000021375
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmkl1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5tmf"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 0.0050000002375
+shader_parameter/radius = 0.3250000154375
+shader_parameter/color = Color(4.428029e-06, 0.7833401, 0.8697616, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
+radius = 1000.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdvgx"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7q7s"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5tmf"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pev5q"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv6ig"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoqvg"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4toe0"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmkl1"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62lkb"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51lqi"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4toe0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdvgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7q7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5tmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pev5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv6ig")
+}],
+"loop": true,
+"name": &"Biomass",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoqvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4toe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmkl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62lkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51lqi")
+}],
+"loop": true,
+"name": &"Carbon",
+"speed": 5.0
+}]
+
+[node name="StarMap" type="Node2D" unique_id=1717163525]
+script = ExtResource("1_fp76q")
+max_distance = 70000.0
+enemy_spawn_chance_max = 0.1
+max_healthy = 100
+
+[node name="FederationEnemies" type="Node2D" parent="." unique_id=1991471996]
+
+[node name="enemy" parent="FederationEnemies" unique_id=2136185547 instance=ExtResource("11_aoqvg")]
+position = Vector2(21024.002, -51783)
+
+[node name="enemy2" parent="FederationEnemies" unique_id=1087441541 instance=ExtResource("11_aoqvg")]
+position = Vector2(26882, -54947)
+
+[node name="enemy3" parent="FederationEnemies" unique_id=1007775306 instance=ExtResource("11_aoqvg")]
+position = Vector2(25873.002, -47681)
+
+[node name="enemy4" parent="FederationEnemies" unique_id=504504166 instance=ExtResource("11_aoqvg")]
+position = Vector2(24702.002, -39769)
+
+[node name="enemy5" parent="FederationEnemies" unique_id=1301366734 instance=ExtResource("11_aoqvg")]
+position = Vector2(31232, -43128)
+
+[node name="enemy6" parent="FederationEnemies" unique_id=872457876 instance=ExtResource("11_aoqvg")]
+position = Vector2(19986, -46360)
+
+[node name="enemy7" parent="FederationEnemies" unique_id=1720781956 instance=ExtResource("11_aoqvg")]
+position = Vector2(20751.002, -43269.004)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1122922968]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1484703696]
+z_index = -1000
+scale = Vector2(1.9331334, 1.0827317)
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(1.3, 1.3)
+repeat_size = Vector2(1000, 1000)
+autoscroll = Vector2(40, 40)
+repeat_times = 100
+
+[node name="Panel" type="Panel" parent="Parallax2D" unique_id=2073771965]
+offset_right = 1000.0
+offset_bottom = 1000.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aoqvg")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="Parallax2D/Panel" unique_id=1423349671]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.030984493, 0.027432224, 0.039930467, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D/Panel" unique_id=682508906]
+position = Vector2(0, -200)
+scale = Vector2(5.0011406, 4.9932404)
+skew = -0.27401668
+amount = 100
+lifetime = 100.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_aoqvg")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1843132885]
+z_index = -1000
+scale = Vector2(1.9331334, 1.0827317)
+repeat_size = Vector2(1000, 1000)
+autoscroll = Vector2(20, 20)
+repeat_times = 100
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D2" unique_id=1540513184]
+modulate = Color(1, 1, 1, 0.41568628)
+position = Vector2(486.77448, 470.1072)
+scale = Vector2(5.0011406, 4.9932404)
+amount = 100
+lifetime = 30.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_i5tmf")
+
+[node name="Bounds" type="Area2D" parent="." unique_id=638317334]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds" unique_id=404216582]
+scale = Vector2(7000, 7000)
+shape = SubResource("CircleShape2D_ewo0i")
+
+[node name="Federation" type="Area2D" parent="Bounds" unique_id=567740253]
+self_modulate = Color(0.1882353, 0.3882353, 0.87058824, 1)
+position = Vector2(29968, -47359)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Federation" unique_id=1351286385]
+scale = Vector2(1200, 1200)
+shape = SubResource("CircleShape2D_88ecf")
+
+[node name="Boss Area" type="Area2D" parent="Bounds/Federation" unique_id=872906046]
+self_modulate = Color(0.22745098, 0.22745098, 0.22745098, 1)
+position = Vector2(4745, -5410)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Federation/Boss Area" unique_id=1141762750]
+scale = Vector2(400, 400)
+shape = SubResource("CircleShape2D_fevf7")
+
+[node name="InnerShield" type="StaticBody2D" parent="Bounds/Federation/Boss Area" unique_id=800434948 node_paths=PackedStringArray("required_planets")]
+scale = Vector2(400, 400)
+collision_layer = 128
+script = ExtResource("3_i5tmf")
+required_planets = [NodePath("../../Federation Planet 1"), NodePath("../../Federation Planet 2"), NodePath("../../Federation Planet 3")]
+
+[node name="ShieldCollider" type="CollisionShape2D" parent="Bounds/Federation/Boss Area/InnerShield" unique_id=1049645740]
+shape = SubResource("CircleShape2D_a7q7s")
+
+[node name="Ring" type="ColorRect" parent="Bounds/Federation/Boss Area/InnerShield" unique_id=1604782758]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_a7q7s")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0075
+offset_top = -14.997501
+offset_right = 14.9925
+offset_bottom = 15.002499
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Goal" type="Node2D" parent="Bounds/Federation/Boss Area" unique_id=1963877041]
+
+[node name="Void" type="Node2D" parent="Bounds/Federation/Boss Area/Goal" unique_id=966988597]
+z_index = 1000
+scale = Vector2(10, 10)
+
+[node name="Ring" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=745475069]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.299995
+offset_top = -99.799995
+offset_right = 99.700005
+offset_bottom = 100.200005
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring2" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=1875768693]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0001
+offset_top = -95.1
+offset_right = 94.9999
+offset_bottom = 94.9
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring3" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=937928407]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.1
+offset_top = -90.0
+offset_right = 89.9
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring4" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=1954150546]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.2
+offset_top = -84.899994
+offset_right = 84.8
+offset_bottom = 85.100006
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring5" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=1101684617]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.1
+offset_right = 80.0
+offset_bottom = 79.9
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring6" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=909127238]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.899994
+offset_top = -75.0
+offset_right = 75.100006
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring7" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=1325798721]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.2
+offset_top = -65.0
+offset_right = 64.8
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring8" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=2041816466]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_gv6ig")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.1
+offset_top = -60.199997
+offset_right = 59.9
+offset_bottom = 59.800003
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring9" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=83766742]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_4toe0")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.1
+offset_top = -49.899998
+offset_right = 49.9
+offset_bottom = 50.100002
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wincheck" type="Area2D" parent="Bounds/Federation/Boss Area/Goal" unique_id=671503282]
+scale = Vector2(30, 30)
+collision_layer = 0
+script = ExtResource("5_4toe0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Federation/Boss Area/Goal/Wincheck" unique_id=73337852]
+shape = SubResource("CircleShape2D_hmkl1")
+
+[node name="Federation Planet 1" parent="Bounds/Federation" unique_id=1921216346 instance=ExtResource("2_88ecf")]
+position = Vector2(-5441, -4672)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 400
+carbon = 400
+minerals = 400
+nanotech = 1
+total_resource_quantity = 1201
+remaining_resource_quantity = 1201
+
+[node name="Federation Planet 2" parent="Bounds/Federation" unique_id=1191879661 instance=ExtResource("2_88ecf")]
+position = Vector2(-3411, 4084)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 400
+carbon = 400
+minerals = 400
+nanotech = 1
+total_resource_quantity = 1201
+remaining_resource_quantity = 1201
+
+[node name="Federation Planet 3" parent="Bounds/Federation" unique_id=841358744 instance=ExtResource("2_88ecf")]
+position = Vector2(5335, 4462)
+scale = Vector2(450, 450)
+biome = 3
+size = 450.0
+gravity_strength = 45000.0
+biomass = 400
+carbon = 400
+minerals = 400
+nanotech = 1
+total_resource_quantity = 1201
+remaining_resource_quantity = 1201
+
+[node name="OuterShield" type="StaticBody2D" parent="Bounds/Federation" unique_id=1722992071]
+scale = Vector2(1200, 1200)
+collision_layer = 128
+
+[node name="ShieldCollider" type="CollisionShape2D" parent="Bounds/Federation/OuterShield" unique_id=828044432]
+shape = SubResource("CircleShape2D_a7q7s")
+
+[node name="Ring" type="ColorRect" parent="Bounds/Federation/OuterShield" unique_id=593227407]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_i5tmf")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0075
+offset_top = -14.997501
+offset_right = 14.9925
+offset_bottom = 15.002499
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ShieldSurgeDetector" type="Area2D" parent="Bounds/Federation" unique_id=1859617425 node_paths=PackedStringArray("physical_shield")]
+scale = Vector2(1205, 1205)
+collision_layer = 8
+collision_mask = 64
+script = ExtResource("5_a7q7s")
+physical_shield = NodePath("../OuterShield")
+
+[node name="ShieldCollider" type="CollisionShape2D" parent="Bounds/Federation/ShieldSurgeDetector" unique_id=674873355]
+shape = SubResource("CircleShape2D_a7q7s")
+
+[node name="PlanetLine" type="Line2D" parent="Bounds/Federation" unique_id=1112184266 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(-5462, -4670, -3414, 4084)
+width = 250.0
+default_color = Color(0.22232133, 0.49929732, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 1")
+connection_2 = NodePath("../Federation Planet 2")
+disable_colour = Color(0.28118682, 0.28118688, 0.28118682, 1)
+
+[node name="PlanetLine2" type="Line2D" parent="Bounds/Federation" unique_id=609985469 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(-3414, 4082, 5342, 4479)
+width = 250.0
+default_color = Color(0.22352941, 0.49803922, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 2")
+connection_2 = NodePath("../Federation Planet 3")
+disable_colour = Color(0.28235295, 0.28235295, 0.28235295, 1)
+
+[node name="PlanetLine3" type="Line2D" parent="Bounds/Federation" unique_id=2046630865 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(5342, 4479, 4739, -5404)
+width = 250.0
+default_color = Color(0.22352941, 0.49803922, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 3")
+connection_2 = NodePath("../Boss Area/Goal")
+disable_colour = Color(0.28235295, 0.28235295, 0.28235295, 1)
+
+[node name="PlanetLine4" type="Line2D" parent="Bounds/Federation" unique_id=1860085305 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(-5462, -4670, 4723, -5412)
+width = 250.0
+default_color = Color(0.22352941, 0.49803922, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 1")
+connection_2 = NodePath("../Boss Area/Goal")
+disable_colour = Color(0.28235295, 0.28235295, 0.28235295, 1)
+
+[node name="PlanetLine5" type="Line2D" parent="Bounds/Federation" unique_id=1197535816 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(-3424, 4095, 4743, -5415)
+width = 250.0
+default_color = Color(0.22232133, 0.49929732, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 2")
+connection_2 = NodePath("../Boss Area/Goal")
+disable_colour = Color(0.28235295, 0.28235295, 0.28235295, 1)
+
+[node name="Planets" type="Node2D" parent="." unique_id=1292802495]
+
+[node name="ParticleEffects" type="Node2D" parent="." unique_id=692688498]
+
+[node name="SpaceChecker" type="ShapeCast2D" parent="." unique_id=1182392433]
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CircleShape2D_fchhc")
+target_position = Vector2(0, 0)
+collision_mask = 52
+collide_with_areas = true
+
+[node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
+
+[node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
+zoom = Vector2(0.33, 0.33)
+target_object = NodePath("../Ship")
+tracking_speed = 10.0
+
+[node name="Background" type="CanvasLayer" parent="PlayerCamera" unique_id=341782228]
+layer = -1000
+scale = Vector2(2.03, 2.03)
+transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
+
+[node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
+scale = Vector2(1.0025532, 1)
+enabled = false
+zoom = Vector2(0.01, 0.01)
+
+[node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]
+z_index = -1
+z_as_relative = false
+script = ExtResource("7_vyd5l")
+ship = NodePath("../Ship")
+
+[node name="PlanetScannerPolygon" type="Polygon2D" parent="PlanetScannerEffect" unique_id=234841052]
+color = Color(0.22352941, 0.59607846, 0.64705884, 0.28235295)
+antialiased = true
+polygon = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
+uv = PackedVector2Array(-31.5, -26, -89.5, -67, -22.5, -73)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1313728925]
+
+[node name="UI Control" type="Control" parent="UI" unique_id=881464479]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="LandingPopup" parent="UI/UI Control" unique_id=1706348881 instance=ExtResource("5_fevf7")]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlanetResourceIndicator" parent="UI/UI Control" unique_id=1535008980 node_paths=PackedStringArray("ship") instance=ExtResource("6_568mj")]
+visible = false
+layout_mode = 1
+pivot_offset_ratio = Vector2(0.5, 0.5)
+ship = NodePath("../../../Ship")
+distance_from_ship = 150.0
+
+[node name="HUD" type="Control" parent="UI" unique_id=502643802]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD" unique_id=1147826222]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -1020.0
+offset_right = 1860.0
+grow_vertical = 0
+
+[node name="Resources" type="MarginContainer" parent="UI/HUD/HBoxContainer" unique_id=643864169 node_paths=PackedStringArray("ship")]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("8_b4dln")
+ship = NodePath("../../../../Ship")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/HBoxContainer/Resources" unique_id=489756850]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Container" type="Container" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=1042327384]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.11
+
+[node name="Carbon" type="ProgressBar" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=623518923]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon" unique_id=428781709]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer" unique_id=1046059468]
+visible = false
+position = Vector2(29, -58)
+scale = Vector2(1.485, 1.485)
+sprite_frames = ExtResource("10_hdvgx")
+autoplay = "default"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer" unique_id=1795258507]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer/HBoxContainer" unique_id=860795994]
+texture_filter = 3
+scale = Vector2(1.485, 1.485)
+sprite_frames = SubResource("SpriteFrames_4toe0")
+animation = &"Carbon"
+autoplay = "Carbon"
+centered = false
+offset = Vector2(-11.42, 0)
+
+[node name="carbontext" type="RichTextLabel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer/HBoxContainer" unique_id=131036782]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TEST TEXT
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Biomass" type="ProgressBar" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=938483808]
+layout_mode = 2
+size_flags_vertical = 3
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Biomass" unique_id=1851677073]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Biomass/MarginContainer" unique_id=934366361]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Biomass/MarginContainer/HBoxContainer" unique_id=1426325015]
+texture_filter = 3
+scale = Vector2(1.485, 1.485)
+sprite_frames = SubResource("SpriteFrames_4toe0")
+animation = &"Biomass"
+autoplay = "Biomass"
+frame_progress = 0.7535381
+centered = false
+offset = Vector2(-13.645, 0)
+
+[node name="biomasstext" type="RichTextLabel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Biomass/MarginContainer/HBoxContainer" unique_id=365254966]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TEST TEXT
+"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Surgecounter" type="VBoxContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=712720530]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="5" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=2037591560]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="4" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=565323501]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="3" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=1439064361]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="2" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=1618054749]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="1" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=1806243066]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="Container2" type="Container" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=1517484460]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.37
+
+[node name="Container" type="Container" parent="UI/HUD" unique_id=1856545338]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 30.0
+offset_right = 1890.0
+offset_bottom = 1050.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 14.89
+
+[connection signal="body_entered" from="Bounds/Federation/Boss Area/Goal/Wincheck" to="Bounds/Federation/Boss Area/Goal/Wincheck" method="_on_body_entered"]
+[connection signal="area_entered" from="Bounds/Federation/ShieldSurgeDetector" to="Bounds/Federation/ShieldSurgeDetector" method="_on_area_entered"]
+[connection signal="player_died" from="Ship" to="PlanetScannerEffect" method="_on_ship_player_died"]
+[connection signal="player_died" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_died"]
+[connection signal="player_died" from="Ship" to="UI/UI Control/PlanetResourceIndicator" method="_on_ship_player_died"]
+[connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]

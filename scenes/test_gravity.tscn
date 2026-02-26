@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://blj1bmn78ef78"]
+
+[ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="1_gnylv"]
+[ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_x7ckh"]
+[ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_x7ckh"]
+
+[node name="TestGravity" type="Node" unique_id=643175261]
+
+[node name="Ship" parent="." unique_id=156394039 instance=ExtResource("1_gnylv")]
+position = Vector2(1542, 731)
+
+[node name="PlanetArea" parent="." unique_id=1921216346 instance=ExtResource("2_x7ckh")]
+position = Vector2(442, 576)
+scale = Vector2(20, 20)
+
+[node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_x7ckh")]
+zoom = Vector2(0.5, 0.5)
+target_object = NodePath("../Ship")
+tracking_speed = 10.0

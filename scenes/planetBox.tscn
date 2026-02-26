@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://bu2kr8cklk7p1"]
+
+[ext_resource type="Script" uid="uid://cxloe57uv8mdb" path="res://scripts/planet.gd" id="1_pl6jd"]
+[ext_resource type="SpriteFrames" uid="uid://ca2rincehdq0h" path="res://Sprites/PlanetSprites.tres" id="2_pl6jd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bymth"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dxv0p"]
+resource_local_to_scene = true
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ysjy8"]
+resource_local_to_scene = true
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_pl6jd"]
+resource_name = "Death"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GravityWell:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.15777126, 0.15777126)]
+}
+
+[sub_resource type="Animation" id="Animation_01bk8"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_v88k3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GravityWell:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.15777126, 0.15777126)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vujfk"]
+_data = {
+&"Death": SubResource("Animation_pl6jd"),
+&"Idle": SubResource("Animation_01bk8"),
+&"RESET": SubResource("Animation_v88k3")
+}
+
+[node name="PlanetArea" type="Area2D" unique_id=1921216346]
+collision_layer = 2
+script = ExtResource("1_pl6jd")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1057991627]
+visible = false
+position = Vector2(3.8146973e-06, -7.6293945e-06)
+mesh = SubResource("SphereMesh_bymth")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2034651298]
+texture_filter = 3
+scale = Vector2(0.15777126, 0.15777126)
+sprite_frames = ExtResource("2_pl6jd")
+animation = &"ECUMENOPOLIS"
+
+[node name="GravityWell" type="CollisionShape2D" parent="." unique_id=1648343781]
+scale = Vector2(0.6, 0.6)
+shape = SubResource("CircleShape2D_dxv0p")
+
+[node name="PlanetBody" type="RigidBody2D" parent="." unique_id=1215712948]
+collision_layer = 4
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="PlanetHitbox" type="CollisionShape2D" parent="PlanetBody" unique_id=1480384573]
+shape = SubResource("CircleShape2D_ysjy8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="PlanetBody" unique_id=551592698]
+rect = Rect2(-4, -4, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1058655459]
+libraries/ = SubResource("AnimationLibrary_vujfk")
+autoplay = &"RESET"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="screen_entered" from="PlanetBody/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="PlanetBody/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b6iv033nau3ee"]
+
+[ext_resource type="Script" uid="uid://bqjghuaq4q8bf" path="res://scripts/ship_movement.gd" id="1_2gnfn"]
+[ext_resource type="Script" uid="uid://dgld046s75y1y" path="res://scripts/ship.gd" id="1_4tobq"]
+[ext_resource type="SpriteFrames" uid="uid://cg44o2ycy6dgb" path="res://Sprites/FeasterSprites.tres" id="2_7j21i"]
+[ext_resource type="Script" uid="uid://c82ufhvpm3hpe" path="res://scripts/eating_manager.gd" id="3_gudjc"]
+[ext_resource type="Script" uid="uid://bejf6qcply4ej" path="res://scripts/landing_movement.gd" id="3_tfsc7"]
+[ext_resource type="Script" uid="uid://cgv210wi2dwht" path="res://scripts/inventory.gd" id="6_7j21i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cq66"]
+size = Vector2(72, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gudjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7j21i"]
+size = Vector2(88, 64)
+
+[node name="Ship" type="RigidBody2D" unique_id=156394039]
+z_index = 5
+collision_mask = 134
+gravity_scale = 0.0
+script = ExtResource("1_4tobq")
+
+[node name="Ship Sprite" type="AnimatedSprite2D" parent="." unique_id=533451495]
+texture_filter = 3
+position = Vector2(1.0000001, 14.000001)
+scale = Vector2(4.92, 4.92)
+sprite_frames = ExtResource("2_7j21i")
+animation = &"Idle"
+autoplay = "Idle"
+offset = Vector2(-0.18310547, 2)
+
+[node name="MainCollider" type="CollisionShape2D" parent="." unique_id=395625906]
+shape = SubResource("RectangleShape2D_4cq66")
+
+[node name="EatingZone" type="Area2D" parent="." unique_id=164195070]
+position = Vector2(0, 63)
+collision_layer = 0
+collision_mask = 4
+
+[node name="EatingZoneCollider" type="CollisionShape2D" parent="EatingZone" unique_id=42949228]
+shape = SubResource("RectangleShape2D_gudjc")
+
+[node name="EatingManager" type="Node2D" parent="." unique_id=1190578618]
+script = ExtResource("3_gudjc")
+
+[node name="LandingManager" type="Node2D" parent="." unique_id=1201178297]
+script = ExtResource("3_tfsc7")
+thrust = 1200.0
+landing_thruster_strength = 1300.0
+
+[node name="MovementManager" type="Node2D" parent="." unique_id=1648091153]
+script = ExtResource("1_2gnfn")
+turning_torque = 4000.0
+linear_damper_strength = 3.0
+surge_strength = 7000.0
+
+[node name="Inventory" type="Node2D" parent="." unique_id=244974306]
+script = ExtResource("6_7j21i")
+mineral_stores = 200
+
+[node name="CarbonTicker" type="Timer" parent="Inventory" unique_id=496759966]
+autostart = true
+
+[node name="SurgeArea" type="Area2D" parent="." unique_id=1963121455]
+collision_layer = 64
+collision_mask = 8
+
+[node name="SurgeCollider" type="CollisionShape2D" parent="SurgeArea" unique_id=2105922353]
+position = Vector2(0, -42)
+shape = SubResource("RectangleShape2D_7j21i")
+disabled = true
+
+[connection signal="body_entered" from="EatingZone" to="LandingManager" method="_on_eating_zone_body_entered"]
+[connection signal="timeout" from="Inventory/CarbonTicker" to="Inventory" method="_on_carbon_ticker_timeout"]
+[connection signal="area_entered" from="SurgeArea" to="MovementManager" method="_on_surge_area_area_entered"]
