@@ -403,13 +403,14 @@ position = Vector2(42, -9)
 sprite_frames = ExtResource("3_xwavj")
 animation = &"Healthy"
 
-[node name="BridgeTurret" type="Area2D" parent="SpritePivot/Bridge" unique_id=106237347 node_paths=PackedStringArray("child_collider")]
+[node name="BridgeTurret" type="Area2D" parent="SpritePivot/Bridge" unique_id=106237347 node_paths=PackedStringArray("child_collider", "turret_ai")]
 position = Vector2(-12, 1)
 collision_layer = 8
 collision_mask = 64
 input_pickable = false
 script = ExtResource("2_xwavj")
 child_collider = NodePath("BridgeTurretCollision")
+turret_ai = NodePath("LaserTurret")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=725742814]
 z_index = 1
@@ -422,6 +423,9 @@ autoplay = "Healthy"
 [node name="BridgeTurretCollision" type="CollisionShape2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=2103308756]
 position = Vector2(1.75, 0)
 shape = SubResource("CircleShape2D_c4w8v")
+
+[node name="LaserTurret" parent="SpritePivot/Bridge/BridgeTurret" unique_id=2014706995 node_paths=PackedStringArray("ship_parent") instance=ExtResource("5_nenq2")]
+ship_parent = NodePath("../../../..")
 
 [node name="EnemyAnims" type="AnimationPlayer" parent="SpritePivot" unique_id=760754738]
 libraries/ = SubResource("AnimationLibrary_txv1s")

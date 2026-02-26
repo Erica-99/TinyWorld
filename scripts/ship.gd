@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal player_mode_changed(new_mode: ENUMS.PlayerMovementMode, previous_mode: ENUMS.PlayerMovementMode)
+signal player_died
 
 @export var max_range_for_landing: int = 1000
 @export var max_velocity_for_landing: float = 1000
@@ -49,7 +50,6 @@ func remove_near_planet(planet: Area2D) -> void:
 		enter_default_mode()
 		landing_target = null
 		if not planet.is_queued_for_deletion():
-			print("queued")
 			planet.call("return_gravity_for_object", self)
 
 
@@ -142,6 +142,7 @@ func die() -> void:
 	$LandingManager.process_mode = Node.PROCESS_MODE_DISABLED
 	$EatingManager.process_mode = Node.PROCESS_MODE_DISABLED
 	
+	player_died.emit()
 	
 	pass
 

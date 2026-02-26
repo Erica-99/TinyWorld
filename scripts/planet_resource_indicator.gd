@@ -65,3 +65,8 @@ func update_values(carbon: int, biomass: int, mineral: int, nanotech: int) -> vo
 	biomass_items[1].text = str(biomass)
 	mineral_items[1].text = str(mineral)
 	nanotech_items[1].text = str(nanotech)
+
+
+func _on_ship_player_died() -> void:
+	visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED
