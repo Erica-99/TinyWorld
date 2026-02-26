@@ -349,7 +349,7 @@ alpha_curve = SubResource("CurveTexture_dwvs7")
 
 [node name="enemy" type="Area2D" unique_id=2136185547 node_paths=PackedStringArray("turrets")]
 texture_filter = 3
-scale = Vector2(4, 4)
+scale = Vector2(7, 7)
 script = ExtResource("1_xwavj")
 turrets = [NodePath("SpritePivot/Thruster/ThrusterTurret"), NodePath("SpritePivot/Bridge/BridgeTurret")]
 
