@@ -5,10 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
-[ext_resource type="PackedScene" uid="uid://cdybgt5unebrf" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
-[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
+[ext_resource type="PackedScene" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
+[ext_resource type="Script" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
+[ext_resource type="Texture2D" uid="uid://bl1j7y4dsrhjl" path="res://Sprites/ResourceSprites.png" id="10_aoqvg"]
 [ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://scenes/enemy.tscn" id="11_aoqvg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoqvg"]
@@ -57,8 +58,88 @@ turbulence_enabled = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
 radius = 1000.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fls4u"]
-bg_color = Color(0, 0, 0, 0.4862745)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdvgx"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7q7s"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5tmf"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pev5q"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv6ig"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoqvg"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4toe0"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmkl1"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62lkb"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51lqi"]
+atlas = ExtResource("10_aoqvg")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4toe0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdvgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7q7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5tmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pev5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv6ig")
+}],
+"loop": true,
+"name": &"Biomass",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoqvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4toe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmkl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62lkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51lqi")
+}],
+"loop": true,
+"name": &"Carbon",
+"speed": 5.0
+}]
 
 [node name="StarMap" type="Node2D" unique_id=1717163525]
 script = ExtResource("1_fp76q")
@@ -203,6 +284,7 @@ scale = Vector2(2.03, 2.03)
 transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
 
 [node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
+scale = Vector2(1.0025532, 1)
 enabled = false
 zoom = Vector2(0.01, 0.01)
 
@@ -258,97 +340,155 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/HUD" unique_id=506357438]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD" unique_id=1147826222]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 1890.0
+offset_bottom = 1050.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/MarginContainer" unique_id=1537632456]
+[node name="Resources" type="MarginContainer" parent="UI/HUD/HBoxContainer" unique_id=643864169 node_paths=PackedStringArray("ship")]
 layout_mode = 2
-
-[node name="Container" type="Container" parent="UI/HUD/MarginContainer/VBoxContainer" unique_id=1856545338]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 5.63
-
-[node name="Panel" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer" unique_id=1577176802]
-custom_minimum_size = Vector2(0, 180)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_fls4u")
-
-[node name="Resources" type="MarginContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel" unique_id=643864169 node_paths=PackedStringArray("ship")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("8_b4dln")
-ship = NodePath("../../../../../../Ship")
+ship = NodePath("../../../../Ship")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources" unique_id=523567658]
-layout_mode = 2
-theme_override_constants/separation = 60
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer" unique_id=489756850]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/HBoxContainer/Resources" unique_id=489756850]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Carbon" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=623518923]
+[node name="Container" type="Container" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=1042327384]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 4.11
 
-[node name="Biomass" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=938483808]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Minerals" type="ProgressBar" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/VBoxContainer" unique_id=1311456553]
+[node name="Carbon" type="ProgressBar" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=623518923]
 layout_mode = 2
 size_flags_vertical = 3
 show_percentage = false
 
-[node name="Surgecounter" type="VBoxContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer" unique_id=712720530]
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon" unique_id=428781709]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer" unique_id=1795258507]
 layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer/HBoxContainer" unique_id=860795994]
+texture_filter = 3
+scale = Vector2(1.485, 1.485)
+sprite_frames = SubResource("SpriteFrames_4toe0")
+animation = &"Carbon"
+autoplay = "Carbon"
+centered = false
+offset = Vector2(-11.42, 0)
+
+[node name="carbontext" type="RichTextLabel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer/HBoxContainer" unique_id=131036782]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TEST TEXT
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Biomass" type="ProgressBar" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=938483808]
+layout_mode = 2
+size_flags_vertical = 3
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Biomass" unique_id=1851677073]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Biomass/MarginContainer" unique_id=934366361]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Biomass/MarginContainer/HBoxContainer" unique_id=1426325015]
+texture_filter = 3
+scale = Vector2(1.485, 1.485)
+sprite_frames = SubResource("SpriteFrames_4toe0")
+animation = &"Biomass"
+autoplay = "Biomass"
+frame_progress = 0.7535381
+centered = false
+offset = Vector2(-13.645, 0)
+
+[node name="biomasstext" type="RichTextLabel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Biomass/MarginContainer/HBoxContainer" unique_id=365254966]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TEST TEXT
+"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Surgecounter" type="VBoxContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=712720530]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="5" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=2037591560]
+[node name="5" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=2037591560]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_b4dln")
+
+[node name="4" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=565323501]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
 
-[node name="4" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=565323501]
+[node name="3" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=1439064361]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
 
-[node name="3" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1439064361]
+[node name="2" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=1618054749]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
 
-[node name="2" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1618054749]
+[node name="1" type="Panel" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Surgecounter" unique_id=1806243066]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("9_b4dln")
 
-[node name="1" type="Panel" parent="UI/HUD/MarginContainer/VBoxContainer/Panel/Resources/HBoxContainer/Surgecounter" unique_id=1806243066]
-custom_minimum_size = Vector2(300, 20)
+[node name="Container2" type="Container" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=1517484460]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("9_b4dln")
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.37
+
+[node name="Container" type="Container" parent="UI/HUD" unique_id=1856545338]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 30.0
+offset_right = 1890.0
+offset_bottom = 1050.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 14.89
 
 [connection signal="player_mode_changed" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_mode_changed"]
