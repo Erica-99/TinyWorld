@@ -1,26 +1,24 @@
-[gd_scene format=3 uid="uid://cdybgt5unebrf"]
+[gd_scene format=3 uid="uid://k6xkv36cbe6s"]
 
-[ext_resource type="Script" uid="uid://cw4spf7qiqxk4" path="res://scripts/planet_resource_indicator.gd" id="1_kso7r"]
+[ext_resource type="Script" path="res://scripts/planet_resource_indicator.gd" id="1_kso7r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rryrb"]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
-bg_color = Color(0.3254902, 0.30588236, 0.34117648, 1)
+bg_color = Color(0.022982743, 0.059333466, 0.057432666, 0.16862746)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.27340987, 0.25492373, 0.28728184, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+border_color = Color(0.27450982, 0.25490198, 0.28627452, 0.1254902)
 
 [node name="PlanetResourceIndicator" type="Control" unique_id=1881818899]
+texture_filter = 3
 layout_mode = 3
 anchors_preset = 0
+scale = Vector2(1, 0.98982203)
 script = ExtResource("1_kso7r")
 
 [node name="PlanetResourcePanel" type="PanelContainer" parent="." unique_id=1535008980]
@@ -48,7 +46,7 @@ columns = 2
 layout_mode = 2
 size_flags_horizontal = 2
 bbcode_enabled = true
-text = "Carbon [img=24]res://icon.svg[/img]:"
+text = "Carbon [img=24]res://Sprites/Carbon.png[/img]:"
 fit_content = true
 autowrap_mode = 0
 
@@ -60,7 +58,7 @@ text = "1000"
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "Biomass [img=24]res://icon.svg[/img]:"
+text = "Biomass [img=24]res://Sprites/Biomass.png[/img]:"
 fit_content = true
 autowrap_mode = 0
 
@@ -73,7 +71,7 @@ text = "1000"
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "Minerals [img=24]res://icon.svg[/img]:"
+text = "Minerals [img=24]res://Sprites/Minerals.png[/img]:"
 fit_content = true
 autowrap_mode = 0
 
@@ -86,7 +84,7 @@ text = "1000"
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "Nanotech [img=24]res://icon.svg[/img]:"
+text = "Nanotech [img=24]res://Sprites/Nanotech.png[/img]:"
 fit_content = true
 autowrap_mode = 0
 

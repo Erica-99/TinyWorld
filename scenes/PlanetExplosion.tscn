@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bl50hkyld1v1h"]
+[gd_scene format=3 uid="uid://d37xh42knsb2q"]
 
-[ext_resource type="Script" uid="uid://bl80cuws24mle" path="res://scenes/planet_explosion.gd" id="1_ijcwa"]
+[ext_resource type="Script" path="res://scenes/planet_explosion.gd" id="1_ijcwa"]
 
 [sub_resource type="Curve" id="Curve_ijcwa"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7770271, 0.8089888), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
