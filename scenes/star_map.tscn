@@ -282,6 +282,7 @@ size_flags_stretch_ratio = 5.63
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fls4u")
 
 [node name="Resources" type="MarginContainer" parent="UI/HUD/MarginContainer/VBoxContainer/Panel" unique_id=643864169 node_paths=PackedStringArray("ship")]

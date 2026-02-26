@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dgeg3n8kbsb73" path="res://scripts/turret.gd" id="2_xwavj"]
 [ext_resource type="SpriteFrames" uid="uid://bo1oeril35fvh" path="res://Sprites/CruiserBridgeSprites.tres" id="3_xwavj"]
 [ext_resource type="SpriteFrames" uid="uid://d0j12pk4pdtak" path="res://Sprites/FrontTurretSprites.tres" id="4_nenq2"]
-[ext_resource type="PackedScene" uid="uid://iiu4licmfgar" path="res://scenes/laser_turret.tscn" id="5_nenq2"]
+[ext_resource type="PackedScene" uid="uid://dwdl67ovuocti" path="res://scenes/laser_turret.tscn" id="5_nenq2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwvs7"]
 particle_flag_disable_z = true
@@ -370,13 +370,14 @@ position = Vector2(60, -12)
 sprite_frames = ExtResource("1_5uy6h")
 animation = &"Healthy"
 
-[node name="ThrusterTurret" type="Area2D" parent="SpritePivot/Thruster" unique_id=1173980368 node_paths=PackedStringArray("child_collider")]
+[node name="ThrusterTurret" type="Area2D" parent="SpritePivot/Thruster" unique_id=1173980368 node_paths=PackedStringArray("child_collider", "turret_ai")]
 position = Vector2(-50, 0)
 collision_layer = 8
 collision_mask = 64
 input_pickable = false
 script = ExtResource("2_xwavj")
 child_collider = NodePath("ThrusterTurretCollision")
+turret_ai = NodePath("LaserTurret")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=872360727]
 z_index = 1
@@ -390,7 +391,8 @@ position = Vector2(-0.25, -1.5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_5uy6h")
 
-[node name="LaserTurret" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=2132486732 instance=ExtResource("5_nenq2")]
+[node name="LaserTurret" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=2132486732 node_paths=PackedStringArray("ship_parent") instance=ExtResource("5_nenq2")]
+ship_parent = NodePath("../../../..")
 
 [node name="Bridge" type="Node2D" parent="SpritePivot" unique_id=1206508805]
 position = Vector2(8, -1)
