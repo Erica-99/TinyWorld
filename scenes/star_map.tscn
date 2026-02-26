@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
 [ext_resource type="Texture2D" uid="uid://bl1j7y4dsrhjl" path="res://Sprites/ResourceSprites.png" id="10_aoqvg"]
+[ext_resource type="SpriteFrames" uid="uid://dk3av88rb4k7g" path="res://Sprites/NanotechSprite.tres" id="10_hdvgx"]
 [ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://scenes/enemy.tscn" id="11_aoqvg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoqvg"]
@@ -22,7 +23,7 @@
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0067567676, 1), 0.0, 0.0, 0, 0, Vector2(0.9797298, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_hdvgx"]
+[sub_resource type="CurveTexture" id="CurveTexture_aoqvg"]
 curve = SubResource("Curve_aoqvg")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aoqvg"]
@@ -33,14 +34,14 @@ gravity = Vector3(1, 1, 1)
 scale_min = 6.0
 scale_max = 20.0
 color = Color(1, 1, 1, 0.2627451)
-alpha_curve = SubResource("CurveTexture_hdvgx")
+alpha_curve = SubResource("CurveTexture_aoqvg")
 turbulence_enabled = true
 
 [sub_resource type="Curve" id="Curve_hdvgx"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2364865, 0.50561804), 0.0, 0.0, 0, 0, Vector2(0.722973, 0.50561804), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_a7q7s"]
+[sub_resource type="CurveTexture" id="CurveTexture_hdvgx"]
 curve = SubResource("Curve_hdvgx")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5tmf"]
@@ -50,7 +51,7 @@ emission_box_extents = Vector3(98.14, 94.48, 1)
 gravity = Vector3(1, 1, 1)
 scale_min = 10.0
 scale_max = 20.0
-alpha_curve = SubResource("CurveTexture_a7q7s")
+alpha_curve = SubResource("CurveTexture_hdvgx")
 turbulence_enabled = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]
@@ -740,6 +741,13 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer" unique_id=1046059468]
+visible = false
+position = Vector2(29, -58)
+scale = Vector2(1.485, 1.485)
+sprite_frames = ExtResource("10_hdvgx")
+autoplay = "default"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer" unique_id=1795258507]
 layout_mode = 2
