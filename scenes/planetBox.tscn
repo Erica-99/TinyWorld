@@ -1,62 +1,11 @@
 [gd_scene format=3 uid="uid://bu2kr8cklk7p1"]
 
 [ext_resource type="Script" uid="uid://cxloe57uv8mdb" path="res://scripts/planet.gd" id="1_pl6jd"]
-[ext_resource type="Texture2D" uid="uid://dq7e88o0j4gth" path="res://Sprites/Planet-Sprites.png" id="2_pl6jd"]
+[ext_resource type="SpriteFrames" uid="uid://c35a6b71xgi2v" path="res://Sprites/PlanetSprites.tres" id="2_pl6jd"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_bymth"]
 radius = 5.0
 height = 10.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_01bk8"]
-atlas = ExtResource("2_pl6jd")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v88k3"]
-atlas = ExtResource("2_pl6jd")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vujfk"]
-atlas = ExtResource("2_pl6jd")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ehv8q"]
-atlas = ExtResource("2_pl6jd")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6554r"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_01bk8")
-}],
-"loop": true,
-"name": &"BARREN",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v88k3")
-}],
-"loop": true,
-"name": &"ECUMENOPOLIS",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vujfk")
-}],
-"loop": true,
-"name": &"HEALTHY",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ehv8q")
-}],
-"loop": true,
-"name": &"METEOR",
-"speed": 5.0
-}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxv0p"]
 resource_local_to_scene = true
@@ -65,6 +14,119 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ysjy8"]
 resource_local_to_scene = true
 radius = 5.0
+
+[sub_resource type="Animation" id="Animation_pl6jd"]
+resource_name = "Death"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GravityWell:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.15777126, 0.15777126)]
+}
+
+[sub_resource type="Animation" id="Animation_01bk8"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_v88k3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GravityWell:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.15777126, 0.15777126)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vujfk"]
+_data = {
+&"Death": SubResource("Animation_pl6jd"),
+&"Idle": SubResource("Animation_01bk8"),
+&"RESET": SubResource("Animation_v88k3")
+}
 
 [node name="PlanetArea" type="Area2D" unique_id=1921216346]
 collision_layer = 2
@@ -77,7 +139,7 @@ mesh = SubResource("SphereMesh_bymth")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2034651298]
 texture_filter = 3
 scale = Vector2(0.15777126, 0.15777126)
-sprite_frames = SubResource("SpriteFrames_6554r")
+sprite_frames = ExtResource("2_pl6jd")
 animation = &"ECUMENOPOLIS"
 
 [node name="GravityWell" type="CollisionShape2D" parent="." unique_id=1648343781]
@@ -95,6 +157,10 @@ shape = SubResource("CircleShape2D_ysjy8")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="PlanetBody" unique_id=551592698]
 rect = Rect2(-4, -4, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1058655459]
+libraries/ = SubResource("AnimationLibrary_vujfk")
+autoplay = &"Idle"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

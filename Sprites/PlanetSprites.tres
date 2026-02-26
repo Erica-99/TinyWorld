@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://ca2rincehdq0h"]
+
+[ext_resource type="Texture2D" uid="uid://dq7e88o0j4gth" path="res://Sprites/Planet-Sprites.png" id="1_75cq0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01bk8"]
+atlas = ExtResource("1_75cq0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v88k3"]
+atlas = ExtResource("1_75cq0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vujfk"]
+atlas = ExtResource("1_75cq0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehv8q"]
+atlas = ExtResource("1_75cq0")
+region = Rect2(0, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01bk8")
+}],
+"loop": true,
+"name": &"BARREN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v88k3")
+}],
+"loop": true,
+"name": &"ECUMENOPOLIS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vujfk")
+}],
+"loop": true,
+"name": &"HEALTHY",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehv8q")
+}],
+"loop": true,
+"name": &"METEOR",
+"speed": 5.0
+}]

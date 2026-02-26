@@ -264,6 +264,8 @@ nanotech = 1
 
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
+[node name="ParticleEffects" type="Node2D" parent="." unique_id=692688498]
+
 [node name="SpaceChecker" type="ShapeCast2D" parent="." unique_id=1182392433]
 scale = Vector2(0.1, 0.1)
 shape = SubResource("CircleShape2D_fchhc")
@@ -321,6 +323,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_top = 0.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 
