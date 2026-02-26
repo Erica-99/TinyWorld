@@ -374,6 +374,7 @@ size_flags_stretch_ratio = 4.11
 [node name="Carbon" type="ProgressBar" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer" unique_id=623518923]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 show_percentage = false
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon" unique_id=428781709]

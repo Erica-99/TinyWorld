@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var child_collider: CollisionShape2D
+@export var turret_ai: Node2D
 
 var damaged = false
 
@@ -15,9 +16,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
+func enable_turret_ai() -> void:
+	if turret_ai != null:
+		turret_ai.enable()
+
 # The only thing that can be detected by the area is the player's surge
 func _on_area_entered(area: Area2D) -> void:
 	print("hit")
 	damaged = true
 	sprite.play("Damaged")
 	child_collider.set_deferred("disabled", true)
+	
+	if turret_ai != null:
+		turret_ai.disable()
