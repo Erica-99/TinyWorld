@@ -17,7 +17,7 @@ size = Vector2(88, 64)
 
 [node name="Ship" type="RigidBody2D" unique_id=156394039]
 z_index = 5
-collision_mask = 6
+collision_mask = 134
 gravity_scale = 0.0
 script = ExtResource("1_4tobq")
 
@@ -57,8 +57,7 @@ surge_strength = 7000.0
 
 [node name="Inventory" type="Node2D" parent="." unique_id=244974306]
 script = ExtResource("6_7j21i")
-mineral_stores = 500
-nanotech_stores = 1
+mineral_stores = 200
 
 [node name="CarbonTicker" type="Timer" parent="Inventory" unique_id=496759966]
 autostart = true
