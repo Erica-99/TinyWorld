@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 		if time_passed_since_eating >= time_between_eats:
 			var stacked_time: float = time_passed_since_eating/time_between_eats
 			# Eat in order of carbon -> biomass -> minerals -> nanotech
-			print(actor.landing_target.remaining_resource_quantity)
 			if actor.landing_target.carbon > 0:
 				actor.landing_target.carbon -= int(stacked_time)
 				if actor.landing_target.carbon < 0:

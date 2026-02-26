@@ -44,8 +44,11 @@ func remove_near_planet(planet: Area2D) -> void:
 	if planet in nearby_planets:
 		nearby_planets.erase(planet)
 	if landing_target == planet:
-		landing_target.call("return_gravity_for_object", self)
 		enter_default_mode()
+		landing_target = null
+		if not planet.is_queued_for_deletion():
+			print("queued")
+			planet.call("return_gravity_for_object", self)
 
 
 func get_nearest_planet() -> Area2D:

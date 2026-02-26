@@ -5,6 +5,8 @@
 [node name="LandingPopup" type="Control" unique_id=1706348881]
 layout_mode = 3
 anchors_preset = 0
+offset_top = -271.0
+offset_bottom = -271.0
 script = ExtResource("1_b2kdb")
 
 [node name="Label" type="Label" parent="." unique_id=507413816]
