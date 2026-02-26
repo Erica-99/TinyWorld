@@ -44,3 +44,8 @@ func get_new_coordinates() -> PackedVector2Array:
 	
 	var vec2array: Array[Vector2] = [point_1_worldspace, point_2_worldspace, point_3_worldspace]
 	return PackedVector2Array(vec2array)
+
+
+func _on_ship_player_died() -> void:
+	visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED

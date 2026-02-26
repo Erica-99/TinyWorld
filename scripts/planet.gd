@@ -15,8 +15,8 @@ extends Area2D
 @onready var explode_VFX = preload("res://scenes/PlanetExplosion.tscn")
 
 
-var total_resource_quantity: int
-var remaining_resource_quantity: int:
+@export var total_resource_quantity: int
+@export var remaining_resource_quantity: int:
 	set(value):
 		remaining_resource_quantity = clampi(value, 0, total_resource_quantity)
 		if remaining_resource_quantity <= 0:
@@ -114,6 +114,7 @@ func destroy_planet() -> void:
 	var VFX = explode_VFX.instantiate()
 	VFX.position = self.position
 	add_sibling(VFX)
+	VFX.emit(self)
 	queue_free()
 	_exit_tree()
 
