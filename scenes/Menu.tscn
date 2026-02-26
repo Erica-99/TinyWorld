@@ -359,11 +359,6 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_lumdm")
 script = ExtResource("1_xdvgc")
 
-[node name="Lilguys" type="PanelContainer" parent="." unique_id=32448438]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="enemy" type="Area2D" parent="." unique_id=2136185547]
 texture_filter = 3
 position = Vector2(1546, 492)
