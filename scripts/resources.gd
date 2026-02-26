@@ -18,9 +18,9 @@ var SurgeUsedMat = Color(1.0, 0.0, 0.0, 1.0)
 func _process(delta: float) -> void:
 	carbonHUD.max_value = inventory.max_carbon
 	carbonHUD.value = inventory.carbon_stores
-	BiomassHUD.value = inventory.biomass_stores
+
 	
-	Biomasslabel.text = 'Biomass ' +str(inventory.biomass_stores) + ' / ' + str(inventory.max_biomass)
+	Biomasslabel.text = 'Biomass: ' +str(inventory.biomass_stores)
 	Carbonlabel.text = 'Carbon ' +str(inventory.carbon_stores) + ' / ' + str(inventory.max_carbon)
 	if inventory.nanotech_stores != 0:
 		nanotechIcon.visible = true
