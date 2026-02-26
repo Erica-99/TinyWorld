@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
 [ext_resource type="PackedScene" uid="uid://k6xkv36cbe6s" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
-[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
+[ext_resource type="Script" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
 [ext_resource type="Texture2D" uid="uid://bl1j7y4dsrhjl" path="res://Sprites/ResourceSprites.png" id="10_aoqvg"]
@@ -18,7 +18,7 @@
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0067567676, 1), 0.0, 0.0, 0, 0, Vector2(0.9797298, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_hdvgx"]
+[sub_resource type="CurveTexture" id="CurveTexture_aoqvg"]
 curve = SubResource("Curve_aoqvg")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aoqvg"]
@@ -29,14 +29,14 @@ gravity = Vector3(1, 1, 1)
 scale_min = 6.0
 scale_max = 20.0
 color = Color(1, 1, 1, 0.2627451)
-alpha_curve = SubResource("CurveTexture_hdvgx")
+alpha_curve = SubResource("CurveTexture_aoqvg")
 turbulence_enabled = true
 
 [sub_resource type="Curve" id="Curve_hdvgx"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2364865, 0.50561804), 0.0, 0.0, 0, 0, Vector2(0.722973, 0.50561804), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_a7q7s"]
+[sub_resource type="CurveTexture" id="CurveTexture_hdvgx"]
 curve = SubResource("Curve_hdvgx")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5tmf"]
@@ -46,7 +46,7 @@ emission_box_extents = Vector3(98.14, 94.48, 1)
 gravity = Vector3(1, 1, 1)
 scale_min = 10.0
 scale_max = 20.0
-alpha_curve = SubResource("CurveTexture_a7q7s")
+alpha_curve = SubResource("CurveTexture_hdvgx")
 turbulence_enabled = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewo0i"]

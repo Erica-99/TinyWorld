@@ -141,6 +141,7 @@ func die() -> void:
 	$MovementManager.process_mode = Node.PROCESS_MODE_DISABLED
 	$LandingManager.process_mode = Node.PROCESS_MODE_DISABLED
 	$EatingManager.process_mode = Node.PROCESS_MODE_DISABLED
+	get_tree().change_scene_to_file("res://scenes/DeathScene.tscn")
 	
 	player_died.emit()
 	

@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://celxppvx7jt6u"]
+
+[ext_resource type="Script" uid="uid://cfarnmiew5kg5" path="res://scenes/menu.gd" id="1_ehe1v"]
+[ext_resource type="SpriteFrames" uid="uid://cg44o2ycy6dgb" path="res://Sprites/FeasterSprites.tres" id="2_on6ii"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lumdm"]
+bg_color = Color(0.6, 0.6, 0.6, 0.05490196)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lumdm"]
+
+[sub_resource type="Curve" id="Curve_xdvgc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0067567676, 1), 0.0, 0.0, 0, 0, Vector2(0.9797298, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_hdvgx"]
+curve = SubResource("Curve_xdvgc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_upctu"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(98.14, 94.48, 1)
+gravity = Vector3(1, 1, 1)
+scale_min = 6.0
+scale_max = 20.0
+color = Color(1, 1, 1, 0.2627451)
+alpha_curve = SubResource("CurveTexture_hdvgx")
+turbulence_enabled = true
+
+[sub_resource type="Curve" id="Curve_lumdm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2364865, 0.50561804), 0.0, 0.0, 0, 0, Vector2(0.722973, 0.50561804), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_a7q7s"]
+curve = SubResource("Curve_lumdm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xdvgc"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(98.14, 94.48, 1)
+gravity = Vector3(1, 1, 1)
+scale_min = 10.0
+scale_max = 20.0
+alpha_curve = SubResource("CurveTexture_a7q7s")
+turbulence_enabled = true
+
+[node name="Node2D" type="Panel" unique_id=112166608]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lumdm")
+script = ExtResource("1_ehe1v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1277658850]
+modulate = Color(0, 1, 0.8235294, 1)
+texture_filter = 3
+position = Vector2(933, 559)
+rotation = 0.6940938
+scale = Vector2(4.681785, 4.681785)
+sprite_frames = ExtResource("2_on6ii")
+animation = &"Idle"
+frame_progress = 0.5874853
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1592107564]
+z_index = -1000
+scale = Vector2(1.9331334, 1.0827317)
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(1.3, 1.3)
+repeat_size = Vector2(1000, 1000)
+autoscroll = Vector2(40, 40)
+repeat_times = 100
+
+[node name="Panel" type="Panel" parent="Parallax2D" unique_id=194213961]
+offset_right = 1000.0
+offset_bottom = 1000.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lumdm")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="Parallax2D/Panel" unique_id=931460862]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.030984493, 0.027432224, 0.039930467, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D/Panel" unique_id=1262039755]
+position = Vector2(0, -200)
+scale = Vector2(5.0011406, 4.9932404)
+skew = -0.27401668
+amount = 100
+lifetime = 100.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_upctu")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1934013170]
+z_index = -1000
+scale = Vector2(3.7370045, 1.172308)
+repeat_size = Vector2(1000, 1000)
+autoscroll = Vector2(20, 20)
+repeat_times = 100
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D2" unique_id=2006305262]
+modulate = Color(1, 1, 1, 0.41568628)
+position = Vector2(486.77448, 470.1072)
+scale = Vector2(5.0011406, 4.9932404)
+amount = 100
+lifetime = 30.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_xdvgc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1735200843]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 325.0
+offset_right = 1445.0
+offset_bottom = 976.0
+theme_override_font_sizes/normal_font_size = 68
+text = "You Died"
+fit_content = true
+
+[node name="Button2" type="Button" parent="." unique_id=914367311]
+process_mode = 3
+layout_mode = 0
+offset_left = 762.0
+offset_top = 661.0
+offset_right = 1121.0
+offset_bottom = 748.0
+theme_override_font_sizes/font_size = 58
+text = "ahhh shucks"
+
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
