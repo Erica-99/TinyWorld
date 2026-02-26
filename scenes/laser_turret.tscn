@@ -5,6 +5,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vsw08"]
 radius = 300.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5q4jy"]
+radius = 5.0
+
 [node name="LaserTurret" type="Node2D" unique_id=2132486732]
 script = ExtResource("1_vsw08")
 
@@ -14,4 +17,23 @@ collision_layer = 0
 [node name="AggroRangeCollider" type="CollisionShape2D" parent="AggroRange" unique_id=605917077]
 shape = SubResource("CircleShape2D_vsw08")
 
+[node name="AimingLaser" type="Line2D" parent="." unique_id=2143905749]
+points = PackedVector2Array(-558, 160, 0, 0)
+width = 1.0
+default_color = Color(0.84334946, 0.044859394, 0.21228606, 1)
+
+[node name="DamageLaser" type="Line2D" parent="." unique_id=1710327577]
+points = PackedVector2Array(0, 0, -134, 143)
+default_color = Color(0.84313726, 0.043137256, 0.21176471, 1)
+
+[node name="AimingRaycast" type="RayCast2D" parent="." unique_id=111282026]
+enabled = false
+collision_mask = 5
+
+[node name="DamageShapecast" type="ShapeCast2D" parent="." unique_id=1269724493]
+enabled = false
+shape = SubResource("CircleShape2D_5q4jy")
+target_position = Vector2(-22, 143)
+
 [connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]
+[connection signal="body_exited" from="AggroRange" to="." method="_on_aggro_range_body_exited"]

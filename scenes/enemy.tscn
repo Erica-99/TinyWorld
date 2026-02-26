@@ -379,9 +379,10 @@ script = ExtResource("2_xwavj")
 child_collider = NodePath("ThrusterTurretCollision")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=872360727]
+z_index = 1
 position = Vector2(60, -12)
 sprite_frames = ExtResource("2_c4w8v")
-animation = &"Damaged"
+animation = &"Healthy"
 autoplay = "Healthy"
 
 [node name="ThrusterTurretCollision" type="CollisionShape2D" parent="SpritePivot/Thruster/ThrusterTurret" unique_id=124567631]
@@ -409,10 +410,11 @@ script = ExtResource("2_xwavj")
 child_collider = NodePath("BridgeTurretCollision")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=725742814]
+z_index = 1
 texture_filter = 3
 position = Vector2(6, -11)
 sprite_frames = ExtResource("4_nenq2")
-animation = &"Damaged"
+animation = &"Healthy"
 autoplay = "Healthy"
 
 [node name="BridgeTurretCollision" type="CollisionShape2D" parent="SpritePivot/Bridge/BridgeTurret" unique_id=2103308756]
