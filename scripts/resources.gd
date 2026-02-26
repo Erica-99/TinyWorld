@@ -7,6 +7,8 @@ extends MarginContainer
 @onready var SurgeHUD = $VBoxContainer/Surgecounter
 @onready var inventory = ship.inventory
 
+
+@onready var nanotechIcon = $VBoxContainer/Carbon/MarginContainer/AnimatedSprite2D2
 @onready var Biomasslabel = $VBoxContainer/Biomass/MarginContainer/HBoxContainer/biomasstext
 @onready var Carbonlabel = $VBoxContainer/Carbon/MarginContainer/HBoxContainer/carbontext
 
@@ -20,7 +22,8 @@ func _process(delta: float) -> void:
 	
 	Biomasslabel.text = 'Biomass ' +str(inventory.biomass_stores) + ' / ' + str(inventory.max_biomass)
 	Carbonlabel.text = 'Carbon ' +str(inventory.carbon_stores) + ' / ' + str(inventory.max_carbon)
-	
+	if inventory.nanotech_stores != 0:
+		nanotechIcon.visible = true
 	for child in SurgeHUD.get_children():
 		var nodename = str(child.get_name())
 		var nodenumber = nodename.to_int()

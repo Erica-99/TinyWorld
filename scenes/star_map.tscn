@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
 [ext_resource type="Texture2D" uid="uid://bl1j7y4dsrhjl" path="res://Sprites/ResourceSprites.png" id="10_aoqvg"]
+[ext_resource type="SpriteFrames" uid="uid://dk3av88rb4k7g" path="res://Sprites/NanotechSprite.tres" id="10_hdvgx"]
 [ext_resource type="PackedScene" uid="uid://cq2g8ebw34rqx" path="res://scenes/enemy.tscn" id="11_aoqvg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aoqvg"]
@@ -415,6 +416,13 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer" unique_id=1046059468]
+visible = false
+position = Vector2(29, -58)
+scale = Vector2(1.485, 1.485)
+sprite_frames = ExtResource("10_hdvgx")
+autoplay = "default"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/HBoxContainer/Resources/VBoxContainer/Carbon/MarginContainer" unique_id=1795258507]
 layout_mode = 2
