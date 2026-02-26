@@ -4,7 +4,6 @@ extends MarginContainer
 
 @onready var carbonHUD = $VBoxContainer/Carbon
 @onready var BiomassHUD = $VBoxContainer/Biomass
-@onready var MineralHUD = $VBoxContainer/Minerals
 @onready var SurgeHUD = $VBoxContainer/Surgecounter
 @onready var inventory = ship.inventory
 

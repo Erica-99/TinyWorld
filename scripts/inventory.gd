@@ -5,6 +5,7 @@ extends Node2D
 @export var max_carbon: int = 500
 @export var max_surges: int = 5
 @export var minerals_per_surge: int = 100
+@export var carbon_tick_rate: int = 2
 
 @export var carbon_stores: int = 100:
 	set(value):
@@ -23,3 +24,11 @@ var ready_surges: int:
 func use_surge() -> void:
 	mineral_stores -= minerals_per_surge
 	mineral_stores = clampi(mineral_stores, 0, max_surges * minerals_per_surge)
+
+
+func take_damage(damage: int) -> void:
+	carbon_stores -= damage
+
+
+func _on_carbon_ticker_timeout() -> void:
+	carbon_stores -= carbon_tick_rate

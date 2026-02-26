@@ -5,6 +5,7 @@ extends Node2D
 @export var firing_delay: float = 0.15
 @export var laser_linger_time: float = 0.2
 @export var cooldown: float = 3
+@export var damage: int = 100
 
 @onready var aiming_raycast: RayCast2D = $AimingRaycast
 @onready var aiming_line: Line2D = $AimingLaser
@@ -91,7 +92,7 @@ func fire(point: Vector2) -> void:
 
 
 func damage_player(ship: RigidBody2D) -> void:
-	print("hit player")
+	ship.take_damage(damage)
 	pass
 
 
@@ -108,7 +109,6 @@ func linger() -> void:
 
 func enable() -> void:
 	enabled = true
-	print("turret enabled")
 
 
 # Called by the parent when the turret is damaged

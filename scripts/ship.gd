@@ -17,7 +17,6 @@ var inventory: Node2D
 
 
 func _ready() -> void:
-	
 	inventory = $Inventory
 	swap_to_node(movement_mode)
 	sprites.play("Flying")
@@ -34,6 +33,9 @@ func _process(delta: float) -> void:
 		landing_target = null
 	elif nearest_planet.onscreen:
 		landing_target = nearest_planet
+	
+	if inventory.carbon_stores <= 0:
+		die()
 
 
 func add_near_planet(planet: Area2D) -> void:
@@ -125,6 +127,23 @@ func swap_to_node(new_mode: ENUMS.PlayerMovementMode) -> void:
 			$MovementManager.process_mode = Node.PROCESS_MODE_DISABLED
 			$LandingManager.process_mode = Node.PROCESS_MODE_DISABLED
 			$EatingManager.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func take_damage(damage: int) -> void:
+	inventory.take_damage(damage)
+	sprites.modulate = Color("f51b00")
+	await get_tree().create_timer(0.1).timeout
+	sprites.modulate = Color.WHITE
+
+
+func die() -> void:
+	print("player dead")
+	$MovementManager.process_mode = Node.PROCESS_MODE_DISABLED
+	$LandingManager.process_mode = Node.PROCESS_MODE_DISABLED
+	$EatingManager.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	
+	pass
 
 
 ## One-off inputs (dampers, landing mode)
