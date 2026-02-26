@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
+[ext_resource type="Shader" uid="uid://c755w8bcv1pxx" path="res://Materials/ring.gdshader" id="4_hdvgx"]
+[ext_resource type="Script" uid="uid://ccxuytxwyl5y6" path="res://scripts/shield_surge_detector.gd" id="5_a7q7s"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
 [ext_resource type="PackedScene" uid="uid://k6xkv36cbe6s" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
 [ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
@@ -54,6 +56,14 @@ turbulence_enabled = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_88ecf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fevf7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7q7s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5tmf"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 0.0050000002375
+shader_parameter/radius = 0.3250000154375
+shader_parameter/color = Color(4.428029e-06, 0.7833401, 0.8697616, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
 radius = 1000.0
@@ -289,6 +299,39 @@ nanotech = 1
 total_resource_quantity = 3001
 remaining_resource_quantity = 3001
 
+[node name="OuterShield" type="StaticBody2D" parent="Bounds/Federation" unique_id=1722992071]
+scale = Vector2(1200, 1200)
+collision_layer = 128
+
+[node name="ShieldCollider" type="CollisionShape2D" parent="Bounds/Federation/OuterShield" unique_id=828044432]
+shape = SubResource("CircleShape2D_a7q7s")
+
+[node name="Ring" type="ColorRect" parent="Bounds/Federation/OuterShield" unique_id=593227407]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_i5tmf")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0075
+offset_top = -14.997501
+offset_right = 14.9925
+offset_bottom = 15.002499
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="ShieldSurgeDetector" type="Area2D" parent="Bounds/Federation" unique_id=1859617425 node_paths=PackedStringArray("physical_shield")]
+scale = Vector2(1205, 1205)
+collision_layer = 8
+collision_mask = 64
+script = ExtResource("5_a7q7s")
+physical_shield = NodePath("../OuterShield")
+
+[node name="ShieldCollider" type="CollisionShape2D" parent="Bounds/Federation/ShieldSurgeDetector" unique_id=674873355]
+shape = SubResource("CircleShape2D_a7q7s")
+
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
 [node name="ParticleEffects" type="Node2D" parent="." unique_id=692688498]
@@ -301,9 +344,10 @@ collision_mask = 52
 collide_with_areas = true
 
 [node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
+position = Vector2(17931, -40381)
+collision_mask = 134
 
 [node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
-enabled = false
 zoom = Vector2(0.33, 0.33)
 target_object = NodePath("../Ship")
 tracking_speed = 10.0
@@ -315,6 +359,7 @@ transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
 
 [node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
 scale = Vector2(1.0025532, 1)
+enabled = false
 zoom = Vector2(0.01, 0.01)
 
 [node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]
@@ -523,6 +568,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 14.89
 
+[connection signal="area_entered" from="Bounds/Federation/ShieldSurgeDetector" to="Bounds/Federation/ShieldSurgeDetector" method="_on_area_entered"]
 [connection signal="player_died" from="Ship" to="PlanetScannerEffect" method="_on_ship_player_died"]
 [connection signal="player_died" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_died"]
 [connection signal="player_died" from="Ship" to="UI/UI Control/PlanetResourceIndicator" method="_on_ship_player_died"]

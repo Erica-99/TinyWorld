@@ -137,7 +137,6 @@ func take_damage(damage: int) -> void:
 
 
 func die() -> void:
-	print("player dead")
 	$MovementManager.process_mode = Node.PROCESS_MODE_DISABLED
 	$LandingManager.process_mode = Node.PROCESS_MODE_DISABLED
 	$EatingManager.process_mode = Node.PROCESS_MODE_DISABLED
