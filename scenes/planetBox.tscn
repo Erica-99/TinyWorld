@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bu2kr8cklk7p1"]
 
 [ext_resource type="Script" uid="uid://cxloe57uv8mdb" path="res://scripts/planet.gd" id="1_pl6jd"]
-[ext_resource type="SpriteFrames" uid="uid://c35a6b71xgi2v" path="res://Sprites/PlanetSprites.tres" id="2_pl6jd"]
+[ext_resource type="SpriteFrames" uid="uid://ca2rincehdq0h" path="res://Sprites/PlanetSprites.tres" id="2_pl6jd"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_bymth"]
 radius = 5.0

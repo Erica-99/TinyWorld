@@ -78,20 +78,20 @@ func setup_planet(set_biome: ENUMS.PlanetType, set_size: float) -> void:
 	
 	var settings = PLANETS.get_settings(biome)
 	$MeshInstance2D.modulate = settings.test_color
-	if biome == 0:
+	if biome == ENUMS.PlanetType.METEOR:
 		planet_sprite.play("METEOR")
-	if biome == 1:
+	if biome == ENUMS.PlanetType.BARREN:
 		planet_sprite.play("BARREN")
-	if biome == 2:
+	if biome == ENUMS.PlanetType.HEALTHY:
 		planet_sprite.play("HEALTHY")
-	if biome == 3:
+	if biome == ENUMS.PlanetType.ECUMENOPOLIS:
 		planet_sprite.play("ECUMENOPOLIS")
 	carbon = settings.carbon_density * size
 	biomass = settings.biomass_density * size
 	minerals = settings.mineral_density * size
 	nanotech = settings.nanotech
 	if settings.gravity_modifier == 0:
-		$GravityWell.disabled = true
+		$GravityWell.disabled = false
 	gravity_strength = size * 100 * settings.gravity_modifier
 	health = settings.health
 	total_resource_quantity = carbon + biomass + minerals + nanotech

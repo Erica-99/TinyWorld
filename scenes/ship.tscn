@@ -59,6 +59,9 @@ surge_strength = 7000.0
 script = ExtResource("6_7j21i")
 mineral_stores = 223
 
+[node name="CarbonTicker" type="Timer" parent="Inventory" unique_id=496759966]
+autostart = true
+
 [node name="SurgeArea" type="Area2D" parent="." unique_id=1963121455]
 collision_layer = 64
 collision_mask = 8
@@ -69,4 +72,5 @@ shape = SubResource("RectangleShape2D_7j21i")
 disabled = true
 
 [connection signal="body_entered" from="EatingZone" to="LandingManager" method="_on_eating_zone_body_entered"]
+[connection signal="timeout" from="Inventory/CarbonTicker" to="Inventory" method="_on_carbon_ticker_timeout"]
 [connection signal="area_entered" from="SurgeArea" to="MovementManager" method="_on_surge_area_area_entered"]
