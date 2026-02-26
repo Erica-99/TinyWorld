@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d37xh42knsb2q"]
 
-[ext_resource type="Script" path="res://scenes/planet_explosion.gd" id="1_ijcwa"]
+[ext_resource type="Script" uid="uid://bl80cuws24mle" path="res://scripts/planet_explosion.gd" id="1_ijcwa"]
 
 [sub_resource type="Curve" id="Curve_ijcwa"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7770271, 0.8089888), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -42,10 +42,12 @@ top_level = true
 light_mask = 4
 visibility_layer = 4
 scale = Vector2(3.834841, 3.7529428)
+emitting = false
 amount = 1000
-lifetime = 40.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
+randomness = 0.2
 process_material = SubResource("ParticleProcessMaterial_1i8tj")
 script = ExtResource("1_ijcwa")
 
