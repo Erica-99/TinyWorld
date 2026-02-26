@@ -73,6 +73,7 @@ func fire_surge() -> void:
 	actor.angular_damp = 10
 	
 	actor.sprites.play("Idle")
+	actor.surge_collider.set_deferred("disabled", false)
 	
 	var surge_direction_vector = (get_global_mouse_position() - actor.global_position).normalized()
 	actor.apply_impulse(surge_direction_vector * surge_strength, Vector2.ZERO)
@@ -100,6 +101,7 @@ func return_to_no_surge() -> void:
 	actor.angular_damp = 2
 	
 	actor.sprites.play("Flying")
+	actor.surge_collider.set_deferred("disabled", true)
 	
 	surge_status = ENUMS.SurgeStatus.NONE
 
@@ -123,3 +125,8 @@ func _unhandled_input(event):
 	if event.is_action_released("Surge"):
 		if surge_status == ENUMS.SurgeStatus.AIMING:
 			fire_surge()
+
+
+func _on_surge_area_area_entered(area: Area2D) -> void:
+	actor.set_deferred("linear_velocity", actor.linear_velocity/10)
+	return_to_no_surge()

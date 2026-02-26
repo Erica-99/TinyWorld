@@ -24,6 +24,11 @@ region = Rect2(800, 176, 200, 88)
 
 [resource]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"Damaged",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o8c3r")
