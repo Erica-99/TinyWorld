@@ -10,7 +10,6 @@ radius = 5.0
 
 [node name="LaserTurret" type="Node2D" unique_id=2132486732]
 script = ExtResource("1_vsw08")
-damage = 60
 
 [node name="AggroRange" type="Area2D" parent="." unique_id=1400523820]
 collision_layer = 0

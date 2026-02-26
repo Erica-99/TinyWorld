@@ -4,9 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bu2kr8cklk7p1" path="res://scenes/planetBox.tscn" id="2_88ecf"]
 [ext_resource type="PackedScene" uid="uid://b6iv033nau3ee" path="res://scenes/ship.tscn" id="2_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
+[ext_resource type="Script" uid="uid://bieqhq63mido0" path="res://scripts/inner_shield.gd" id="3_i5tmf"]
+[ext_resource type="Shader" uid="uid://c755w8bcv1pxx" path="res://Materials/ring.gdshader" id="4_hdvgx"]
+[ext_resource type="Script" uid="uid://ccxuytxwyl5y6" path="res://scripts/shield_surge_detector.gd" id="5_a7q7s"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
 [ext_resource type="PackedScene" uid="uid://k6xkv36cbe6s" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
-[ext_resource type="Script" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
+[ext_resource type="Script" uid="uid://8lwqip8mub4b" path="res://scripts/planet_line.gd" id="7_pev5q"]
+[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
 [ext_resource type="Texture2D" uid="uid://bl1j7y4dsrhjl" path="res://Sprites/ResourceSprites.png" id="10_aoqvg"]
@@ -55,6 +59,40 @@ turbulence_enabled = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_88ecf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fevf7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7q7s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7q7s"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 0.030000001425
+shader_parameter/radius = 0.3250000154375
+shader_parameter/color = Color(0.1216637, 0.43832996, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pev5q"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 1.0
+shader_parameter/radius = 0.450000021375
+shader_parameter/color = Color(0, 0, 0, 0.3882353)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gv6ig"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 1.0
+shader_parameter/radius = 0.450000021375
+shader_parameter/color = Color(0, 0, 0, 0.76862746)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4toe0"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 1.0
+shader_parameter/radius = 0.450000021375
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmkl1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5tmf"]
+shader = ExtResource("4_hdvgx")
+shader_parameter/ring_width = 0.0050000002375
+shader_parameter/radius = 0.3250000154375
+shader_parameter/color = Color(4.428029e-06, 0.7833401, 0.8697616, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fchhc"]
 radius = 1000.0
@@ -251,18 +289,209 @@ collision_mask = 0
 scale = Vector2(400, 400)
 shape = SubResource("CircleShape2D_fevf7")
 
+[node name="InnerShield" type="StaticBody2D" parent="Bounds/Federation/Boss Area" unique_id=800434948 node_paths=PackedStringArray("required_planets")]
+scale = Vector2(400, 400)
+collision_layer = 128
+script = ExtResource("3_i5tmf")
+required_planets = [NodePath("../../Federation Planet 1"), NodePath("../../Federation Planet 2"), NodePath("../../Federation Planet 3")]
+
+[node name="ShieldCollider" type="CollisionShape2D" parent="Bounds/Federation/Boss Area/InnerShield" unique_id=1049645740]
+shape = SubResource("CircleShape2D_a7q7s")
+
+[node name="Ring" type="ColorRect" parent="Bounds/Federation/Boss Area/InnerShield" unique_id=1604782758]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_a7q7s")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0075
+offset_top = -14.997501
+offset_right = 14.9925
+offset_bottom = 15.002499
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Goal" type="Node2D" parent="Bounds/Federation/Boss Area" unique_id=1963877041]
+
+[node name="Void" type="Node2D" parent="Bounds/Federation/Boss Area/Goal" unique_id=966988597]
+scale = Vector2(10, 10)
+
+[node name="Ring" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=745475069]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.299995
+offset_top = -99.799995
+offset_right = 99.700005
+offset_bottom = 100.200005
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring2" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=1875768693]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0001
+offset_top = -95.1
+offset_right = 94.9999
+offset_bottom = 94.9
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring3" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=937928407]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.1
+offset_top = -90.0
+offset_right = 89.9
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring4" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=1954150546]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.2
+offset_top = -84.899994
+offset_right = 84.8
+offset_bottom = 85.100006
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring5" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=1101684617]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.1
+offset_right = 80.0
+offset_bottom = 79.9
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring6" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=909127238]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.899994
+offset_top = -75.0
+offset_right = 75.100006
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring7" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=1325798721]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_pev5q")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.2
+offset_top = -65.0
+offset_right = 64.8
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring8" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=2041816466]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_gv6ig")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.1
+offset_top = -60.199997
+offset_right = 59.9
+offset_bottom = 59.800003
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ring9" type="ColorRect" parent="Bounds/Federation/Boss Area/Goal/Void" unique_id=83766742]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_4toe0")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.1
+offset_top = -49.899998
+offset_right = 49.9
+offset_bottom = 50.100002
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wincheck" type="Area2D" parent="Bounds/Federation/Boss Area/Goal" unique_id=671503282]
+scale = Vector2(30, 30)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Federation/Boss Area/Goal/Wincheck" unique_id=73337852]
+shape = SubResource("CircleShape2D_hmkl1")
+
 [node name="Federation Planet 1" parent="Bounds/Federation" unique_id=1921216346 instance=ExtResource("2_88ecf")]
 position = Vector2(-5441, -4672)
 scale = Vector2(450, 450)
 biome = 3
 size = 450.0
 gravity_strength = 45000.0
-biomass = 1000
-carbon = 1000
-minerals = 1000
+biomass = 400
+carbon = 400
+minerals = 400
 nanotech = 1
-total_resource_quantity = 3001
-remaining_resource_quantity = 3001
+total_resource_quantity = 1201
+remaining_resource_quantity = 1201
 
 [node name="Federation Planet 2" parent="Bounds/Federation" unique_id=1191879661 instance=ExtResource("2_88ecf")]
 position = Vector2(-3411, 4084)
@@ -270,12 +499,12 @@ scale = Vector2(450, 450)
 biome = 3
 size = 450.0
 gravity_strength = 45000.0
-biomass = 1000
-carbon = 1000
-minerals = 1000
+biomass = 400
+carbon = 400
+minerals = 400
 nanotech = 1
-total_resource_quantity = 3001
-remaining_resource_quantity = 3001
+total_resource_quantity = 1201
+remaining_resource_quantity = 1201
 
 [node name="Federation Planet 3" parent="Bounds/Federation" unique_id=841358744 instance=ExtResource("2_88ecf")]
 position = Vector2(5335, 4462)
@@ -283,12 +512,106 @@ scale = Vector2(450, 450)
 biome = 3
 size = 450.0
 gravity_strength = 45000.0
-biomass = 1000
-carbon = 1000
-minerals = 1000
+biomass = 400
+carbon = 400
+minerals = 400
 nanotech = 1
-total_resource_quantity = 3001
-remaining_resource_quantity = 3001
+total_resource_quantity = 1201
+remaining_resource_quantity = 1201
+
+[node name="OuterShield" type="StaticBody2D" parent="Bounds/Federation" unique_id=1722992071]
+scale = Vector2(1200, 1200)
+collision_layer = 128
+
+[node name="ShieldCollider" type="CollisionShape2D" parent="Bounds/Federation/OuterShield" unique_id=828044432]
+shape = SubResource("CircleShape2D_a7q7s")
+
+[node name="Ring" type="ColorRect" parent="Bounds/Federation/OuterShield" unique_id=593227407]
+modulate = Color(0, 0.45665842, 0.45667517, 1)
+material = SubResource("ShaderMaterial_i5tmf")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0075
+offset_top = -14.997501
+offset_right = 14.9925
+offset_bottom = 15.002499
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ShieldSurgeDetector" type="Area2D" parent="Bounds/Federation" unique_id=1859617425 node_paths=PackedStringArray("physical_shield")]
+scale = Vector2(1205, 1205)
+collision_layer = 8
+collision_mask = 64
+script = ExtResource("5_a7q7s")
+physical_shield = NodePath("../OuterShield")
+
+[node name="ShieldCollider" type="CollisionShape2D" parent="Bounds/Federation/ShieldSurgeDetector" unique_id=674873355]
+shape = SubResource("CircleShape2D_a7q7s")
+
+[node name="PlanetLine" type="Line2D" parent="Bounds/Federation" unique_id=1112184266 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(-5462, -4670, -3414, 4084)
+width = 250.0
+default_color = Color(0.22232133, 0.49929732, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 1")
+connection_2 = NodePath("../Federation Planet 2")
+disable_colour = Color(0.28118682, 0.28118688, 0.28118682, 1)
+
+[node name="PlanetLine2" type="Line2D" parent="Bounds/Federation" unique_id=609985469 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(-3414, 4082, 5342, 4479)
+width = 250.0
+default_color = Color(0.22352941, 0.49803922, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 2")
+connection_2 = NodePath("../Federation Planet 3")
+disable_colour = Color(0.28235295, 0.28235295, 0.28235295, 1)
+
+[node name="PlanetLine3" type="Line2D" parent="Bounds/Federation" unique_id=2046630865 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(5342, 4479, 4739, -5404)
+width = 250.0
+default_color = Color(0.22352941, 0.49803922, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 3")
+connection_2 = NodePath("../Boss Area/Goal")
+disable_colour = Color(0.28235295, 0.28235295, 0.28235295, 1)
+
+[node name="PlanetLine4" type="Line2D" parent="Bounds/Federation" unique_id=1860085305 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(-5462, -4670, 4723, -5412)
+width = 250.0
+default_color = Color(0.22352941, 0.49803922, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 1")
+connection_2 = NodePath("../Boss Area/Goal")
+disable_colour = Color(0.28235295, 0.28235295, 0.28235295, 1)
+
+[node name="PlanetLine5" type="Line2D" parent="Bounds/Federation" unique_id=1197535816 node_paths=PackedStringArray("connection_1", "connection_2")]
+z_index = -1
+points = PackedVector2Array(-3424, 4095, 4743, -5415)
+width = 250.0
+default_color = Color(0.22232133, 0.49929732, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("7_pev5q")
+connection_1 = NodePath("../Federation Planet 2")
+connection_2 = NodePath("../Boss Area/Goal")
+disable_colour = Color(0.28235295, 0.28235295, 0.28235295, 1)
 
 [node name="Planets" type="Node2D" parent="." unique_id=1292802495]
 
@@ -302,7 +625,8 @@ collision_mask = 52
 collide_with_areas = true
 
 [node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
-position = Vector2(16512, -43264)
+position = Vector2(17931, -40381)
+collision_mask = 134
 
 [node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
 zoom = Vector2(0.33, 0.33)
@@ -316,6 +640,7 @@ transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
 
 [node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
 scale = Vector2(1.0025532, 1)
+enabled = false
 zoom = Vector2(0.01, 0.01)
 
 [node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]
@@ -531,6 +856,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 14.89
 
+[connection signal="area_entered" from="Bounds/Federation/ShieldSurgeDetector" to="Bounds/Federation/ShieldSurgeDetector" method="_on_area_entered"]
 [connection signal="player_died" from="Ship" to="PlanetScannerEffect" method="_on_ship_player_died"]
 [connection signal="player_died" from="Ship" to="UI/UI Control/LandingPopup" method="_on_ship_player_died"]
 [connection signal="player_died" from="Ship" to="UI/UI Control/PlanetResourceIndicator" method="_on_ship_player_died"]

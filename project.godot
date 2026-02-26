@@ -71,6 +71,7 @@ Surge={
 2d_physics/layer_5="Federation Space"
 2d_physics/layer_6="Federation HQ"
 2d_physics/layer_7="Surge"
+2d_physics/layer_8="Shield"
 
 [physics]
 
