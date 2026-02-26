@@ -57,7 +57,8 @@ surge_strength = 7000.0
 
 [node name="Inventory" type="Node2D" parent="." unique_id=244974306]
 script = ExtResource("6_7j21i")
-mineral_stores = 223
+mineral_stores = 500
+nanotech_stores = 1
 
 [node name="CarbonTicker" type="Timer" parent="Inventory" unique_id=496759966]
 autostart = true
