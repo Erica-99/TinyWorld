@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://scripts/laser_turret.gd" id="1_vsw08"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vsw08"]
-radius = 300.0
+radius = 400.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5q4jy"]
 radius = 5.0
 
 [node name="LaserTurret" type="Node2D" unique_id=2132486732]
 script = ExtResource("1_vsw08")
-damage = 70
+damage = 60
 
 [node name="AggroRange" type="Area2D" parent="." unique_id=1400523820]
 collision_layer = 0

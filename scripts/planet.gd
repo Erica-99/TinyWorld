@@ -29,8 +29,15 @@ var onscreen: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
-	pass
+	$MeshInstance2D.visible = false
+	if biome == ENUMS.PlanetType.METEOR:
+		planet_sprite.play("METEOR")
+	if biome == ENUMS.PlanetType.BARREN:
+		planet_sprite.play("BARREN")
+	if biome == ENUMS.PlanetType.HEALTHY:
+		planet_sprite.play("HEALTHY")
+	if biome == ENUMS.PlanetType.ECUMENOPOLIS:
+		planet_sprite.play("ECUMENOPOLIS")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

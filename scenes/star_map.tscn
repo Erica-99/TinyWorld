@@ -144,13 +144,33 @@ animations = [{
 [node name="StarMap" type="Node2D" unique_id=1717163525]
 script = ExtResource("1_fp76q")
 max_distance = 70000.0
+enemy_spawn_chance_max = 0.1
 max_healthy = 100
 
-[node name="Enemies" type="Node2D" parent="." unique_id=1122922968]
+[node name="FederationEnemies" type="Node2D" parent="." unique_id=1991471996]
 
-[node name="enemy" parent="Enemies" unique_id=2136185547 instance=ExtResource("11_aoqvg")]
-position = Vector2(-1440.9999, -1065.9999)
-scale = Vector2(7, 7)
+[node name="enemy" parent="FederationEnemies" unique_id=2136185547 instance=ExtResource("11_aoqvg")]
+position = Vector2(21024.002, -51783)
+
+[node name="enemy2" parent="FederationEnemies" unique_id=1087441541 instance=ExtResource("11_aoqvg")]
+position = Vector2(26882, -54947)
+
+[node name="enemy3" parent="FederationEnemies" unique_id=1007775306 instance=ExtResource("11_aoqvg")]
+position = Vector2(25873.002, -47681)
+
+[node name="enemy4" parent="FederationEnemies" unique_id=504504166 instance=ExtResource("11_aoqvg")]
+position = Vector2(24702.002, -39769)
+
+[node name="enemy5" parent="FederationEnemies" unique_id=1301366734 instance=ExtResource("11_aoqvg")]
+position = Vector2(31232, -43128)
+
+[node name="enemy6" parent="FederationEnemies" unique_id=872457876 instance=ExtResource("11_aoqvg")]
+position = Vector2(19986, -46360)
+
+[node name="enemy7" parent="FederationEnemies" unique_id=1720781956 instance=ExtResource("11_aoqvg")]
+position = Vector2(20751.002, -43269.004)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1122922968]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1484703696]
 z_index = -1000
@@ -211,7 +231,7 @@ scale = Vector2(7000, 7000)
 shape = SubResource("CircleShape2D_ewo0i")
 
 [node name="Federation" type="Area2D" parent="Bounds" unique_id=567740253]
-modulate = Color(0.18911365, 0.38693562, 0.86979944, 1)
+self_modulate = Color(0.1882353, 0.3882353, 0.87058824, 1)
 position = Vector2(29968, -47359)
 collision_layer = 16
 collision_mask = 0
@@ -221,7 +241,7 @@ scale = Vector2(1200, 1200)
 shape = SubResource("CircleShape2D_88ecf")
 
 [node name="Boss Area" type="Area2D" parent="Bounds/Federation" unique_id=872906046]
-modulate = Color(0.22670749, 0.22670749, 0.22670746, 1)
+self_modulate = Color(0.22745098, 0.22745098, 0.22745098, 1)
 position = Vector2(4745, -5410)
 collision_layer = 32
 collision_mask = 0
@@ -283,6 +303,7 @@ collide_with_areas = true
 [node name="Ship" parent="." unique_id=156394039 instance=ExtResource("2_ewo0i")]
 
 [node name="PlayerCamera" parent="." unique_id=989112755 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ewo0i")]
+enabled = false
 zoom = Vector2(0.33, 0.33)
 target_object = NodePath("../Ship")
 tracking_speed = 10.0
@@ -294,7 +315,6 @@ transform = Transform2D(2.03, 0, 0, 2.03, 0, 0)
 
 [node name="FarCam" type="Camera2D" parent="." unique_id=199873522]
 scale = Vector2(1.0025532, 1)
-enabled = false
 zoom = Vector2(0.01, 0.01)
 
 [node name="PlanetScannerEffect" type="Node2D" parent="." unique_id=1135476807 node_paths=PackedStringArray("ship")]

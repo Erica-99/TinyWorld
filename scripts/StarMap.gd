@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var max_distance: float = 20000
+@export var enemy_spawn_chance_max: float = 0.4
 
 @export_category("Planet Counts")
 @export var max_cities: int = 10
@@ -9,10 +10,15 @@ extends Node2D
 @export var max_meteor: int = 1000
 
 @onready var planet = preload("res://scenes/planetBox.tscn")
+@onready var enemy_ship = preload("res://scenes/enemy.tscn")
 @onready var planetlist = $Planets
 @onready var SpaceChecker = $SpaceChecker
+@onready var enemylist = $Enemies
+
+var meteor_list: Array[Area2D]
 
 func _ready() -> void:
+	randomize()
 	generatemap()
 
 
@@ -31,7 +37,22 @@ func generatemap():
 		createplanet(ENUMS.PlanetType.BARREN)
 	for i in range(max_meteor):
 		createplanet(ENUMS.PlanetType.METEOR)
+	
+	generate_ships()
 
+func generate_ships():
+	for meteor in meteor_list:
+		var dist_ratio: float = (meteor.global_position - global_position).length()/max_distance
+		var spawn_chance = dist_ratio * enemy_spawn_chance_max
+		
+		var do_spawn: bool = randf() < spawn_chance
+		
+		if do_spawn:
+			var saved_position = meteor.global_position
+			meteor.queue_free()
+			var new_enemy = enemy_ship.instantiate()
+			new_enemy.global_position = saved_position
+			enemylist.add_child(new_enemy)
 
 func createplanet(biome: ENUMS.PlanetType):
 	var newPlanet = planet.instantiate()
@@ -45,6 +66,8 @@ func createplanet(biome: ENUMS.PlanetType):
 	if location[1]:
 		newPlanet.global_position = location[0]
 		planetlist.add_child(newPlanet)
+		if biome == ENUMS.PlanetType.METEOR:
+			meteor_list.append(newPlanet)
 		newPlanet.call("setup_planet", biome, size)
 
 
