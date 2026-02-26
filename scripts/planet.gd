@@ -34,11 +34,13 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 
 	pass
 
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	for rb in captured_objects:
 		if rb not in gravity_ignore_list:
@@ -52,13 +54,13 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is RigidBody2D:
 		captured_objects.append(body as RigidBody2D)
-		body.call_deferred("add_near_planet", self)
+		body.call("add_near_planet", self)
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if body in captured_objects:
 		captured_objects.erase(body)
-		body.call_deferred("remove_near_planet", self)
+		body.call("remove_near_planet", self)
 		if body in gravity_ignore_list:
 			gravity_ignore_list.erase(body)
 
@@ -66,7 +68,7 @@ func _on_body_exited(body: Node2D) -> void:
 # Cleanup incase planet is destroyed.
 func _exit_tree() -> void:
 	for body in captured_objects:
-		body.call_deferred("remove_near_planet", self)
+		body.call("remove_near_planet", self)
 
 
 func setup_planet(set_biome: ENUMS.PlanetType, set_size: float) -> void:
@@ -112,13 +114,8 @@ func destroy_planet() -> void:
 	var VFX = explode_VFX.instantiate()
 	VFX.position = self.position
 	add_sibling(VFX)
-	_exit_tree()
 	queue_free()
-	
-	
-	# Instantiate some sort of explosion then queue free
-	print("planet killed")
-	pass
+	_exit_tree()
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
