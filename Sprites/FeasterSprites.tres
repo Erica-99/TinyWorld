@@ -54,7 +54,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0knk6")
 }],
-"loop": false,
+"loop": true,
 "name": &"ChargingSurge",
 "speed": 5.0
 }, {

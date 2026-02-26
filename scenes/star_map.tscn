@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byiovtsqqsneb" path="res://scenes/player_camera.tscn" id="3_ewo0i"]
 [ext_resource type="PackedScene" uid="uid://ulkc1ds2gxej" path="res://scenes/landing_popup.tscn" id="5_fevf7"]
 [ext_resource type="PackedScene" uid="uid://k6xkv36cbe6s" path="res://scenes/planet_resource_indicator.tscn" id="6_568mj"]
-[ext_resource type="Script" uid="uid://dh5auoos0fbro" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
+[ext_resource type="Script" path="res://scripts/planet_scanner_effect.gd" id="7_vyd5l"]
 [ext_resource type="Script" uid="uid://dy33yhdij0yvp" path="res://scripts/resources.gd" id="8_b4dln"]
 [ext_resource type="StyleBox" uid="uid://b0matx7ugvdlk" path="res://Materials/SurgeReady.tres" id="9_b4dln"]
 [ext_resource type="Texture2D" uid="uid://bl1j7y4dsrhjl" path="res://Sprites/ResourceSprites.png" id="10_aoqvg"]
